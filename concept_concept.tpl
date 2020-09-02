@@ -1,44 +1,77 @@
 {OVERALL_GAME_HEADER}
 
-<!-- 
---------
--- BGA framework: © Gregory Isabelli <gisabelli@boardgamearena.com> & Emmanuel Colin <ecolin@boardgamearena.com>
--- Concept implementation : © <Your name here> <Your email address here>
--- 
--- This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
--- See http://en.boardgamearena.com/#!doc/Studio for more information.
--------
+<div id="concept-app" @click="unselectSymbol">
+	<div id="concept-container">
+		<div id="concept-grid">
+			<div v-for="(symbol, id) in symbols"
+        class="concept-symbol"
+        :id="'symbol-' + id"
+        v-bind:style="{ cursor: (editing? 'pointer' : 'default') }"
+        v-bind:class="{ 'active' : selectedSymbol == id }"
+        @click="selectSymbol($event, id)"
+        >
+        <div class="symbol-zone">
+          <div v-for="(nbr, mark) in hintsPerSymbol[id]"
+             class="concept-hint"
+             :data-mark="mark"
+             v-bind:style="{
+              width : getHintSize(id) + '%',
+              height : getHintSize(id) + '%'
+            }">
+          <span class="badge" v-if="nbr > 1" v-bind:style="{ transform : 'scale(' + getBadgeSize(id) + ')' }">{{ nbr }}</span>
+        </div>
 
-    concept_concept.tpl
-    
-    This is the HTML template of your game.
-    
-    Everything you are writing in this file will be displayed in the HTML page of your game user interface,
-    in the "main game zone" of the screen.
-    
-    You can use in this template:
-    _ variables, with the format {MY_VARIABLE_ELEMENT}.
-    _ HTML block, with the BEGIN/END format
-    
-    See your "view" PHP file to check how to set variables and control blocks
-    
-    Please REMOVE this comment before publishing your game on BGA
--->
+        </div>
+
+        <div class="symbol-img">
+        </div>
+      </div>
+		</div>
+
+    <div id="hints-only">
+      <div v-for="row in organizedHints">
+        <div v-for="hint in row" class="hint">
+          <div class="img" :data-symbol="hint.sid"></div>
+          <div class="mark" :data-mark="hint.mid">
+            <span class="badge" v-if="typeof hint.n != 'undefined'">{{ hint.n }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="concept-marks" v-show="selectedSymbol != null && this.editing">
+    <button v-for="(mark, markIndex) in marks" :id="'mark-' + markIndex"
+				v-bind:class="{ disabled: marksUses[markIndex] >= mark.m && mark.m != -1 }"
+				v-bind:disabled="marksUses[markIndex] >= mark.m && mark.m != -1"
+				@click="selectMark(markIndex)"></button>
+  </div>
 
 
-This is your game interface. You can edit this HTML in your ".tpl" file.
-
+  <div id="concept-card-overlay">
+    <div id="concept-card" v-show="card != null">
+      <ul id="concept-card-easy">
+        <li @onclick="selectCardWord(0,0)">{{ card[0][0] }}</li>
+        <li @onclick="selectCardWord(0,1)">{{ card[0][1] }}</li>
+        <li @onclick="selectCardWord(0,2)">{{ card[0][2] }}</li>
+      </ul>
+      <ul id="concept-card-medium">
+        <li @onclick="selectCardWord(1,0)">{{ card[1][0] }}</li>
+        <li @onclick="selectCardWord(1,1)">{{ card[1][1] }}</li>
+        <li @onclick="selectCardWord(1,2)">{{ card[1][2] }}</li>
+      </ul>
+      <ul id="concept-card-hard">
+        <li @onclick="selectCardWord(2,0)">{{ card[2][0] }}</li>
+        <li @onclick="selectCardWord(2,1)">{{ card[2][1] }}</li>
+        <li @onclick="selectCardWord(2,2)">{{ card[2][2] }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
 
-// Javascript HTML templates
-
-/*
-// Example:
-var jstpl_some_game_item='<div class="my_game_item" id="my_game_item_${MY_ITEM_ID}"></div>';
-
-*/
-
-</script>  
+</script>
 
 {OVERALL_GAME_FOOTER}
