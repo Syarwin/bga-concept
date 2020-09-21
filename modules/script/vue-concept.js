@@ -11,6 +11,7 @@ window.Concept = function(game){
       symbols:ConceptSymbols(),
       hints:game.gamedatas.hints,
       selectedSymbol: null,
+      displayCard:true,
       card:null,
       marks:[
         {pid:null, m:1 }, {pid:0, m:-1 },
@@ -106,6 +107,28 @@ window.Concept = function(game){
       this.setupNotifications();
 
       this.card = this.game.gamedatas.cards[0];
+
+
+  var playerID=2322021;// replace with player IDs at the table.
+  var a_src=$("avatar_"+playerID).src; //get avatar hash from player board -- also available in PHP player list -> player_avatar
+  var avatar_hash=a_src.substring(a_src.lastIndexOf('h=')+2);
+
+  this.game.createChatBarWindow({
+        type: "privatechat",
+        id: playerID,
+        label: "test",
+        url: "/player?id=" +playerID,
+        channel: "/player/p" +playerID,
+        window_id: "privatechat_" + playerID,
+        avatar: avatar_hash,
+        subscribe: false,
+        start: "expanded"
+    }, false);
+    this.game.expandChatWindow("privatechat_" +playerID);
+    this.game.ackUnreadMessage("privatechat_" + playerID);
+    this.game.loadPreviousMessage("privatechat", playerID);
+    $("chatbarinput_privatechat_"+playerID+"_input").focus();
+
     },
 
 

@@ -49,8 +49,8 @@
   </div>
 
 
-  <div id="concept-card-overlay">
-    <div id="concept-card" v-show="card != null">
+  <div id="concept-card-overlay" @click="displayCard = false" v-show="card != null && displayCard">
+    <div id="concept-card">
       <ul id="concept-card-easy">
         <li @onclick="selectCardWord(0,0)">{{ card[0][0] }}</li>
         <li @onclick="selectCardWord(0,1)">{{ card[0][1] }}</li>
