@@ -36,6 +36,7 @@ class action_concept extends APP_GameAction
     }
   }
 
+/*
   public function addHint() {
     self::setAjaxMode();
     $sid = self::getArg("sid", AT_posint, true );
@@ -43,4 +44,24 @@ class action_concept extends APP_GameAction
     $result = $this->game->addHint($sid, $mid);
     self::ajaxResponse();
   }
+*/
+
+  public function addHint() {
+    self::setAjaxMode();
+    $mid = self::getArg("mid", AT_posint, true );
+    $x = self::getArg("x", AT_posint, true );
+    $y = self::getArg("y", AT_posint, true );
+    $result = $this->game->addHint($mid, $x, $y);
+    self::ajaxResponse();
+  }
+
+  public function moveHint() {
+    self::setAjaxMode();
+    $id = self::getArg("id", AT_posint, true );
+    $x = self::getArg("x", AT_posint, true );
+    $y = self::getArg("y", AT_posint, true );
+    $result = $this->game->moveHint($id, $x, $y);
+    self::ajaxResponse();
+  }
+
 }

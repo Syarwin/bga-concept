@@ -1,53 +1,33 @@
 {OVERALL_GAME_HEADER}
 
-<div id="concept-app" @click="unselectSymbol">
-	<div id="concept-container">
+<div id="concept-app">
+	<div id="concept-container" @mousemove="moveHintAt" @mouseup="dragHintStop" @mouseleave="dragHintStop">
+		<div id="concept-marks">
+			<div v-for="(mark, markIndex) in marks" :id="'mark-' + markIndex"
+					v-bind:class="{ disabled: marksUses[markIndex] >= mark.m && mark.m != -1 }"
+					v-bind:disabled="marksUses[markIndex] >= mark.m && mark.m != -1"
+					@mousedown="newHint(markIndex, $event)"></div>
+		</div>
+
 		<div id="concept-grid">
 			<div v-for="(symbol, id) in symbols"
         class="concept-symbol"
-        :id="'symbol-' + id"
-        v-bind:style="{ cursor: (editing? 'pointer' : 'default') }"
-        v-bind:class="{ 'active' : selectedSymbol == id }"
-        @click="selectSymbol($event, id)"
-        >
-        <div class="symbol-zone">
-          <div v-for="(nbr, mark) in hintsPerSymbol[id]"
-             class="concept-hint"
-             :data-mark="mark"
-             v-bind:style="{
-              width : getHintSize(id) + '%',
-              height : getHintSize(id) + '%'
-            }">
-          <span class="badge" v-if="nbr > 1" v-bind:style="{ transform : 'scale(' + getBadgeSize(id) + ')' }">{{ nbr }}</span>
-        </div>
-
-        </div>
-
-        <div class="symbol-img">
-        </div>
+        :id="'symbol-' + id">
+        <div class="symbol-zone"></div>
+        <div class="symbol-img"></div>
       </div>
+
+			<div v-for="(hint, hintIndex) in hints"
+				 class="concept-hint"
+				 :data-mark="hint.mid"
+				 v-bind:style="{
+					 left:hint.x + 'px',
+					 top:hint.y + 'px',
+				 }"
+				 @mousedown="dragHintStart(hintIndex, $event)">
+			</div>
 		</div>
-
-    <div id="hints-only">
-      <div v-for="row in organizedHints">
-        <div v-for="hint in row" class="hint">
-          <div class="img" :data-symbol="hint.sid"></div>
-          <div class="mark" :data-mark="hint.mid">
-            <span class="badge" v-if="typeof hint.n != 'undefined'">{{ hint.n }}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
-
-  <div id="concept-marks" v-show="selectedSymbol != null && this.editing">
-    <button v-for="(mark, markIndex) in marks" :id="'mark-' + markIndex"
-				v-bind:class="{ disabled: marksUses[markIndex] >= mark.m && mark.m != -1 }"
-				v-bind:disabled="marksUses[markIndex] >= mark.m && mark.m != -1"
-				@click="selectMark(markIndex)"></button>
-  </div>
-
 
   <div id="concept-card-overlay" @click="displayCard = false" v-show="card != null && displayCard">
     <div id="concept-card">

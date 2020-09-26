@@ -18,10 +18,14 @@ require_once( APP_GAMEMODULE_PATH.'module/table/table.game.php' );
 
 class Concept extends Table
 {
-	function __construct() {
+	public static $instance = null;
+	public function __construct() {
 		parent::__construct();
+		self::$instance = $this;
 
-		self::initGameStateLabels([]);
+		self::initGameStateLabels([
+			'optionTeam' => OPTION_TEAM_SIZE,
+		]);
 	}
 
 	protected function getGameName() {
@@ -33,24 +37,11 @@ class Concept extends Table
 	 * setupNewGame:
    */
 	protected function setupNewGame( $players, $options = [] ){
-		$gameinfos = self::getGameinfos();
-		$default_colors = $gameinfos['player_colors'];
-		$sql = "INSERT INTO player (player_id, player_color, player_canal, player_name, player_avatar) VALUES ";
-		$values = [];
-		foreach( $players as $player_id => $player ){
-			$color = array_shift( $default_colors );
-			$values[] = "('".$player_id."','$color','".$player['player_canal']."','".addslashes( $player['player_name'] )."','".addslashes( $player['player_avatar'] )."')";
-		}
-		$sql .= implode( $values, ',' );
-		self::DbQuery( $sql );
-		self::reattributeColorsBasedOnPreferences( $players, $gameinfos['player_colors'] );
-		self::reloadPlayersBasicInfos();
+		PlayerManager::setupNewGame($players);
 
-
-
-		// Activate first player (which is in general a good idea :) )
 		$this->activeNextPlayer();
 	}
+
 
 	/*
 	 * getAllDatas:
@@ -58,17 +49,22 @@ class Concept extends Table
 	protected function getAllDatas(){
 		$hints = array_map(function($hint){
 			return [
-				'id' => (int) $hint['id'],
-				'sid' => (int) $hint['symbol_id'],
+				'id'  => (int) $hint['id'],
 				'mid' => (int) $hint['mark_id'],
+				'x'   => (int) $hint['x'],
+				'y'   => (int) $hint['y'],
 			];
 		}, self::getObjectListFromDB("SELECT * FROM hint") );
 
 		return [
-			'cards' => $this->cards,
+			'cards' => CONCEPT_CARDS,
 			'hints' => $hints,
+			'players' => PlayerManager::getUiData(),
+			'team' => ConceptLog::getCurrentTeam(),
 		];
 	}
+
+
 
 	/*
 	 * getGameProgression:
@@ -78,7 +74,85 @@ class Concept extends Table
 	}
 
 
+////////////////////////////////////
+//////////   Next round   //////////
+////////////////////////////////////
+	/*
+	 * stNextRound: determine who is gonna choose a word to guess
+	 */
+	function stNextRound(){
+    $optionTeam = intval(self::getGameStateValue('optionTeam'));
+		$previousTeam = ConceptLog::getCurrentTeam();
+		$newTeam = [];
 
+		// First team : pick the two first players by no
+		if(is_null($previousTeam)){
+			$players = PlayerManager::getPlayersLeft();
+			$newTeam = [$players[0], $players[1]];
+		}
+		// Otherwise : pick the following two
+		else {
+			$players = PlayerManager::getPlayersLeftStartingWith($previousTeam[1]);
+			$newTeam = [$players[1], $players[2]];
+		}
+
+		ConceptLog::newTeam($newTeam);
+		$this->gamestate->setPlayersMultiactive($newTeam, 'startRound', true);
+		$this->gamestate->nextState('startRound');
+	}
+
+
+////////////////////////////////////
+//////////   Start round   //////////
+////////////////////////////////////
+// Draw a card and let the team choose a word
+
+	/*
+	 * stStartRound: draw a new card
+	 */
+	function stStartRound(){
+		// Keep only cards not played yet, and draw a random on
+		$previousCards = ConceptLog::getCardsDrawn();
+		$cards = array_values(array_filter(array_keys(CONCEPT_CARDS), function($cardId) use ($previousCards){
+			return !in_array($cardId, $previousCards);
+		}));
+		$newCardIndex = bga_rand(0, count($cards) - 1);
+		$newCard = $cards[$newCardIndex];
+		ConceptLog::newCard($newCard);
+	}
+
+
+	function argStartRound(){
+		return [
+			'_private' => [
+				'active' => ConceptLog::getLastAction('drawCard')['card']
+			]
+		];
+	}
+
+
+	function addHint($mid, $x, $y){
+		self::DbQuery("INSERT INTO hint (mark_id, x, y) VALUES ($mid, $x, $y)");
+		$hid = self::DbGetLastId();
+		$this->notifyAllPlayers('addHint', '', [
+			'id' => $hid,
+			'mid' => $mid,
+			'x' => $x,
+			'y' => $y,
+		]);
+	}
+
+	function moveHint($id, $x, $y){
+		self::DbQuery("UPDATE hint SET x = $x, y = $y WHERE id = $id");
+		$this->notifyAllPlayers('moveHint', '', [
+			'id' => $id,
+			'x' => $x,
+			'y' => $y,
+		]);
+	}
+
+
+/*
 	function addHint($sid, $mid){
 		self::DbQuery("INSERT INTO hint (symbol_id, mark_id) VALUES ($sid, $mid)");
 		$hid = self::DbGetLastId();
@@ -88,6 +162,7 @@ class Concept extends Table
 			'mid' => $mid,
 		]);
 	}
+*/
 
 ////////////////////////////////////
 ////////////   Zombie   ////////////

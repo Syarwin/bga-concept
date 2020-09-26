@@ -10,7 +10,8 @@ window.Concept = function(game){
       // Concept stuff
       symbols:ConceptSymbols(),
       hints:game.gamedatas.hints,
-      displayCard:false,
+      selectedSymbol: null,
+      displayCard:true,
       card:null,
       marks:[
         {pid:null, m:1 }, {pid:0, m:-1 },
@@ -19,10 +20,6 @@ window.Concept = function(game){
         {pid:null, m:1 }, {pid:6, m:-1 },
         {pid:null, m:1 }, {pid:8, m:-1 },
       ],
-
-      draggedHint:null,
-      draggedHintIndex:null,
-      dragOffset:null,
     },
     computed:{
       // BGA stuff
@@ -41,6 +38,66 @@ window.Concept = function(game){
   				t[this.hints[j].mid]++;
   			return t;
   		},
+
+
+  		// Compute the corresponding hints per symbol
+  		hintsPerSymbol:function(){
+  			var t = [];
+  			for(var i = 0; i < this.symbols.length; i++)
+  				t[i] = {};
+
+  			for(var j = 0; j < this.hints.length; j++){
+  				if(typeof t[this.hints[j].sid][this.hints[j].mid] == "undefined")
+  					t[this.hints[j].sid][this.hints[j].mid] = 0;
+  				t[this.hints[j].sid][this.hints[j].mid]++;
+  			}
+
+  			return t;
+  		},
+
+
+      // Compute a succinct representation of hints using parentId
+      organizedHints: function(){
+        if(this.marks == null)
+          return;
+
+        var t = [];
+        for(var i = 0; i < this.marks.length; i++)
+        if(this.marks[i].pid == null)
+          t[i] = [];
+
+        var order = [];
+
+        for(var i = 0; i < this.hints.length; i++){
+          var m = this.marks[this.hints[i].mid];
+          var cid = (m.pid == null)? this.hints[i].mid : m.pid;
+          if(!order.includes(cid))
+            order.push(cid);
+
+          var found = false;
+          for(var j = 0; !found && j < t[cid].length; j++)
+          if(t[cid][j].sid == this.hints[i].sid && t[cid][j].mid == this.hints[i].mid){
+            found = true;
+
+            if(typeof t[cid][j].n == "undefined")
+              t[cid][j].n = 1;
+            t[cid][j].n++;
+          }
+
+          if(!found)
+            t[cid].push(this.hints[i]);
+        }
+
+        for(var i = 0; i < this.marks.length; i++)
+        if(this.marks[i].pid == null)
+          t[i].sort(a => b => { return (a.pid == null? -1 : 0) +  (b.pid == null? 1 : 0) });
+
+        var res = [];
+        for(var i = 0; i < order.length; i++)
+          res.push(t[order[i]]);
+
+        return res;
+      },
     },
 
 
@@ -48,6 +105,7 @@ window.Concept = function(game){
       debug("SETUP", this.game.gamedatas);
 
       this.setupNotifications();
+//      this.card = this.game.gamedatas.cards[0];
     },
 
 
@@ -55,7 +113,7 @@ window.Concept = function(game){
       isCurrentPlayerActive: function(){ return this.game.isCurrentPlayerActive() },
       getActivePlayerId: function() { return this.game.getActivePlayerId() },
       getActivePlayers: function() { return this.game.getActivePlayers() },
-      addPrimaryActionButton: function(id, msg, callback){ this.game.addActionButton(id, msg, callback, null, false, "blue"); },
+
 
       /*
        * onEnteringState:
@@ -68,7 +126,7 @@ window.Concept = function(game){
         debug('Entering state: ' + stateName, args);
 
         // Stop here if it's not the current player's turn for some states
-      	if (["startRound"].includes(stateName) && !this.isCurrentPlayerActive()) return;
+      //	if (["drawCard", "playCard", "react", "multiReact", "discardExcess"].includes(stateName) && !this.isCurrentPlayerActive()) return;
 
       	// Call appropriate method
       	var methodName = "onEnteringState" + stateName.charAt(0).toUpperCase() + stateName.slice(1);
@@ -115,92 +173,50 @@ window.Concept = function(game){
       },
 
 
-      ////////////////////////////
-      //////	Choose word	 ///////
-      ////////////////////////////
-      onEnteringStateStartRound: function(args){
-        this.card = this.game.gamedatas.cards[args['_private']];
-        this.displayCard = true;
-        this.addPrimaryActionButton('buttonShowCard', _('Show card'), () => { this.displayCard = true });
-      },
-
 
       ////////////////////////////////
-      //////	Dragging hints	 ///////
+      ////////////////////////////////
+      /////////		Actions		//////////
+      ////////////////////////////////
       ////////////////////////////////
 
-      newHint(markIndex, event){
-        var hint = {
-          mid : markIndex,
-          x:0,
-          y:0,
-        };
-        this.hints.push(hint);
-        this.dragHintStart(this.hints.length - 1, event);
-      },
-      dragHintStart(hintIndex, event) {
-        if (event.preventDefault) event.preventDefault();
-        this.draggedHintIndex = hintIndex;
-        this.draggedHint = this.hints[hintIndex];
-        var box = event.target.getBoundingClientRect();
-        this.dragOffset = {
-          x : box.x + box.width/2 - event.clientX,
-          y : box.y + box.height/2 - event.clientY,
-        };
-        this.moveHintAt(event);
-      },
-      dragHintStop() {
-        if(this.draggedHint == null) return;
+      // Triggered when a symbol is clicked
+  		selectSymbol: function(event, id){
+  			if(!this.editing)
+  				return;
+  			event.stopPropagation();
 
-        var box = $('concept-grid').getBoundingClientRect();
+  			// Show tooltip
+        this.selectedSymbol = id;
+  			var target = event.target;
+  			if(!target.classList.contains("concept-symbol"))
+  				target = target.parentNode;
 
-        // Delete hint by moving outside grid
-        if(this.draggedHint.x < 0 || this.draggedHint.x > box.width
-          || this.draggedHint.y < 0 || this.draggedHint.y > box.height){
-          this.hints.splice(this.draggedHintIndex, 1);
-          if(this.draggedHint.id)
-            this.takeAction("removeHint", { id : this.draggedHint.id} );
-        }
-        else {
-          // Moving already existing hint
-          if(this.draggedHint.id)
-            this.takeAction("moveHint", this.draggedHint);
-          // Creating new hint
-          else {
-            this.takeAction("addHint", this.draggedHint, () => {
-              this.hints.splice(this.draggedHintIndex, 1);
-            });
-          }
-        }
+  			new Popper(target, document.getElementById("concept-marks"), {
+    			placement: (dojo.style(target.firstChild, "order") == 0)? 'left' : 'right',
+  			});
+  		},
 
-        this.draggedHint = null;
-        this.dragOffset = null;
-      },
-      moveHintAt(event){
-        if(this.draggedHint != null){
-          var box = $('concept-grid').getBoundingClientRect();
-          var box2 = $('mark-0').getBoundingClientRect();
-          this.draggedHint.x = event.clientX - box.x - box2.width/2 + this.dragOffset.x;
-          this.draggedHint.y = event.clientY - box.y - box2.height/2 + this.dragOffset.y;
-        }
-      },
 
+      // Trigger when clicking outside of symbol
+  		unselectSymbol:function(){
+  			this.selectedSymbol = null;
+  		},
+
+
+  		// Triggered when a mark is clicked
+  		selectMark: function(mark){
+        this.takeAction('addHint', {
+          sid:this.selectedSymbol,
+          mid:mark,
+        });
+        this.selectedSymbol = null;
+  		},
 
 
       notif_addHint: function(n){
         debug("Notif: new hint", n);
         this.hints.push(n.args);
-      },
-
-
-      notif_moveHint: function(n){
-        debug("Notif: new hint", n);
-        this.hints.forEach(hint => {
-          if(hint.id == n.args.id){
-            hint.x = n.args.x;
-            hint.y = n.args.y;
-          }
-        });
       },
 
       ////////////////////////////////
@@ -238,6 +254,7 @@ window.Concept = function(game){
   			}
   		},
 
+
       ///////////////////////////////////////////////////
       //////	 Reaction to cometD notifications	 ///////
       ///////////////////////////////////////////////////
@@ -250,7 +267,6 @@ window.Concept = function(game){
       setupNotifications: function () {
       	var notifs = [
       		['addHint',500],
-          ['moveHint',10],
       	];
 
       	notifs.forEach(notif => {

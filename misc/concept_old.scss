@@ -1,69 +1,3 @@
-/*
- * Tweaking BGA
- */
- html {
-   background: #EEE !important;
- }
-
-#topbar {
-  background:white !important;
-  box-shadow: none !important;
-  -webkit-box-shadow:none !important;
-  border-bottom:1px solid rgba(0,0,0,0.3);
-}
-
-#page-title {
-  background: white !important;
-  box-shadow: none !important;
-  border: 1px solid rgba(0,0,0,0.3);
-}
-
-.player-board {
-  background: white !important;
-  box-shadow: none !important;
-  border-style: solid;
-  border-width: 1px;
-}
-
-.player_elo_wrap {
-  display:none !important;
-}
-
-.doubletime_infos {
-  display:none !important;
-}
-
-
-html.darkmode {
-  background:#2c3037 !important;
-
-  #topbar {
-    background:#292d33 !important;
-    border-bottom:1px solid black;
-  }
-
-  #page-title {
-    background:#292d33 !important;
-    border:1px solid black;
-    color:gray;
-  }
-
-  .player-board {
-    background: #3b4048 !important;
-  }
-
-  #concept-marks {
-    background-color:#383e46 !important;
-    border-color: black !important;
-  }
-
-  .concept-symbol {
-    background-color:#414851 !important;
-    border-color:black !important;
-  }
-}
-
-
 @font-face {
     font-family: 'Cafeteria';
     src: url('img/font/Cafeteria-Bold.woff2') format('woff2'),
@@ -93,37 +27,22 @@ $columns:(
   #concept-container {
     width:100%;
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
     align-items: center;
-    position:relative;
-    justify-content: center;
 
     #concept-grid {
-      position:relative;
+      background-color:#EEE;
       width:1210px;
       height:auto;
+      margin:0 auto;
       padding:18px 0px;
       display:grid;
       grid-template-columns: repeat(9, 1fr);
       border-radius:5px;
 
-
-      div.concept-hint {
-        width:2rem;
-        height:2rem;
-        position:absolute;
-        background-image:url("img/marks.png");
-        background-size:1000%;
-        @for $i from 0 through 9 {
-          &[data-mark="#{$i}"] { background-position:$i*100%/9 center; }
-        }
-        cursor:move;
-      }
-
-
       div.concept-symbol {
-        width:100px;
-      	height:50px;
+        width:110px;
+      	height:55px;
       	display:flex;
       	flex-direction:row;
       	align-items:center;
@@ -157,17 +76,32 @@ $columns:(
 
 
         div.symbol-zone {
-          width:50px;
-          height:50px;
+          width:55px;
+          height:55px;
           display:flex;
           flex-wrap:wrap;
           align-items:center;
           position:relative;
+
+          div.concept-hint {
+          	position:relative;
+            background-image:url("img/marks.png");
+            background-size:1000%;
+            @for $i from 0 through 9 {
+              &[data-mark="#{$i}"] { background-position:$i*100%/9 center; }
+            }
+
+            span {
+              position:absolute;
+            	bottom:1%;
+            	right:1%;
+            }
+          }
         }
 
         div.symbol-img {
-          width:50px;
-          height:50px;
+          width:55px;
+          height:55px;
           background-repeat:no-repeat;
           background-position:center center;
           cursor:help;
@@ -180,27 +114,86 @@ $columns:(
         }
       }
     }
+
+
+
+    div#hints-only {
+      display:flex;
+    	flex-direction:column;
+    	justify-content:safe center;
+    	align-items: stretch;
+    	max-height:100%;
+    	overflow:auto;
+
+      & > div {
+        display:flex;
+        flex-direction:row;
+        justify-content:stretch;
+        align-items:center;
+        margin-bottom:0.5rem;
+        flex-wrap:wrap;
+
+        & > div.hint {
+        	width:120px;
+        	height:60px;
+        	display:flex;
+        	flex-direction:row;
+        	align-items:center;
+        	margin:3px;
+        	border:1px solid rgba(0,0,0,0.3);
+        	border-radius:10px;
+        	background-color:white;
+
+          & > div.img {
+          	width:60px;
+          	height:60px;
+            background-image:url("img/concept-symbols.png");
+            background-size:cover;
+            @for $i from 0 through $numberOfSymbols {
+              &[data-symbol="#{$i}"] { background-position:$i*100%/$numberOfSymbols center; }
+            }
+          }
+
+          & > div.mark {
+          	width:54px;
+          	height:57px;
+	          position:relative;
+            background-image:url("img/marks.png");
+            background-size:1000%;
+            @for $i from 0 through 9 {
+              &[data-mark="#{$i}"] { background-position:$i*100%/9 center; }
+            }
+
+            span {
+            	position:absolute;
+            	bottom:4px;
+            	right:4px;
+            }
+          }
+        }
+      }
+    }
   }
 
 
 
   div#concept-marks {
   	display:block;
-    background-color:white;
-    padding: 9px 11px;
-  	border:1px solid #BBB;
-    border-radius:2rem;
-  	height:auto;
-    /*box-shadow:0 3px 8px rgba(0, 0, 0, .3);*/
-    margin:0 2rem;
+    background:#EEE;
+    padding: 4px;
+    border-radius: 4px;
+  	border:1px solid #333;
+  	width:5rem;
+    box-shadow:-1px -1px 5px black, 1px 1px 5px black;
 
-    div {
-    	display:block;
+    &[x-placement^='left'] { margin-right:0.5rem; }
+    &[x-placement^='right'] { margin-left:0.5rem; }
+
+    button {
+    	display:inline-block;
     	width:2rem;
     	height:2rem;
-      margin: 0.5rem 0;
-      border: 1px solid transparent;
-    	cursor:move;
+    	cursor:pointer;
       background-image:url("img/marks.png");
       background-size:1000%;
       @for $i from 0 through 9 {
@@ -250,7 +243,6 @@ div#concept-card-overlay {
         justify-content: center;
         font-family: 'Cafeteria';
         font-size:20px;
-        line-height:15px;
         cursor:pointer;
 
         &:hover {

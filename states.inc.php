@@ -24,17 +24,39 @@ $machinestates = [
 		'type' => 'manager',
 		'action' => 'stGameSetup',
 		'transitions' => [
-			'' => ST_START,
+			'' => ST_NEXT_ROUND,
 		],
 	],
 
-    // Note: ID=2 => your first state
+	ST_NEXT_ROUND => [
+		"name" => "nextRound",
+		"description" => "",
+		"type" => "game",
+		'action' => 'stNextRound',
+		"possibleactions" => ["start", "stop"],
+		"transitions" => [
+			"startRound" => ST_START_ROUND,
+			"endGame" => ST_GAME_END
+		]
+  ],
 
-  ST_START => [
-		"name" => "playerTurn",
-		"description" => clienttranslate('${actplayer} can add an hint'),
+	ST_START_ROUND => [
+		"name" => "startRound",
+		"description" => clienttranslate('Other players must choose a word'),
+		"descriptionmyturn" => clienttranslate('${you} must choose a word'),
+		'type' => 'multipleactiveplayer',
+		'action' => "stStartRound",
+		'args' => "argStartRound",
+		"possibleactions" => ["pickWord"],
+		"transitions" => ['' => ST_GUESS]
+  ],
+
+
+  ST_GUESS => [
+		"name" => "guessWord",
+		"description" => clienttranslate('Other players can add an hint'),
 		"descriptionmyturn" => clienttranslate('${you} can add an hint'),
-		"type" => "activeplayer",
+		'type' => 'multipleactiveplayer',
 		"possibleactions" => ["addHint", "pass"],
 		"transitions" => []
   ],
