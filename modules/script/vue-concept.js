@@ -10,6 +10,7 @@ window.Concept = function(game){
       // Concept stuff
       symbols:ConceptSymbols(),
       hints:game.gamedatas.hints,
+      guesses:game.gamedatas.guesses,
       displayCard:false,
       card:null,
       marks:[
@@ -23,6 +24,7 @@ window.Concept = function(game){
       draggedHint:null,
       draggedHintIndex:null,
       dragOffset:null,
+      guess:'',
     },
     computed:{
       // BGA stuff
@@ -50,13 +52,21 @@ window.Concept = function(game){
       this.setupNotifications();
     },
 
+    mounted: function(){
+      this.symbols.forEach((symbol, id) => {
+        this.game.addTooltip("symbol-" + id, symbol.join(", "), '');
+      });
+    },
+
 
     methods:{
       isCurrentPlayerActive: function(){ return this.game.isCurrentPlayerActive() },
       getActivePlayerId: function() { return this.game.getActivePlayerId() },
       getActivePlayers: function() { return this.game.getActivePlayers() },
       addPrimaryActionButton: function(id, msg, callback){ this.game.addActionButton(id, msg, callback, null, false, "blue"); },
-
+      checkAction: function(action) { return this.game.checkAction(action); },
+      removeActionButtons: function() { this.game.removeActionButtons(); },
+      
       /*
        * onEnteringState:
        * 	this method is called each time we are entering into a new game state.
@@ -125,11 +135,23 @@ window.Concept = function(game){
       },
 
 
-      ////////////////////////////////
-      //////	Dragging hints	 ///////
-      ////////////////////////////////
+      selectCardWord: function(i,j){
+        console.log("test");
+        if(!this.checkAction('pickWord')) return;
+        this.takeAction("pickWord", { i : i, j : j});
+      },
 
+
+
+      ////////////////////////////////////
+      ////// Add/move/suppr hints	 ///////
+      ////////////////////////////////////
+      /*
+       * newHint: when mousedown on a mark, create a hint and start dragging
+       */
       newHint(markIndex, event){
+        if(!this.isCurrentPlayerActive()) return;
+
         var hint = {
           mid : markIndex,
           x:0,
@@ -138,7 +160,13 @@ window.Concept = function(game){
         this.hints.push(hint);
         this.dragHintStart(this.hints.length - 1, event);
       },
+
+      /*
+       * dragHintStart: make the hint start following the mouse
+       */
       dragHintStart(hintIndex, event) {
+        if(!this.isCurrentPlayerActive()) return;
+
         if (event.preventDefault) event.preventDefault();
         this.draggedHintIndex = hintIndex;
         this.draggedHint = this.hints[hintIndex];
@@ -149,8 +177,27 @@ window.Concept = function(game){
         };
         this.moveHintAt(event);
       },
+
+      /*
+       * moveHintAt: during the drag, move hint around
+       */
+      moveHintAt(event){
+        if(this.draggedHint != null){
+          var box = $('concept-grid').getBoundingClientRect();
+          var box2 = $('mark-0').getBoundingClientRect();
+          this.draggedHint.x = event.clientX - box.x - box2.width/2 + this.dragOffset.x;
+          this.draggedHint.y = event.clientY - box.y - box2.height/2 + this.dragOffset.y;
+        }
+      },
+
+
+      /*
+       * dragHintStop: onmouseup, stop the drag and react whether
+       *     it's inside the board or outside
+       */
       dragHintStop() {
         if(this.draggedHint == null) return;
+        if(!this.isCurrentPlayerActive()) return;
 
         var box = $('concept-grid').getBoundingClientRect();
 
@@ -159,7 +206,7 @@ window.Concept = function(game){
           || this.draggedHint.y < 0 || this.draggedHint.y > box.height){
           this.hints.splice(this.draggedHintIndex, 1);
           if(this.draggedHint.id)
-            this.takeAction("removeHint", { id : this.draggedHint.id} );
+            this.takeAction("deleteHint", { id : this.draggedHint.id} );
         }
         else {
           // Moving already existing hint
@@ -176,17 +223,12 @@ window.Concept = function(game){
         this.draggedHint = null;
         this.dragOffset = null;
       },
-      moveHintAt(event){
-        if(this.draggedHint != null){
-          var box = $('concept-grid').getBoundingClientRect();
-          var box2 = $('mark-0').getBoundingClientRect();
-          this.draggedHint.x = event.clientX - box.x - box2.width/2 + this.dragOffset.x;
-          this.draggedHint.y = event.clientY - box.y - box2.height/2 + this.dragOffset.y;
-        }
-      },
 
 
 
+      ////////////////////////////////////
+      ////// Hints Notifications   ///////
+      ////////////////////////////////////
       notif_addHint: function(n){
         debug("Notif: new hint", n);
         this.hints.push(n.args);
@@ -203,6 +245,28 @@ window.Concept = function(game){
         });
       },
 
+      notif_deleteHint: function(n){
+        debug("Notif: remove hint", n);
+        var index = this.hints.reduce( (carry, hint, i) => hint.id == n.args.id? i : carry, null);
+        if(index != null)
+          this.hints.splice(index, 1);
+      },
+
+
+      /////////////////////////
+      //////  Guesses   ///////
+      /////////////////////////
+      newGuess: function(){
+        this.takeAction("newGuess", { guess: this.guess });
+      },
+
+
+      notif_newGuess: function(n){
+        debug("Notif: new guess", n);
+        this.guesses.push(n.args);
+      },
+
+
       ////////////////////////////////
       ////////////////////////////////
       /////////		Utils		////////////
@@ -214,6 +278,9 @@ window.Concept = function(game){
       clearPossible: function () {
         debug("Clearing everything");
 
+        this.draggedHint = null;
+        this.draggedHintIndex = null;
+        this.displayCard = false;
       	this.removeActionButtons();
       	this.onUpdateActionButtons(this.gamedatas.gamestate.name, this.gamedatas.gamestate.args);
       },
@@ -249,8 +316,10 @@ window.Concept = function(game){
        */
       setupNotifications: function () {
       	var notifs = [
-      		['addHint',500],
+      		['addHint',10],
           ['moveHint',10],
+          ['deleteHint',10],
+          ['newGuess',10],
       	];
 
       	notifs.forEach(notif => {

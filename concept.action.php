@@ -36,15 +36,14 @@ class action_concept extends APP_GameAction
     }
   }
 
-/*
-  public function addHint() {
+  public function pickWord() {
     self::setAjaxMode();
-    $sid = self::getArg("sid", AT_posint, true );
-    $mid = self::getArg("mid", AT_posint, true );
-    $result = $this->game->addHint($sid, $mid);
+    $i = self::getArg("i", AT_posint, true );
+    $j = self::getArg("j", AT_posint, true );
+    $result = $this->game->pickWord($i, $j);
     self::ajaxResponse();
   }
-*/
+
 
   public function addHint() {
     self::setAjaxMode();
@@ -64,4 +63,17 @@ class action_concept extends APP_GameAction
     self::ajaxResponse();
   }
 
+  public function deleteHint() {
+    self::setAjaxMode();
+    $id = self::getArg("id", AT_posint, true );
+    $result = $this->game->deleteHint($id);
+    self::ajaxResponse();
+  }
+
+  public function newGuess() {
+    self::setAjaxMode();
+    $guess = self::getArg("guess", AT_alphanum, true );
+    $result = $this->game->newGuess($guess);
+    self::ajaxResponse();
+  }
 }

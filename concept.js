@@ -41,7 +41,7 @@
       this._app.onEnteringState(stateName, args);
     },
     onLeavingState: function (stateName) {
-      this._app.onLeavingState(stateName, args);
+      this._app.onLeavingState(stateName);
     },
     onUpdateActionButtons: function (stateName, args) {
       this._app.onUpdateActionButtons(stateName, args);

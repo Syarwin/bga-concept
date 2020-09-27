@@ -37,6 +37,20 @@ class ConceptLog extends APP_GameClass
     self::insert('drawCard', ['card' => $cardId]);
   }
 
+  public static function newWord($i, $j)
+  {
+    $card = self::getCurrentCard();
+    self::insert('pickWord', ['i' => $i, 'j' => $j, 'card' => $card]);
+  }
+
+
+  public static function newGuess($guess, $pId)
+  {
+    $action = "guess";
+    $actionArgs = json_encode(['guess' => $guess]);
+    self::DbQuery("INSERT INTO log (`action`, `action_arg`, `player_id`) VALUES ('$action', '$actionArgs', $pId)");
+  }
+
 
 /////////////////////////////////
 /////////////////////////////////
@@ -67,6 +81,10 @@ class ConceptLog extends APP_GameClass
     return is_null($action)? null : $action['team'];
   }
 
+  public static function getCurrentCard()
+  {
+    return self::getLastAction('drawCard')['card'];
+  }
 
   public static function getCardsDrawn()
   {
@@ -75,5 +93,20 @@ class ConceptLog extends APP_GameClass
       $arg = json_decode($action['action_arg'], true);
       return $arg['card'];
     }, $actions);
+  }
+
+
+  public static function getCurrentWord($pId = null)
+  {
+    $word = self::getLastAction('pickWord');
+    if(is_null($word)) return $word;
+    $team = self::getCurrentTeam();
+    return (is_null($pId) || in_array($pId, $team))? $word : null;
+  }
+
+  public static function getCurrentWordId()
+  {
+    $action = self::getObjectFromDb("SELECT * FROM log WHERE `action` = 'pickWord' ORDER BY log_id DESC LIMIT 1");
+    return $action['log_id'];
   }
 }

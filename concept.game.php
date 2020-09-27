@@ -61,6 +61,8 @@ class Concept extends Table
 			'hints' => $hints,
 			'players' => PlayerManager::getUiData(),
 			'team' => ConceptLog::getCurrentTeam(),
+			'word' => ConceptLog::getCurrentWord(self::getCurrentPlayerId()),
+			'guesses' => ConceptGuess::getCurrent(),
 		];
 	}
 
@@ -121,16 +123,45 @@ class Concept extends Table
 		ConceptLog::newCard($newCard);
 	}
 
-
+	/*
+	 * argStartRound: display card only to the team members
+	 */
 	function argStartRound(){
 		return [
 			'_private' => [
-				'active' => ConceptLog::getLastAction('drawCard')['card']
+				'active' => ConceptLog::getCurrentCard()
 			]
 		];
 	}
 
 
+	/*
+	 * pickWord: select a word on the card (i = color, j = index)
+	 */
+	function pickWord($i, $j){
+		ConceptLog::newWord($i,$j);
+		$this->gamestate->nextState();
+	}
+
+
+	/*
+	 * argGuessWord: display word only to the team members
+	 */
+	function argGuessWord(){
+		return [
+			'_private' => [
+				'active' => ConceptLog::getCurrentWord()
+			]
+		];
+	}
+
+
+///////////////////////////////
+//////////   Hints   //////////
+///////////////////////////////
+	/*
+ 	 * addHint: add a new hint on the board
+ 	 */
 	function addHint($mid, $x, $y){
 		self::DbQuery("INSERT INTO hint (mark_id, x, y) VALUES ($mid, $x, $y)");
 		$hid = self::DbGetLastId();
@@ -142,6 +173,9 @@ class Concept extends Table
 		]);
 	}
 
+	/*
+ 	 * moveHint: move an existing hint on the board
+ 	 */
 	function moveHint($id, $x, $y){
 		self::DbQuery("UPDATE hint SET x = $x, y = $y WHERE id = $id");
 		$this->notifyAllPlayers('moveHint', '', [
@@ -152,17 +186,32 @@ class Concept extends Table
 	}
 
 
-/*
-	function addHint($sid, $mid){
-		self::DbQuery("INSERT INTO hint (symbol_id, mark_id) VALUES ($sid, $mid)");
-		$hid = self::DbGetLastId();
-		$this->notifyAllPlayers('addHint', '', [
-			'id' => $hid,
-			'sid' => $sid,
-			'mid' => $mid,
+	/*
+ 	 * deleteHint: move an existing hint on the board
+ 	 */
+	function deleteHint($id){
+		self::DbQuery("DELETE FROM hint WHERE id = $id");
+		$this->notifyAllPlayers('deleteHint', '', [
+			'id' => $id,
 		]);
 	}
-*/
+
+
+///////////////////////////////
+/////////   Guesses   /////////
+///////////////////////////////
+	/*
+ 	 * newGuess: when someone make a guess
+ 	 */
+	function newGuess($guess){
+		$pId = self::getCurrentPlayerId();
+		ConceptGuess::new($guess, $pId);
+		$this->notifyAllPlayers('newGuess', '', [
+			'pId' => $pId,
+			'guess' => $guess,
+		]);
+	}
+
 
 ////////////////////////////////////
 ////////////   Zombie   ////////////

@@ -57,6 +57,7 @@ $machinestates = [
 		"description" => clienttranslate('Other players can add an hint'),
 		"descriptionmyturn" => clienttranslate('${you} can add an hint'),
 		'type' => 'multipleactiveplayer',
+		'args' => "argGuessWord",
 		"possibleactions" => ["addHint", "pass"],
 		"transitions" => []
   ],

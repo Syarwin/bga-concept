@@ -19,6 +19,17 @@ CREATE TABLE IF NOT EXISTS `hint` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
+CREATE TABLE IF NOT EXISTS `guess` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `player_id` int(11) NOT NULL,
+  `log_id` int(11) NOT NULL,
+  `guess` varchar(255),
+  `feedback` int(11),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+
+
 CREATE TABLE IF NOT EXISTS `log` (
   `log_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `action` varchar(16) NOT NULL,

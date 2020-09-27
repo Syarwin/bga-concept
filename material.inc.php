@@ -16,4 +16,5 @@
 require_once("modules/constants.inc.php");
 require_once("modules/PlayerManager.class.php");
 require_once("modules/ConceptLog.class.php");
+require_once("modules/ConceptGuess.class.php");
 require_once("modules/cards.inc.php");

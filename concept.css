@@ -55,9 +55,31 @@ html.darkmode {
   width: 100%;
   display: flex;
   flex-flow: row;
-  align-items: center;
-  position: relative;
-  justify-content: center; }
+  position: relative; }
+  #concept-app #concept-container div#concept-guesses-container {
+    width: 200px;
+    height: 800px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-flow: column; }
+    #concept-app #concept-container div#concept-guesses-container h2 {
+      background: white;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.3); }
+    #concept-app #concept-container div#concept-guesses-container ul {
+      min-height: 700px;
+      flex-grow: 1; }
+    #concept-app #concept-container div#concept-guesses-container input {
+      background: white;
+      border: none;
+      border-top: 1px solid rgba(0, 0, 0, 0.3);
+      width: 100%;
+      height: 30px; }
   #concept-app #concept-container #concept-grid {
     position: relative;
     width: 1210px;
@@ -99,9 +121,9 @@ html.darkmode {
       display: flex;
       flex-direction: row;
       align-items: center;
-      border: 1px solid rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(0, 0, 0, 0.1);
       border-radius: 10px;
-      background-color: white;
+      background-color: rgba(255, 255, 255, 0.3);
       margin: 1px 1px 1px 20px; }
       #concept-app #concept-container #concept-grid div.concept-symbol.active {
         border-color: rgba(120, 0, 0, 0.9); }
@@ -993,9 +1015,9 @@ html.darkmode {
   padding: 9px 11px;
   border: 1px solid #BBB;
   border-radius: 2rem;
-  height: auto;
+  height: 430px;
   /*box-shadow:0 3px 8px rgba(0, 0, 0, .3);*/
-  margin: 0 2rem; }
+  margin: auto 2rem; }
   #concept-app div#concept-marks div {
     display: block;
     width: 2rem;
@@ -1082,5 +1104,3 @@ div#concept-card-overlay {
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: .25rem; }
-
-/*# sourceMappingURL=concept.css.map */
