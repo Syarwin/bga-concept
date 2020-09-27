@@ -11,8 +11,11 @@ window.Concept = function(game){
       symbols:ConceptSymbols(),
       hints:game.gamedatas.hints,
       guesses:game.gamedatas.guesses,
+      players:game.gamedatas.players,
       displayCard:false,
       card:null,
+      displayFeedback:false,
+      guessFeedback:null,
       marks:[
         {pid:null, m:1 }, {pid:0, m:-1 },
         {pid:null, m:1 }, {pid:2, m:-1 },
@@ -43,6 +46,12 @@ window.Concept = function(game){
   				t[this.hints[j].mid]++;
   			return t;
   		},
+
+      word:function(){
+        let w = this.game.gamedatas.word;
+        if(w == null) return '';
+        else return this.game.gamedatas.cards[w.card][w.i][w.j];
+      },
     },
 
 
@@ -66,7 +75,7 @@ window.Concept = function(game){
       addPrimaryActionButton: function(id, msg, callback){ this.game.addActionButton(id, msg, callback, null, false, "blue"); },
       checkAction: function(action) { return this.game.checkAction(action); },
       removeActionButtons: function() { this.game.removeActionButtons(); },
-      
+
       /*
        * onEnteringState:
        * 	this method is called each time we are entering into a new game state.
@@ -258,6 +267,7 @@ window.Concept = function(game){
       /////////////////////////
       newGuess: function(){
         this.takeAction("newGuess", { guess: this.guess });
+        this.guess = "";
       },
 
 
@@ -266,6 +276,35 @@ window.Concept = function(game){
         this.guesses.push(n.args);
       },
 
+
+      showFeedbackChoices: function(guess){
+        this.displayFeedback = true;
+        this.guessFeedback = guess;
+      },
+
+
+      wordFound: function(){
+        debug("Word found");
+      },
+
+
+
+      addFeedback: function(feedback){
+        debug("Feeback", feedback);
+        this.takeAction("addFeedback", {
+          gId: this.guessFeedback.id,
+          feedback: feedback
+        });
+      },
+
+
+      notif_newFeedback: function(n){
+        debug("Notif: new feedback", n);
+        this.guesses.forEach(guess => {
+          if(guess.id == n.args.gId)
+            guess.feedback = n.args.feedback;
+        });
+      },
 
       ////////////////////////////////
       ////////////////////////////////
@@ -282,7 +321,7 @@ window.Concept = function(game){
         this.draggedHintIndex = null;
         this.displayCard = false;
       	this.removeActionButtons();
-      	this.onUpdateActionButtons(this.gamedatas.gamestate.name, this.gamedatas.gamestate.args);
+      	this.onUpdateActionButtons(this.game.gamedatas.gamestate.name, this.game.gamedatas.gamestate.args);
       },
 
 
@@ -320,6 +359,7 @@ window.Concept = function(game){
           ['moveHint',10],
           ['deleteHint',10],
           ['newGuess',10],
+          ['newFeedback',10],
       	];
 
       	notifs.forEach(notif => {

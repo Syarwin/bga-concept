@@ -5,7 +5,11 @@
 		<div id="concept-guesses-container">
 				<h2>Guesses</h2>
 				<ul id="concept-guesses">
-					<li v-for="guess in guesses">
+					<li v-for="guess in guesses"
+							@click="showFeedbackChoices(guess)"
+							v-bind:style="{cursor: isCurrentPlayerActive? 'pointer' : 'default' }"
+							v-bind:data-feedback="guess.feedback">
+						<span v-bind:style="{ color : '#' + players[guess.pId].color }">{{ players[guess.pId].name}} </span>
 						{{ guess.guess }}
 					</li>
 				</ul>
@@ -63,6 +67,23 @@
       </ul>
     </div>
   </div>
+
+
+	<div id="concept-feedback-overlay" @click="displayFeedback = false" v-if="displayFeedback">
+    <div id="concept-feedback-container">
+			<h2>{{ guessFeedback.guess }} / {{ word }}</h2>
+			<ul>
+        <li @click="addFeedback(0)" id="concept-feedback-0"></li>
+        <li @click="addFeedback(1)" id="concept-feedback-1"></li>
+        <li @click="addFeedback(2)" id="concept-feedback-2"></li>
+        <li @click="addFeedback(3)" id="concept-feedback-3"></li>
+        <li @click="addFeedback(4)" id="concept-feedback-4"></li>
+
+				<li @click="wordFound()" id="word-found"></li>
+      </ul>
+    </div>
+  </div>
+
 </div>
 
 <script type="text/javascript">

@@ -76,4 +76,13 @@ class action_concept extends APP_GameAction
     $result = $this->game->newGuess($guess);
     self::ajaxResponse();
   }
+
+
+  public function addFeedback() {
+    self::setAjaxMode();
+    $gId = self::getArg("gId", AT_posint, true );
+    $fb = self::getArg("feedback", AT_posint, true );
+    $result = $this->game->addFeedback($gId, $fb);
+    self::ajaxResponse();
+  }
 }

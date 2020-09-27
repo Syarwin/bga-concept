@@ -9,12 +9,19 @@ class ConceptGuess extends APP_GameClass
   {
     $lId = ConceptLog::getCurrentWordId();
     self::DbQuery("INSERT INTO guess (`log_id`, `player_id`, `guess`) VALUES ($lId, $pId, '$guess')");
+    return self::DbGetLastId();
   }
 
 
   public static function getCurrent()
   {
     $lId = ConceptLog::getCurrentWordId();
-    return $lId ? self::getObjectListFromDb("SELECT * FROM guess WHERE `log_id` = $lId ORDER BY id DESC") : [];
+    return $lId ? self::getObjectListFromDb("SELECT id, player_id pId, guess, feedback FROM guess WHERE `log_id` = $lId ORDER BY id") : [];
   }
+
+  public static function feedback($gId, $feedback)
+  {
+    self::DbQuery("UPDATE guess SET feedback = $feedback WHERE id = $gId");
+  }
+
 }

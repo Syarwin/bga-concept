@@ -205,10 +205,24 @@ class Concept extends Table
  	 */
 	function newGuess($guess){
 		$pId = self::getCurrentPlayerId();
-		ConceptGuess::new($guess, $pId);
+		$gId = ConceptGuess::new($guess, $pId);
 		$this->notifyAllPlayers('newGuess', '', [
+			'id' => $gId,
 			'pId' => $pId,
 			'guess' => $guess,
+			'feedback' => null,
+		]);
+	}
+
+
+	/*
+ 	 * addFeedback: when team add feedback
+ 	 */
+	function addFeedback($gId, $feedback){
+		ConceptGuess::feedback($gId, $feedback);
+		$this->notifyAllPlayers('newFeedback', '', [
+			'gId' => $gId,
+			'feedback' => $feedback,
 		]);
 	}
 
