@@ -85,4 +85,12 @@ class action_concept extends APP_GameAction
     $result = $this->game->addFeedback($gId, $fb);
     self::ajaxResponse();
   }
+
+  public function wordFound() {
+    self::setAjaxMode();
+    $gId = self::getArg("gId", AT_posint, true );
+    $result = $this->game->wordFound($gId);
+    self::ajaxResponse();
+  }
+
 }

@@ -1,5 +1,7 @@
 <?php
 
+define('WORD_FOUND', 5);
+
 /*
  * State constants
  */

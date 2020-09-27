@@ -285,6 +285,9 @@ window.Concept = function(game){
 
       wordFound: function(){
         debug("Word found");
+        this.takeAction("wordFound", {
+          gId: this.guessFeedback.id,          
+        });
       },
 
 

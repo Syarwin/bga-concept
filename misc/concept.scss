@@ -138,6 +138,7 @@ $columns:(
           &[data-feedback="2"]::after { background-position:0% 40%; }
           &[data-feedback="3"]::after { background-position:0% 60%; }
           &[data-feedback="4"]::after { background-position:0% 80%; }
+          &[data-feedback="4"]::after { background-position:0% 100%; }
 
 
           span {

@@ -96,6 +96,8 @@ html.darkmode {
           background-position: 0% 60%; }
         #concept-app #concept-container div#concept-guesses-container ul li[data-feedback="4"]::after {
           background-position: 0% 80%; }
+        #concept-app #concept-container div#concept-guesses-container ul li[data-feedback="4"]::after {
+          background-position: 0% 100%; }
         #concept-app #concept-container div#concept-guesses-container ul li span {
           font-weight: bold;
           margin-right: 5px; }

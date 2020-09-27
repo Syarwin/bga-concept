@@ -227,6 +227,20 @@ class Concept extends Table
 	}
 
 
+	/*
+ 	 * wordFound: when team confirm word found
+ 	 */
+	function wordFound($gId){
+		ConceptGuess::feedback($gId, WORD_FOUND);
+		$this->notifyAllPlayers('newFeedback', '', [
+			'gId' => $gId,
+			'feedback' => WORD_FOUND,
+		]);
+
+		$this->gamestate->nextState('found');
+	}
+
+
 ////////////////////////////////////
 ////////////   Zombie   ////////////
 ////////////////////////////////////

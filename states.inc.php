@@ -59,7 +59,9 @@ $machinestates = [
 		'type' => 'multipleactiveplayer',
 		'args' => "argGuessWord",
 		"possibleactions" => ["addHint", "pass"],
-		"transitions" => []
+		"transitions" => [
+			'found' => ST_NEXT_ROUND,
+		]
   ],
 
 
