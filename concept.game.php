@@ -90,12 +90,12 @@ class Concept extends Table
 		// First team : pick the two first players by no
 		if(is_null($previousTeam)){
 			$players = PlayerManager::getPlayersLeft();
-			$newTeam = [$players[0], $players[1]];
+			$newTeam = $optionTeam == ONE_PLAYER? [$players[0]] : [$players[0], $players[1]];
 		}
 		// Otherwise : pick the following two
 		else {
 			$players = PlayerManager::getPlayersLeftStartingWith($previousTeam[1]);
-			$newTeam = [$players[1], $players[2]];
+			$newTeam = $optionTeam == ONE_PLAYER? [$players[1]] : [$players[1], $players[2]];
 		}
 
 		ConceptLog::newTeam($newTeam);
@@ -232,9 +232,20 @@ class Concept extends Table
  	 */
 	function wordFound($gId){
 		ConceptGuess::feedback($gId, WORD_FOUND);
+		ConceptGuess::newSeparator();
+		$this->notifyAllPlayers('newGuess', '', [
+			'pId' => -1,
+		]);
+
+		$player = ConceptGuess::getPlayer($gId);
+		$word = ConceptLog::getCurrentWord();
 		$this->notifyAllPlayers('newFeedback', '', [
 			'gId' => $gId,
 			'feedback' => WORD_FOUND,
+		]);
+		$this->notifyAllPlayers('message', clienttranslate('${player_name} found the word ! It was : ${word}'), [
+			'word' => CONCEPT_CARDS[$word['card']][$word['i']][$word['j']],
+			'player_name' => $player['player_name'],
 		]);
 
 		$this->gamestate->nextState('found');

@@ -3,21 +3,25 @@
 <div id="concept-app">
 	<div id="concept-container" @mousemove="moveHintAt" @mouseup="dragHintStop" @mouseleave="dragHintStop">
 		<div id="concept-guesses-container">
+				<h2 v-if="isCurrentPlayerActive()" id="word-display">{{ word }}</h2>
 				<h2>Guesses</h2>
 				<ul id="concept-guesses">
+					<input type="text" id="concept-guess"
+						v-model="guess" :placeholder="_('Your guess')"
+						v-on:keyup.enter="newGuess"
+						v-if="!isCurrentPlayerActive()"
+					/>
 					<li v-for="guess in guesses"
-							@click="showFeedbackChoices(guess)"
-							v-bind:style="{cursor: isCurrentPlayerActive? 'pointer' : 'default' }"
-							v-bind:data-feedback="guess.feedback">
-						<span v-bind:style="{ color : '#' + players[guess.pId].color }">{{ players[guess.pId].name}} </span>
-						{{ guess.guess }}
+							@click="if(guess.pId != -1) showFeedbackChoices(guess)"
+							v-bind:style="{cursor: isCurrentPlayerActive && guess.pId != -1? 'pointer' : 'default' }"
+							v-bind:data-feedback="guess.feedback"
+							v-bind:class="{ separator : guess.pId == -1}">
+						<v-template v-if="guess.pId != -1">
+							<span v-bind:style="{ color : '#' + players[guess.pId].color }">{{ players[guess.pId].name}} </span>
+							{{ guess.guess }}
+						</v-template>
 					</li>
 				</ul>
-				<input type="text" id="concept-guess"
-					v-model="guess" :placeholder="_('Your guess')"
-					v-on:keyup.enter="newGuess"
-					v-if="!isCurrentPlayerActive()"
-				/>
 		</div>
 
 

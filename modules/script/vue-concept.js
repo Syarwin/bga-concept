@@ -65,6 +65,29 @@ window.Concept = function(game){
       this.symbols.forEach((symbol, id) => {
         this.game.addTooltip("symbol-" + id, symbol.join(", "), '');
       });
+
+      dojo.connect(document, 'onkeydown', (evt) => {
+        if(!$("concept-guess")) return;
+
+        if(this.game.chatbarWindows['table_' + this.game.table_id].status == 'expanded') return;
+        this.game.collapseChatWindow('table_' + this.game.table_id);
+        evt.stopPropagation();
+        $("concept-guess").focus();
+      });
+
+      if($("concept-guess"))
+        $("concept-guess").focus();
+
+      // Darkmode switch
+      dojo.place(`
+        <div class='upperrightmenu_item' id="darkmode-switch">
+          <input type="checkbox" class="checkbox" id="chk-darkmode" />
+        	<label class="label" for="chk-darkmode">
+        		<div class="ball"></div>
+        	</label>
+        </div>
+        `, 'upperrightmenu', 'first');
+      dojo.connect($('chk-darkmode'), 'onchange', () => this.toggleDarkMode($('chk-darkmode').checked));
     },
 
 
@@ -151,6 +174,9 @@ window.Concept = function(game){
       },
 
 
+      onEnteringStateGuessWord: function(args){
+        this.game.gamedatas.word = args['_private'];
+      },
 
       ////////////////////////////////////
       ////// Add/move/suppr hints	 ///////
@@ -194,8 +220,8 @@ window.Concept = function(game){
         if(this.draggedHint != null){
           var box = $('concept-grid').getBoundingClientRect();
           var box2 = $('mark-0').getBoundingClientRect();
-          this.draggedHint.x = event.clientX - box.x - box2.width/2 + this.dragOffset.x;
-          this.draggedHint.y = event.clientY - box.y - box2.height/2 + this.dragOffset.y;
+          this.draggedHint.x = parseInt(event.clientX - box.x - box2.width/2 + this.dragOffset.x);
+          this.draggedHint.y = parseInt(event.clientY - box.y - box2.height/2 + this.dragOffset.y);
         }
       },
 
@@ -273,7 +299,7 @@ window.Concept = function(game){
 
       notif_newGuess: function(n){
         debug("Notif: new guess", n);
-        this.guesses.push(n.args);
+        this.guesses.unshift(n.args);
       },
 
 
@@ -286,7 +312,7 @@ window.Concept = function(game){
       wordFound: function(){
         debug("Word found");
         this.takeAction("wordFound", {
-          gId: this.guessFeedback.id,          
+          gId: this.guessFeedback.id,
         });
       },
 
@@ -346,6 +372,26 @@ window.Concept = function(game){
   				default: return (95 / Math.ceil(Math.sqrt(n)));
   			}
   		},
+
+
+      toggleDarkMode: function(enabled){
+        let val = enabled? DARK_MODE_ENABLED : DARK_MODE_DISABLED;
+        this.game.prefs[DARK_MODE].value = val;
+        $('preference_control_'  + DARK_MODE).value = val;
+        this.game.ajaxcall('/table/table/changePreference.html', {
+          id: DARK_MODE,
+          value: val,
+          game: this.game.game_name,
+        }, this, function(){});
+
+        if(enabled){
+          dojo.query("html").addClass("darkmode");
+          $('chk-darkmode').checked = true;
+        } else {
+          dojo.query("html").removeClass("darkmode");
+          $('chk-darkmode').checked = false;
+        }
+      },
 
       ///////////////////////////////////////////////////
       //////	 Reaction to cometD notifications	 ///////

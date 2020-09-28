@@ -19,3 +19,8 @@ define('ST_GAME_END', 99);
 define('OPTION_TEAM_SIZE', 100);
 define('ONE_PLAYER', 1);
 define('TWO_PLAYERS', 2);
+
+
+define('DARK_MODE', 100);
+define('DARK_MODE_DISABLED', 1);
+define('DARK_MODE_ENABLED', 2);

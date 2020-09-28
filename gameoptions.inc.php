@@ -38,4 +38,13 @@ $game_options = [
 
 
 
-$game_preferences = [];
+$game_preferences = [
+  DARK_MODE => [
+    'name' => totranslate('Dark mode'),
+    'needReload' => false,
+    'values' => [
+      DARK_MODE_DISABLED  => ['name' => totranslate('Disabled')],
+      DARK_MODE_ENABLED   => ['name' => totranslate('Enabled')],
+    ]
+  ],
+];
