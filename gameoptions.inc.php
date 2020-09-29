@@ -33,6 +33,15 @@ $game_options = [
        'nobeginner' => true,
      ],
    ],
+   'startcondition' => [
+     TWO_PLAYERS => [
+       [
+        'type' => 'minplayers',
+        'value' => 4,
+        'message' => totranslate('Two clue givers needs at least 4 players'),
+       ],
+     ],
+   ],
  ],
 ];
 

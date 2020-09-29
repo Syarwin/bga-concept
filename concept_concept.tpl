@@ -12,7 +12,7 @@
 						v-if="!isCurrentPlayerActive()"
 					/>
 					<li v-for="guess in guesses"
-							@click="if(guess.pId != -1) showFeedbackChoices(guess)"
+							@click="showFeedbackChoices(guess)"
 							v-bind:style="{cursor: isCurrentPlayerActive && guess.pId != -1? 'pointer' : 'default' }"
 							v-bind:data-feedback="guess.feedback"
 							v-bind:class="{ separator : guess.pId == -1}">
@@ -24,30 +24,31 @@
 				</ul>
 		</div>
 
+		<div id="concept-grid-container">
+			<div id="concept-marks" v-show="isCurrentPlayerActive">
+				<div v-for="(mark, markIndex) in marks" :id="'mark-' + markIndex"
+						v-bind:class="{ disabled: marksUses[markIndex] >= mark.m && mark.m != -1 }"
+						v-bind:disabled="marksUses[markIndex] >= mark.m && mark.m != -1"
+						@mousedown="newHint(markIndex, $event)"></div>
+			</div>
 
-		<div id="concept-marks" v-show="isCurrentPlayerActive">
-			<div v-for="(mark, markIndex) in marks" :id="'mark-' + markIndex"
-					v-bind:class="{ disabled: marksUses[markIndex] >= mark.m && mark.m != -1 }"
-					v-bind:disabled="marksUses[markIndex] >= mark.m && mark.m != -1"
-					@mousedown="newHint(markIndex, $event)"></div>
-		</div>
+			<div id="concept-grid" v-bind:style="{ borderColor: (draggedHint == null? 'transparent' : 'black') }">
+				<div v-for="(symbol, id) in symbols"
+	        class="concept-symbol"
+	        :id="'symbol-' + id">
+	        <div class="symbol-zone"></div>
+	        <div class="symbol-img"></div>
+	      </div>
 
-		<div id="concept-grid">
-			<div v-for="(symbol, id) in symbols"
-        class="concept-symbol"
-        :id="'symbol-' + id">
-        <div class="symbol-zone"></div>
-        <div class="symbol-img"></div>
-      </div>
-
-			<div v-for="(hint, hintIndex) in hints"
-				 class="concept-hint"
-				 :data-mark="hint.mid"
-				 v-bind:style="{
-					 left:hint.x + 'px',
-					 top:hint.y + 'px',
-				 }"
-				 @mousedown="dragHintStart(hintIndex, $event)">
+				<div v-for="(hint, hintIndex) in hints"
+					 class="concept-hint"
+					 :data-mark="hint.mid"
+					 v-bind:style="{
+						 left:hint.x + 'px',
+						 top:hint.y + 'px',
+					 }"
+					 @mousedown="dragHintStart(hintIndex, $event)">
+				</div>
 			</div>
 		</div>
   </div>

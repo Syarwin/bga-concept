@@ -27,35 +27,30 @@ html {
 .doubletime_infos {
   display: none !important; }
 
-#darkmode-switch {
-  display: flex;
-  align-items: center;
-  justify-content: center; }
-  #darkmode-switch .checkbox {
-    opacity: 0;
-    position: absolute; }
-  #darkmode-switch .label {
-    background-color: #2c3037;
-    border-radius: 50px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    height: 26px;
-    width: 50px; }
-  #darkmode-switch .label .ball {
-    background-color: #fff;
-    border-radius: 50%;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    height: 22px;
-    width: 22px;
-    transform: translateX(0px);
-    transition: transform 0.2s linear, color 0.7s linear; }
-  #darkmode-switch .checkbox:checked + .label .ball {
-    transform: translateX(24px); }
+#darkmode-switch .checkbox {
+  opacity: 0;
+  position: absolute; }
+#darkmode-switch .label {
+  background-color: #2c3037;
+  border-radius: 50px;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  top: 18px;
+  height: 26px;
+  width: 50px; }
+#darkmode-switch .label .ball {
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  height: 22px;
+  width: 22px;
+  transform: translateX(0px);
+  transition: transform 0.2s linear, color 0.7s linear; }
+#darkmode-switch .checkbox:checked + .label .ball {
+  transform: translateX(24px); }
 
 html.darkmode {
   background: #2c3037 !important; }
@@ -164,944 +159,954 @@ html.darkmode {
       width: 100%;
       height: 30px;
       padding: 2px 4px; }
-  #concept-app #concept-container #concept-grid {
-    position: relative;
-    width: 1210px;
-    height: auto;
-    padding: 18px 0px;
-    display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    border-radius: 5px; }
-    #concept-app #concept-container #concept-grid div.concept-hint {
-      width: 2rem;
-      height: 2rem;
-      position: absolute;
-      background-image: url("img/marks.png");
-      background-size: 1000%;
-      cursor: move; }
-      #concept-app #concept-container #concept-grid div.concept-hint[data-mark="0"] {
-        background-position: 0% center; }
-      #concept-app #concept-container #concept-grid div.concept-hint[data-mark="1"] {
-        background-position: 11.1111111111% center; }
-      #concept-app #concept-container #concept-grid div.concept-hint[data-mark="2"] {
-        background-position: 22.2222222222% center; }
-      #concept-app #concept-container #concept-grid div.concept-hint[data-mark="3"] {
-        background-position: 33.3333333333% center; }
-      #concept-app #concept-container #concept-grid div.concept-hint[data-mark="4"] {
-        background-position: 44.4444444444% center; }
-      #concept-app #concept-container #concept-grid div.concept-hint[data-mark="5"] {
-        background-position: 55.5555555556% center; }
-      #concept-app #concept-container #concept-grid div.concept-hint[data-mark="6"] {
-        background-position: 66.6666666667% center; }
-      #concept-app #concept-container #concept-grid div.concept-hint[data-mark="7"] {
-        background-position: 77.7777777778% center; }
-      #concept-app #concept-container #concept-grid div.concept-hint[data-mark="8"] {
-        background-position: 88.8888888889% center; }
-      #concept-app #concept-container #concept-grid div.concept-hint[data-mark="9"] {
-        background-position: 100% center; }
-    #concept-app #concept-container #concept-grid div.concept-symbol {
-      width: 100px;
-      height: 50px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-      background-color: rgba(255, 255, 255, 0.3);
-      margin: 1px 1px 1px 20px; }
-      #concept-app #concept-container #concept-grid div.concept-symbol.active {
-        border-color: rgba(120, 0, 0, 0.9); }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-0 {
-        grid-row-start: 1;
-        grid-column-start: 1; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-2 {
-        grid-row-start: 2;
-        grid-column-start: 1; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-4 {
-        grid-row-start: 3;
-        grid-column-start: 1; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-6 {
-        grid-row-start: 4;
-        grid-column-start: 1; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-8 {
-        grid-row-start: 5;
-        grid-column-start: 1; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-10 {
-        grid-row-start: 6;
-        grid-column-start: 1; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-12 {
-        grid-row-start: 7;
-        grid-column-start: 1; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-14 {
-        grid-row-start: 8;
-        grid-column-start: 1; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-16 {
-        grid-row-start: 9;
-        grid-column-start: 1; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-18 {
-        grid-row-start: 10;
-        grid-column-start: 1; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-20 {
-        grid-row-start: 11;
-        grid-column-start: 1; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-22 {
-        grid-row-start: 12;
-        grid-column-start: 1; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-24 {
-        grid-row-start: 13;
-        grid-column-start: 1; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-26 {
-        grid-row-start: 14;
-        grid-column-start: 1; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-1 {
-        grid-row-start: 1;
-        grid-column-start: 2;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-1 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-1 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-3 {
-        grid-row-start: 2;
-        grid-column-start: 2;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-3 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-3 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-5 {
-        grid-row-start: 3;
-        grid-column-start: 2;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-5 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-5 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-7 {
-        grid-row-start: 4;
-        grid-column-start: 2;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-7 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-7 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-9 {
-        grid-row-start: 5;
-        grid-column-start: 2;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-9 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-9 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-11 {
-        grid-row-start: 6;
-        grid-column-start: 2;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-11 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-11 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-13 {
-        grid-row-start: 7;
-        grid-column-start: 2;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-13 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-13 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-15 {
-        grid-row-start: 8;
-        grid-column-start: 2;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-15 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-15 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-17 {
-        grid-row-start: 9;
-        grid-column-start: 2;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-17 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-17 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-19 {
-        grid-row-start: 10;
-        grid-column-start: 2;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-19 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-19 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-21 {
-        grid-row-start: 11;
-        grid-column-start: 2;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-21 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-21 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-23 {
-        grid-row-start: 12;
-        grid-column-start: 2;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-23 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-23 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-25 {
-        grid-row-start: 13;
-        grid-column-start: 2;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-25 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-25 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-27 {
-        grid-row-start: 14;
-        grid-column-start: 2;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-27 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-27 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-28 {
-        grid-row-start: 1;
-        grid-column-start: 3; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-30 {
-        grid-row-start: 2;
-        grid-column-start: 3; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-32 {
-        grid-row-start: 3;
-        grid-column-start: 3; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-34 {
-        grid-row-start: 4;
-        grid-column-start: 3; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-36 {
-        grid-row-start: 5;
-        grid-column-start: 3; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-38 {
-        grid-row-start: 6;
-        grid-column-start: 3; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-40 {
-        grid-row-start: 7;
-        grid-column-start: 3; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-42 {
-        grid-row-start: 8;
-        grid-column-start: 3; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-44 {
-        grid-row-start: 9;
-        grid-column-start: 3; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-46 {
-        grid-row-start: 10;
-        grid-column-start: 3; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-48 {
-        grid-row-start: 11;
-        grid-column-start: 3; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-50 {
-        grid-row-start: 12;
-        grid-column-start: 3; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-52 {
-        grid-row-start: 13;
-        grid-column-start: 3; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-54 {
-        grid-row-start: 14;
-        grid-column-start: 3; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-29 {
-        grid-row-start: 1;
-        grid-column-start: 4;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-29 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-29 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-31 {
-        grid-row-start: 2;
-        grid-column-start: 4;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-31 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-31 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-33 {
-        grid-row-start: 3;
-        grid-column-start: 4;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-33 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-33 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-35 {
-        grid-row-start: 4;
-        grid-column-start: 4;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-35 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-35 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-37 {
-        grid-row-start: 5;
-        grid-column-start: 4;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-37 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-37 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-39 {
-        grid-row-start: 6;
-        grid-column-start: 4;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-39 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-39 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-41 {
-        grid-row-start: 7;
-        grid-column-start: 4;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-41 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-41 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-43 {
-        grid-row-start: 8;
-        grid-column-start: 4;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-43 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-43 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-45 {
-        grid-row-start: 9;
-        grid-column-start: 4;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-45 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-45 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-47 {
-        grid-row-start: 10;
-        grid-column-start: 4;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-47 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-47 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-49 {
-        grid-row-start: 11;
-        grid-column-start: 4;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-49 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-49 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-51 {
-        grid-row-start: 12;
-        grid-column-start: 4;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-51 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-51 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-53 {
-        grid-row-start: 13;
-        grid-column-start: 4;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-53 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-53 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-55 {
-        grid-row-start: 14;
-        grid-column-start: 4;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-55 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-55 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-56 {
-        grid-row-start: 1;
-        grid-column-start: 5; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-58 {
-        grid-row-start: 2;
-        grid-column-start: 5; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-60 {
-        grid-row-start: 3;
-        grid-column-start: 5; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-62 {
-        grid-row-start: 4;
-        grid-column-start: 5; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-64 {
-        grid-row-start: 5;
-        grid-column-start: 5; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-66 {
-        grid-row-start: 6;
-        grid-column-start: 5; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-68 {
-        grid-row-start: 7;
-        grid-column-start: 5; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-70 {
-        grid-row-start: 8;
-        grid-column-start: 5; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-72 {
-        grid-row-start: 9;
-        grid-column-start: 5; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-74 {
-        grid-row-start: 10;
-        grid-column-start: 5; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-76 {
-        grid-row-start: 11;
-        grid-column-start: 5; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-57 {
-        grid-row-start: 1;
-        grid-column-start: 6;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-57 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-57 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-59 {
-        grid-row-start: 2;
-        grid-column-start: 6;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-59 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-59 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-61 {
-        grid-row-start: 3;
-        grid-column-start: 6;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-61 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-61 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-63 {
-        grid-row-start: 4;
-        grid-column-start: 6;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-63 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-63 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-65 {
-        grid-row-start: 5;
-        grid-column-start: 6;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-65 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-65 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-67 {
-        grid-row-start: 6;
-        grid-column-start: 6;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-67 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-67 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-69 {
-        grid-row-start: 7;
-        grid-column-start: 6;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-69 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-69 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-71 {
-        grid-row-start: 8;
-        grid-column-start: 6;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-71 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-71 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-73 {
-        grid-row-start: 9;
-        grid-column-start: 6;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-73 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-73 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-75 {
-        grid-row-start: 10;
-        grid-column-start: 6;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-75 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-75 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-77 {
-        grid-row-start: 11;
-        grid-column-start: 6;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-77 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-77 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-78 {
-        grid-row-start: 1;
-        grid-column-start: 7; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-80 {
-        grid-row-start: 2;
-        grid-column-start: 7; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-82 {
-        grid-row-start: 3;
-        grid-column-start: 7; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-84 {
-        grid-row-start: 4;
-        grid-column-start: 7; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-86 {
-        grid-row-start: 5;
-        grid-column-start: 7; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-88 {
-        grid-row-start: 6;
-        grid-column-start: 7; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-90 {
-        grid-row-start: 7;
-        grid-column-start: 7; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-92 {
-        grid-row-start: 8;
-        grid-column-start: 7; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-94 {
-        grid-row-start: 9;
-        grid-column-start: 7; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-96 {
-        grid-row-start: 10;
-        grid-column-start: 7; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-98 {
-        grid-row-start: 11;
-        grid-column-start: 7; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-100 {
-        grid-row-start: 12;
-        grid-column-start: 7; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-102 {
-        grid-row-start: 13;
-        grid-column-start: 7; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-104 {
-        grid-row-start: 14;
-        grid-column-start: 7; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-79 {
-        grid-row-start: 1;
-        grid-column-start: 8;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-79 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-79 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-81 {
-        grid-row-start: 2;
-        grid-column-start: 8;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-81 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-81 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-83 {
-        grid-row-start: 3;
-        grid-column-start: 8;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-83 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-83 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-85 {
-        grid-row-start: 4;
-        grid-column-start: 8;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-85 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-85 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-87 {
-        grid-row-start: 5;
-        grid-column-start: 8;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-87 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-87 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-89 {
-        grid-row-start: 6;
-        grid-column-start: 8;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-89 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-89 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-91 {
-        grid-row-start: 7;
-        grid-column-start: 8;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-91 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-91 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-93 {
-        grid-row-start: 8;
-        grid-column-start: 8;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-93 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-93 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-95 {
-        grid-row-start: 9;
-        grid-column-start: 8;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-95 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-95 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-97 {
-        grid-row-start: 10;
-        grid-column-start: 8;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-97 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-97 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-99 {
-        grid-row-start: 11;
-        grid-column-start: 8;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-99 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-99 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-101 {
-        grid-row-start: 12;
-        grid-column-start: 8;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-101 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-101 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-103 {
-        grid-row-start: 13;
-        grid-column-start: 8;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-103 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-103 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-105 {
-        grid-row-start: 14;
-        grid-column-start: 8;
-        margin: 1px 20px 1px 1px; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-105 div.symbol-zone {
-          order: 1; }
-        #concept-app #concept-container #concept-grid div.concept-symbol#symbol-105 div.symbol-img {
-          order: 0; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-106 {
-        grid-row-start: 1;
-        grid-column-start: 9;
-        margin: 1px 20px; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-107 {
-        grid-row-start: 2;
-        grid-column-start: 9;
-        margin: 1px 20px; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-108 {
-        grid-row-start: 3;
-        grid-column-start: 9;
-        margin: 1px 20px; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-109 {
-        grid-row-start: 4;
-        grid-column-start: 9;
-        margin: 1px 20px; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-110 {
-        grid-row-start: 5;
-        grid-column-start: 9;
-        margin: 1px 20px; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-111 {
-        grid-row-start: 6;
-        grid-column-start: 9;
-        margin: 1px 20px; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-112 {
-        grid-row-start: 7;
-        grid-column-start: 9;
-        margin: 1px 20px; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-113 {
-        grid-row-start: 8;
-        grid-column-start: 9;
-        margin: 1px 20px; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-114 {
-        grid-row-start: 9;
-        grid-column-start: 9;
-        margin: 1px 20px; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-115 {
-        grid-row-start: 10;
-        grid-column-start: 9;
-        margin: 1px 20px; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-116 {
-        grid-row-start: 11;
-        grid-column-start: 9;
-        margin: 1px 20px; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-117 {
-        grid-row-start: 12;
-        grid-column-start: 9;
-        margin: 1px 20px; }
-      #concept-app #concept-container #concept-grid div.concept-symbol div.symbol-zone {
-        width: 50px;
+  #concept-app #concept-container #concept-grid-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    #concept-app #concept-container #concept-grid-container #concept-grid {
+      height: auto;
+      width: 1100px;
+      position: relative;
+      padding: 18px 0px;
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      border-radius: 5px;
+      border: 1px dashed transparent;
+      flex-grow: 0;
+      flex-shrink: 0; }
+      #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint {
+        width: 2rem;
+        height: 2rem;
+        position: absolute;
+        background-size: 500%; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="0"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="2"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="4"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="6"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="8"] {
+          background-image: url("img/main-marks.png");
+          height: 3rem; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="1"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="3"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="5"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="7"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="9"] {
+          background-image: url("img/cube-marks.png"); }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="0"] {
+          background-position: 0% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="1"] {
+          background-position: 0% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="2"] {
+          background-position: 25% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="3"] {
+          background-position: 25% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="4"] {
+          background-position: 50% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="5"] {
+          background-position: 50% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="6"] {
+          background-position: 75% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="7"] {
+          background-position: 75% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="8"] {
+          background-position: 100% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="9"] {
+          background-position: 100% center; }
+      #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol {
+        width: 100px;
         height: 50px;
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: row;
         align-items: center;
-        position: relative; }
-      #concept-app #concept-container #concept-grid div.concept-symbol div.symbol-img {
-        width: 50px;
-        height: 50px;
-        background-repeat: no-repeat;
-        background-position: center center;
-        cursor: help;
-        background-image: url("img/concept-symbols.png");
-        background-size: cover; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-0 div.symbol-img {
-        background-position: 0% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-1 div.symbol-img {
-        background-position: 0.8547008547% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-2 div.symbol-img {
-        background-position: 1.7094017094% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-3 div.symbol-img {
-        background-position: 2.5641025641% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-4 div.symbol-img {
-        background-position: 3.4188034188% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-5 div.symbol-img {
-        background-position: 4.2735042735% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-6 div.symbol-img {
-        background-position: 5.1282051282% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-7 div.symbol-img {
-        background-position: 5.9829059829% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-8 div.symbol-img {
-        background-position: 6.8376068376% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-9 div.symbol-img {
-        background-position: 7.6923076923% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-10 div.symbol-img {
-        background-position: 8.547008547% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-11 div.symbol-img {
-        background-position: 9.4017094017% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-12 div.symbol-img {
-        background-position: 10.2564102564% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-13 div.symbol-img {
-        background-position: 11.1111111111% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-14 div.symbol-img {
-        background-position: 11.9658119658% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-15 div.symbol-img {
-        background-position: 12.8205128205% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-16 div.symbol-img {
-        background-position: 13.6752136752% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-17 div.symbol-img {
-        background-position: 14.5299145299% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-18 div.symbol-img {
-        background-position: 15.3846153846% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-19 div.symbol-img {
-        background-position: 16.2393162393% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-20 div.symbol-img {
-        background-position: 17.094017094% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-21 div.symbol-img {
-        background-position: 17.9487179487% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-22 div.symbol-img {
-        background-position: 18.8034188034% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-23 div.symbol-img {
-        background-position: 19.6581196581% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-24 div.symbol-img {
-        background-position: 20.5128205128% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-25 div.symbol-img {
-        background-position: 21.3675213675% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-26 div.symbol-img {
-        background-position: 22.2222222222% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-27 div.symbol-img {
-        background-position: 23.0769230769% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-28 div.symbol-img {
-        background-position: 23.9316239316% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-29 div.symbol-img {
-        background-position: 24.7863247863% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-30 div.symbol-img {
-        background-position: 25.641025641% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-31 div.symbol-img {
-        background-position: 26.4957264957% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-32 div.symbol-img {
-        background-position: 27.3504273504% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-33 div.symbol-img {
-        background-position: 28.2051282051% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-34 div.symbol-img {
-        background-position: 29.0598290598% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-35 div.symbol-img {
-        background-position: 29.9145299145% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-36 div.symbol-img {
-        background-position: 30.7692307692% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-37 div.symbol-img {
-        background-position: 31.6239316239% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-38 div.symbol-img {
-        background-position: 32.4786324786% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-39 div.symbol-img {
-        background-position: 33.3333333333% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-40 div.symbol-img {
-        background-position: 34.188034188% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-41 div.symbol-img {
-        background-position: 35.0427350427% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-42 div.symbol-img {
-        background-position: 35.8974358974% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-43 div.symbol-img {
-        background-position: 36.7521367521% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-44 div.symbol-img {
-        background-position: 37.6068376068% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-45 div.symbol-img {
-        background-position: 38.4615384615% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-46 div.symbol-img {
-        background-position: 39.3162393162% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-47 div.symbol-img {
-        background-position: 40.1709401709% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-48 div.symbol-img {
-        background-position: 41.0256410256% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-49 div.symbol-img {
-        background-position: 41.8803418803% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-50 div.symbol-img {
-        background-position: 42.735042735% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-51 div.symbol-img {
-        background-position: 43.5897435897% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-52 div.symbol-img {
-        background-position: 44.4444444444% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-53 div.symbol-img {
-        background-position: 45.2991452991% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-54 div.symbol-img {
-        background-position: 46.1538461538% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-55 div.symbol-img {
-        background-position: 47.0085470085% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-56 div.symbol-img {
-        background-position: 47.8632478632% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-57 div.symbol-img {
-        background-position: 48.7179487179% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-58 div.symbol-img {
-        background-position: 49.5726495726% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-59 div.symbol-img {
-        background-position: 50.4273504274% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-60 div.symbol-img {
-        background-position: 51.2820512821% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-61 div.symbol-img {
-        background-position: 52.1367521368% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-62 div.symbol-img {
-        background-position: 52.9914529915% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-63 div.symbol-img {
-        background-position: 53.8461538462% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-64 div.symbol-img {
-        background-position: 54.7008547009% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-65 div.symbol-img {
-        background-position: 55.5555555556% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-66 div.symbol-img {
-        background-position: 56.4102564103% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-67 div.symbol-img {
-        background-position: 57.264957265% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-68 div.symbol-img {
-        background-position: 58.1196581197% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-69 div.symbol-img {
-        background-position: 58.9743589744% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-70 div.symbol-img {
-        background-position: 59.8290598291% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-71 div.symbol-img {
-        background-position: 60.6837606838% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-72 div.symbol-img {
-        background-position: 61.5384615385% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-73 div.symbol-img {
-        background-position: 62.3931623932% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-74 div.symbol-img {
-        background-position: 63.2478632479% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-75 div.symbol-img {
-        background-position: 64.1025641026% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-76 div.symbol-img {
-        background-position: 64.9572649573% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-77 div.symbol-img {
-        background-position: 65.811965812% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-78 div.symbol-img {
-        background-position: 66.6666666667% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-79 div.symbol-img {
-        background-position: 67.5213675214% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-80 div.symbol-img {
-        background-position: 68.3760683761% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-81 div.symbol-img {
-        background-position: 69.2307692308% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-82 div.symbol-img {
-        background-position: 70.0854700855% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-83 div.symbol-img {
-        background-position: 70.9401709402% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-84 div.symbol-img {
-        background-position: 71.7948717949% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-85 div.symbol-img {
-        background-position: 72.6495726496% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-86 div.symbol-img {
-        background-position: 73.5042735043% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-87 div.symbol-img {
-        background-position: 74.358974359% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-88 div.symbol-img {
-        background-position: 75.2136752137% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-89 div.symbol-img {
-        background-position: 76.0683760684% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-90 div.symbol-img {
-        background-position: 76.9230769231% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-91 div.symbol-img {
-        background-position: 77.7777777778% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-92 div.symbol-img {
-        background-position: 78.6324786325% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-93 div.symbol-img {
-        background-position: 79.4871794872% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-94 div.symbol-img {
-        background-position: 80.3418803419% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-95 div.symbol-img {
-        background-position: 81.1965811966% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-96 div.symbol-img {
-        background-position: 82.0512820513% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-97 div.symbol-img {
-        background-position: 82.905982906% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-98 div.symbol-img {
-        background-position: 83.7606837607% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-99 div.symbol-img {
-        background-position: 84.6153846154% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-100 div.symbol-img {
-        background-position: 85.4700854701% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-101 div.symbol-img {
-        background-position: 86.3247863248% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-102 div.symbol-img {
-        background-position: 87.1794871795% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-103 div.symbol-img {
-        background-position: 88.0341880342% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-104 div.symbol-img {
-        background-position: 88.8888888889% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-105 div.symbol-img {
-        background-position: 89.7435897436% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-106 div.symbol-img {
-        background-position: 90.5982905983% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-107 div.symbol-img {
-        background-position: 91.452991453% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-108 div.symbol-img {
-        background-position: 92.3076923077% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-109 div.symbol-img {
-        background-position: 93.1623931624% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-110 div.symbol-img {
-        background-position: 94.0170940171% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-111 div.symbol-img {
-        background-position: 94.8717948718% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-112 div.symbol-img {
-        background-position: 95.7264957265% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-113 div.symbol-img {
-        background-position: 96.5811965812% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-114 div.symbol-img {
-        background-position: 97.4358974359% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-115 div.symbol-img {
-        background-position: 98.2905982906% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-116 div.symbol-img {
-        background-position: 99.1452991453% center; }
-      #concept-app #concept-container #concept-grid div.concept-symbol#symbol-117 div.symbol-img {
-        background-position: 100% center; }
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.3);
+        margin: 1px 1px 1px 10px; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol.active {
+          border-color: rgba(120, 0, 0, 0.9); }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-0 {
+          grid-row-start: 1;
+          grid-column-start: 1; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-2 {
+          grid-row-start: 2;
+          grid-column-start: 1; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-4 {
+          grid-row-start: 3;
+          grid-column-start: 1; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-6 {
+          grid-row-start: 4;
+          grid-column-start: 1; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-8 {
+          grid-row-start: 5;
+          grid-column-start: 1; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-10 {
+          grid-row-start: 6;
+          grid-column-start: 1; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-12 {
+          grid-row-start: 7;
+          grid-column-start: 1; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-14 {
+          grid-row-start: 8;
+          grid-column-start: 1; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-16 {
+          grid-row-start: 9;
+          grid-column-start: 1; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-18 {
+          grid-row-start: 10;
+          grid-column-start: 1; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-20 {
+          grid-row-start: 11;
+          grid-column-start: 1; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-22 {
+          grid-row-start: 12;
+          grid-column-start: 1; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-24 {
+          grid-row-start: 13;
+          grid-column-start: 1; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-26 {
+          grid-row-start: 14;
+          grid-column-start: 1; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-1 {
+          grid-row-start: 1;
+          grid-column-start: 2;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-1 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-1 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-3 {
+          grid-row-start: 2;
+          grid-column-start: 2;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-3 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-3 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-5 {
+          grid-row-start: 3;
+          grid-column-start: 2;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-5 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-5 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-7 {
+          grid-row-start: 4;
+          grid-column-start: 2;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-7 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-7 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-9 {
+          grid-row-start: 5;
+          grid-column-start: 2;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-9 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-9 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-11 {
+          grid-row-start: 6;
+          grid-column-start: 2;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-11 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-11 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-13 {
+          grid-row-start: 7;
+          grid-column-start: 2;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-13 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-13 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-15 {
+          grid-row-start: 8;
+          grid-column-start: 2;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-15 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-15 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-17 {
+          grid-row-start: 9;
+          grid-column-start: 2;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-17 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-17 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-19 {
+          grid-row-start: 10;
+          grid-column-start: 2;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-19 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-19 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-21 {
+          grid-row-start: 11;
+          grid-column-start: 2;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-21 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-21 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-23 {
+          grid-row-start: 12;
+          grid-column-start: 2;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-23 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-23 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-25 {
+          grid-row-start: 13;
+          grid-column-start: 2;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-25 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-25 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-27 {
+          grid-row-start: 14;
+          grid-column-start: 2;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-27 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-27 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-28 {
+          grid-row-start: 1;
+          grid-column-start: 3; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-30 {
+          grid-row-start: 2;
+          grid-column-start: 3; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-32 {
+          grid-row-start: 3;
+          grid-column-start: 3; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-34 {
+          grid-row-start: 4;
+          grid-column-start: 3; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-36 {
+          grid-row-start: 5;
+          grid-column-start: 3; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-38 {
+          grid-row-start: 6;
+          grid-column-start: 3; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-40 {
+          grid-row-start: 7;
+          grid-column-start: 3; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-42 {
+          grid-row-start: 8;
+          grid-column-start: 3; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-44 {
+          grid-row-start: 9;
+          grid-column-start: 3; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-46 {
+          grid-row-start: 10;
+          grid-column-start: 3; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-48 {
+          grid-row-start: 11;
+          grid-column-start: 3; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-50 {
+          grid-row-start: 12;
+          grid-column-start: 3; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-52 {
+          grid-row-start: 13;
+          grid-column-start: 3; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-54 {
+          grid-row-start: 14;
+          grid-column-start: 3; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-29 {
+          grid-row-start: 1;
+          grid-column-start: 4;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-29 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-29 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-31 {
+          grid-row-start: 2;
+          grid-column-start: 4;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-31 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-31 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-33 {
+          grid-row-start: 3;
+          grid-column-start: 4;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-33 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-33 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-35 {
+          grid-row-start: 4;
+          grid-column-start: 4;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-35 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-35 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-37 {
+          grid-row-start: 5;
+          grid-column-start: 4;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-37 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-37 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-39 {
+          grid-row-start: 6;
+          grid-column-start: 4;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-39 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-39 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-41 {
+          grid-row-start: 7;
+          grid-column-start: 4;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-41 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-41 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-43 {
+          grid-row-start: 8;
+          grid-column-start: 4;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-43 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-43 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-45 {
+          grid-row-start: 9;
+          grid-column-start: 4;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-45 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-45 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-47 {
+          grid-row-start: 10;
+          grid-column-start: 4;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-47 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-47 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-49 {
+          grid-row-start: 11;
+          grid-column-start: 4;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-49 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-49 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-51 {
+          grid-row-start: 12;
+          grid-column-start: 4;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-51 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-51 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-53 {
+          grid-row-start: 13;
+          grid-column-start: 4;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-53 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-53 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-55 {
+          grid-row-start: 14;
+          grid-column-start: 4;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-55 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-55 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-56 {
+          grid-row-start: 1;
+          grid-column-start: 5; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-58 {
+          grid-row-start: 2;
+          grid-column-start: 5; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-60 {
+          grid-row-start: 3;
+          grid-column-start: 5; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-62 {
+          grid-row-start: 4;
+          grid-column-start: 5; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-64 {
+          grid-row-start: 5;
+          grid-column-start: 5; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-66 {
+          grid-row-start: 6;
+          grid-column-start: 5; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-68 {
+          grid-row-start: 7;
+          grid-column-start: 5; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-70 {
+          grid-row-start: 8;
+          grid-column-start: 5; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-72 {
+          grid-row-start: 9;
+          grid-column-start: 5; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-74 {
+          grid-row-start: 10;
+          grid-column-start: 5; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-76 {
+          grid-row-start: 11;
+          grid-column-start: 5; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-57 {
+          grid-row-start: 1;
+          grid-column-start: 6;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-57 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-57 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-59 {
+          grid-row-start: 2;
+          grid-column-start: 6;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-59 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-59 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-61 {
+          grid-row-start: 3;
+          grid-column-start: 6;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-61 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-61 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-63 {
+          grid-row-start: 4;
+          grid-column-start: 6;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-63 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-63 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-65 {
+          grid-row-start: 5;
+          grid-column-start: 6;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-65 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-65 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-67 {
+          grid-row-start: 6;
+          grid-column-start: 6;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-67 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-67 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-69 {
+          grid-row-start: 7;
+          grid-column-start: 6;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-69 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-69 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-71 {
+          grid-row-start: 8;
+          grid-column-start: 6;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-71 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-71 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-73 {
+          grid-row-start: 9;
+          grid-column-start: 6;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-73 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-73 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-75 {
+          grid-row-start: 10;
+          grid-column-start: 6;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-75 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-75 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-77 {
+          grid-row-start: 11;
+          grid-column-start: 6;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-77 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-77 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-78 {
+          grid-row-start: 1;
+          grid-column-start: 7; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-80 {
+          grid-row-start: 2;
+          grid-column-start: 7; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-82 {
+          grid-row-start: 3;
+          grid-column-start: 7; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-84 {
+          grid-row-start: 4;
+          grid-column-start: 7; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-86 {
+          grid-row-start: 5;
+          grid-column-start: 7; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-88 {
+          grid-row-start: 6;
+          grid-column-start: 7; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-90 {
+          grid-row-start: 7;
+          grid-column-start: 7; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-92 {
+          grid-row-start: 8;
+          grid-column-start: 7; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-94 {
+          grid-row-start: 9;
+          grid-column-start: 7; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-96 {
+          grid-row-start: 10;
+          grid-column-start: 7; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-98 {
+          grid-row-start: 11;
+          grid-column-start: 7; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-100 {
+          grid-row-start: 12;
+          grid-column-start: 7; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-102 {
+          grid-row-start: 13;
+          grid-column-start: 7; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-104 {
+          grid-row-start: 14;
+          grid-column-start: 7; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-79 {
+          grid-row-start: 1;
+          grid-column-start: 8;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-79 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-79 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-81 {
+          grid-row-start: 2;
+          grid-column-start: 8;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-81 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-81 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-83 {
+          grid-row-start: 3;
+          grid-column-start: 8;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-83 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-83 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-85 {
+          grid-row-start: 4;
+          grid-column-start: 8;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-85 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-85 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-87 {
+          grid-row-start: 5;
+          grid-column-start: 8;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-87 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-87 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-89 {
+          grid-row-start: 6;
+          grid-column-start: 8;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-89 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-89 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-91 {
+          grid-row-start: 7;
+          grid-column-start: 8;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-91 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-91 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-93 {
+          grid-row-start: 8;
+          grid-column-start: 8;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-93 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-93 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-95 {
+          grid-row-start: 9;
+          grid-column-start: 8;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-95 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-95 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-97 {
+          grid-row-start: 10;
+          grid-column-start: 8;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-97 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-97 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-99 {
+          grid-row-start: 11;
+          grid-column-start: 8;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-99 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-99 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-101 {
+          grid-row-start: 12;
+          grid-column-start: 8;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-101 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-101 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-103 {
+          grid-row-start: 13;
+          grid-column-start: 8;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-103 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-103 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-105 {
+          grid-row-start: 14;
+          grid-column-start: 8;
+          margin: 1px 10px 1px 1px; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-105 div.symbol-zone {
+            order: 1; }
+          #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-105 div.symbol-img {
+            order: 0; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-106 {
+          grid-row-start: 1;
+          grid-column-start: 9;
+          margin: 1px 20px; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-107 {
+          grid-row-start: 2;
+          grid-column-start: 9;
+          margin: 1px 20px; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-108 {
+          grid-row-start: 3;
+          grid-column-start: 9;
+          margin: 1px 20px; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-109 {
+          grid-row-start: 4;
+          grid-column-start: 9;
+          margin: 1px 20px; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-110 {
+          grid-row-start: 5;
+          grid-column-start: 9;
+          margin: 1px 20px; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-111 {
+          grid-row-start: 6;
+          grid-column-start: 9;
+          margin: 1px 20px; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-112 {
+          grid-row-start: 7;
+          grid-column-start: 9;
+          margin: 1px 20px; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-113 {
+          grid-row-start: 8;
+          grid-column-start: 9;
+          margin: 1px 20px; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-114 {
+          grid-row-start: 9;
+          grid-column-start: 9;
+          margin: 1px 20px; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-115 {
+          grid-row-start: 10;
+          grid-column-start: 9;
+          margin: 1px 20px; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-116 {
+          grid-row-start: 11;
+          grid-column-start: 9;
+          margin: 1px 20px; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-117 {
+          grid-row-start: 12;
+          grid-column-start: 9;
+          margin: 1px 20px; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol div.symbol-zone {
+          width: 50px;
+          height: 50px;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          position: relative; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol div.symbol-img {
+          width: 50px;
+          height: 50px;
+          background-repeat: no-repeat;
+          background-position: center center;
+          cursor: help;
+          background-image: url("img/concept-symbols.png");
+          background-size: cover; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-0 div.symbol-img {
+          background-position: 0% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-1 div.symbol-img {
+          background-position: 0.8547008547% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-2 div.symbol-img {
+          background-position: 1.7094017094% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-3 div.symbol-img {
+          background-position: 2.5641025641% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-4 div.symbol-img {
+          background-position: 3.4188034188% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-5 div.symbol-img {
+          background-position: 4.2735042735% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-6 div.symbol-img {
+          background-position: 5.1282051282% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-7 div.symbol-img {
+          background-position: 5.9829059829% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-8 div.symbol-img {
+          background-position: 6.8376068376% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-9 div.symbol-img {
+          background-position: 7.6923076923% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-10 div.symbol-img {
+          background-position: 8.547008547% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-11 div.symbol-img {
+          background-position: 9.4017094017% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-12 div.symbol-img {
+          background-position: 10.2564102564% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-13 div.symbol-img {
+          background-position: 11.1111111111% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-14 div.symbol-img {
+          background-position: 11.9658119658% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-15 div.symbol-img {
+          background-position: 12.8205128205% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-16 div.symbol-img {
+          background-position: 13.6752136752% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-17 div.symbol-img {
+          background-position: 14.5299145299% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-18 div.symbol-img {
+          background-position: 15.3846153846% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-19 div.symbol-img {
+          background-position: 16.2393162393% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-20 div.symbol-img {
+          background-position: 17.094017094% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-21 div.symbol-img {
+          background-position: 17.9487179487% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-22 div.symbol-img {
+          background-position: 18.8034188034% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-23 div.symbol-img {
+          background-position: 19.6581196581% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-24 div.symbol-img {
+          background-position: 20.5128205128% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-25 div.symbol-img {
+          background-position: 21.3675213675% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-26 div.symbol-img {
+          background-position: 22.2222222222% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-27 div.symbol-img {
+          background-position: 23.0769230769% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-28 div.symbol-img {
+          background-position: 23.9316239316% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-29 div.symbol-img {
+          background-position: 24.7863247863% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-30 div.symbol-img {
+          background-position: 25.641025641% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-31 div.symbol-img {
+          background-position: 26.4957264957% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-32 div.symbol-img {
+          background-position: 27.3504273504% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-33 div.symbol-img {
+          background-position: 28.2051282051% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-34 div.symbol-img {
+          background-position: 29.0598290598% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-35 div.symbol-img {
+          background-position: 29.9145299145% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-36 div.symbol-img {
+          background-position: 30.7692307692% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-37 div.symbol-img {
+          background-position: 31.6239316239% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-38 div.symbol-img {
+          background-position: 32.4786324786% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-39 div.symbol-img {
+          background-position: 33.3333333333% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-40 div.symbol-img {
+          background-position: 34.188034188% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-41 div.symbol-img {
+          background-position: 35.0427350427% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-42 div.symbol-img {
+          background-position: 35.8974358974% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-43 div.symbol-img {
+          background-position: 36.7521367521% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-44 div.symbol-img {
+          background-position: 37.6068376068% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-45 div.symbol-img {
+          background-position: 38.4615384615% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-46 div.symbol-img {
+          background-position: 39.3162393162% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-47 div.symbol-img {
+          background-position: 40.1709401709% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-48 div.symbol-img {
+          background-position: 41.0256410256% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-49 div.symbol-img {
+          background-position: 41.8803418803% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-50 div.symbol-img {
+          background-position: 42.735042735% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-51 div.symbol-img {
+          background-position: 43.5897435897% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-52 div.symbol-img {
+          background-position: 44.4444444444% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-53 div.symbol-img {
+          background-position: 45.2991452991% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-54 div.symbol-img {
+          background-position: 46.1538461538% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-55 div.symbol-img {
+          background-position: 47.0085470085% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-56 div.symbol-img {
+          background-position: 47.8632478632% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-57 div.symbol-img {
+          background-position: 48.7179487179% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-58 div.symbol-img {
+          background-position: 49.5726495726% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-59 div.symbol-img {
+          background-position: 50.4273504274% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-60 div.symbol-img {
+          background-position: 51.2820512821% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-61 div.symbol-img {
+          background-position: 52.1367521368% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-62 div.symbol-img {
+          background-position: 52.9914529915% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-63 div.symbol-img {
+          background-position: 53.8461538462% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-64 div.symbol-img {
+          background-position: 54.7008547009% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-65 div.symbol-img {
+          background-position: 55.5555555556% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-66 div.symbol-img {
+          background-position: 56.4102564103% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-67 div.symbol-img {
+          background-position: 57.264957265% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-68 div.symbol-img {
+          background-position: 58.1196581197% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-69 div.symbol-img {
+          background-position: 58.9743589744% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-70 div.symbol-img {
+          background-position: 59.8290598291% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-71 div.symbol-img {
+          background-position: 60.6837606838% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-72 div.symbol-img {
+          background-position: 61.5384615385% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-73 div.symbol-img {
+          background-position: 62.3931623932% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-74 div.symbol-img {
+          background-position: 63.2478632479% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-75 div.symbol-img {
+          background-position: 64.1025641026% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-76 div.symbol-img {
+          background-position: 64.9572649573% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-77 div.symbol-img {
+          background-position: 65.811965812% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-78 div.symbol-img {
+          background-position: 66.6666666667% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-79 div.symbol-img {
+          background-position: 67.5213675214% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-80 div.symbol-img {
+          background-position: 68.3760683761% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-81 div.symbol-img {
+          background-position: 69.2307692308% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-82 div.symbol-img {
+          background-position: 70.0854700855% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-83 div.symbol-img {
+          background-position: 70.9401709402% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-84 div.symbol-img {
+          background-position: 71.7948717949% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-85 div.symbol-img {
+          background-position: 72.6495726496% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-86 div.symbol-img {
+          background-position: 73.5042735043% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-87 div.symbol-img {
+          background-position: 74.358974359% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-88 div.symbol-img {
+          background-position: 75.2136752137% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-89 div.symbol-img {
+          background-position: 76.0683760684% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-90 div.symbol-img {
+          background-position: 76.9230769231% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-91 div.symbol-img {
+          background-position: 77.7777777778% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-92 div.symbol-img {
+          background-position: 78.6324786325% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-93 div.symbol-img {
+          background-position: 79.4871794872% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-94 div.symbol-img {
+          background-position: 80.3418803419% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-95 div.symbol-img {
+          background-position: 81.1965811966% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-96 div.symbol-img {
+          background-position: 82.0512820513% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-97 div.symbol-img {
+          background-position: 82.905982906% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-98 div.symbol-img {
+          background-position: 83.7606837607% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-99 div.symbol-img {
+          background-position: 84.6153846154% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-100 div.symbol-img {
+          background-position: 85.4700854701% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-101 div.symbol-img {
+          background-position: 86.3247863248% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-102 div.symbol-img {
+          background-position: 87.1794871795% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-103 div.symbol-img {
+          background-position: 88.0341880342% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-104 div.symbol-img {
+          background-position: 88.8888888889% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-105 div.symbol-img {
+          background-position: 89.7435897436% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-106 div.symbol-img {
+          background-position: 90.5982905983% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-107 div.symbol-img {
+          background-position: 91.452991453% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-108 div.symbol-img {
+          background-position: 92.3076923077% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-109 div.symbol-img {
+          background-position: 93.1623931624% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-110 div.symbol-img {
+          background-position: 94.0170940171% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-111 div.symbol-img {
+          background-position: 94.8717948718% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-112 div.symbol-img {
+          background-position: 95.7264957265% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-113 div.symbol-img {
+          background-position: 96.5811965812% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-114 div.symbol-img {
+          background-position: 97.4358974359% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-115 div.symbol-img {
+          background-position: 98.2905982906% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-116 div.symbol-img {
+          background-position: 99.1452991453% center; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-117 div.symbol-img {
+          background-position: 100% center; }
 #concept-app div#concept-marks {
   display: block;
   background-color: white;
   padding: 9px 11px;
   border: 1px solid #BBB;
-  border-radius: 2rem;
-  height: 430px;
-  /*box-shadow:0 3px 8px rgba(0, 0, 0, .3);*/
-  margin: auto 2rem; }
+  border-radius: 30px;
+  height: 510px;
+  margin: auto 30px; }
   #concept-app div#concept-marks div {
     display: block;
     width: 2rem;
@@ -1109,26 +1114,30 @@ html.darkmode {
     margin: 0.5rem 0;
     border: 1px solid transparent;
     cursor: move;
-    background-image: url("img/marks.png");
-    background-size: 1000%; }
+    background-size: 500%; }
+    #concept-app div#concept-marks div#mark-0, #concept-app div#concept-marks div#mark-2, #concept-app div#concept-marks div#mark-4, #concept-app div#concept-marks div#mark-6, #concept-app div#concept-marks div#mark-8 {
+      background-image: url("img/main-marks.png");
+      height: 3rem; }
+    #concept-app div#concept-marks div#mark-1, #concept-app div#concept-marks div#mark-3, #concept-app div#concept-marks div#mark-5, #concept-app div#concept-marks div#mark-7, #concept-app div#concept-marks div#mark-9 {
+      background-image: url("img/cube-marks.png"); }
     #concept-app div#concept-marks div#mark-0 {
       background-position: 0% center; }
     #concept-app div#concept-marks div#mark-1 {
-      background-position: 11.1111111111% center; }
+      background-position: 0% center; }
     #concept-app div#concept-marks div#mark-2 {
-      background-position: 22.2222222222% center; }
+      background-position: 25% center; }
     #concept-app div#concept-marks div#mark-3 {
-      background-position: 33.3333333333% center; }
+      background-position: 25% center; }
     #concept-app div#concept-marks div#mark-4 {
-      background-position: 44.4444444444% center; }
+      background-position: 50% center; }
     #concept-app div#concept-marks div#mark-5 {
-      background-position: 55.5555555556% center; }
+      background-position: 50% center; }
     #concept-app div#concept-marks div#mark-6 {
-      background-position: 66.6666666667% center; }
+      background-position: 75% center; }
     #concept-app div#concept-marks div#mark-7 {
-      background-position: 77.7777777778% center; }
+      background-position: 75% center; }
     #concept-app div#concept-marks div#mark-8 {
-      background-position: 88.8888888889% center; }
+      background-position: 100% center; }
     #concept-app div#concept-marks div#mark-9 {
       background-position: 100% center; }
     #concept-app div#concept-marks div:hover {

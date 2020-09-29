@@ -83,8 +83,7 @@ class PlayerManager extends APP_GameClass
 
 
 	public static function getPlayersLeftStartingWith($pId) {
-    $player = self::getPlayer($pId);
-		return self::getObjectListFromDB("SELECT player_id id FROM player WHERE player_eliminated = 0 ORDER BY player_no < {$player['player_no']}, player_no", true);
+		return self::getObjectListFromDB("SELECT player_id id FROM player WHERE player_eliminated = 0 ORDER BY player_no < (SELECT player_no no FROM player WHERE player_id = $pId), player_no", true);
 	}
 
   public static function getNextPlayer($player) {

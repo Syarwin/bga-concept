@@ -94,7 +94,7 @@ class Concept extends Table
 		}
 		// Otherwise : pick the following two
 		else {
-			$players = PlayerManager::getPlayersLeftStartingWith($previousTeam[1]);
+			$players = PlayerManager::getPlayersLeftStartingWith($previousTeam[ONE_PLAYER? 0 : 1]);
 			$newTeam = $optionTeam == ONE_PLAYER? [$players[1]] : [$players[1], $players[2]];
 		}
 
@@ -121,6 +121,9 @@ class Concept extends Table
 		$newCardIndex = bga_rand(0, count($cards) - 1);
 		$newCard = $cards[$newCardIndex];
 		ConceptLog::newCard($newCard);
+
+		// Remove previous hints
+		self::DbQuery("DELETE FROM hint WHERE 1");
 	}
 
 	/*

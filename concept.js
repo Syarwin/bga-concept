@@ -14,13 +14,7 @@
  * In this file, you are describing the logic of your user interface, in Javascript language.
  *
  */
- const DARK_MODE = 100;
- const DARK_MODE_DISABLED = 1;
- const DARK_MODE_ENABLED = 2;
 
-
- var isDebug = true;
- var debug = isDebug ? console.info.bind(window.console) : function () { };
  define([
    "dojo",
    "dojo/_base/declare",
@@ -33,14 +27,12 @@
  ], function (dojo, declare) {
  	return declare("bgagame.concept", ebg.core.gamegui, {
     constructor: function () {
+      this.default_viewport = 'width=1200, user-scalable=no';
       this._app = null;
-    },
-    name: function(){
-      return 'concept';
     },
     setup: function (gamedatas) {
       this._app = new Vue(Concept(this));
-      this.setupPreference();
+      this.initPreferencesObserver();
     },
     onEnteringState: function (stateName, args) {
       this._app.onEnteringState(stateName, args);
@@ -51,23 +43,50 @@
     onUpdateActionButtons: function (stateName, args) {
       this._app.onUpdateActionButtons(stateName, args);
     },
-
-    setupPreference: function () {
-      var updatePreference = (e) => {
-        var match = e.target.id.match(/^preference_[cf]ontrol_(\d+)$/)
-        if (!match) {
-          return;
-        }
-        var pref = +match[1];
-        var prefValue = +e.target.value;
-        debug('Update preference', pref + ' = ' + prefValue);
-        if (pref == DARK_MODE) {
-          this._app.toggleDarkMode(prefValue == DARK_MODE_ENABLED);
-        }
-      };
-
-      dojo.query('.preference_control').connect('onchange', updatePreference);
-      updatePreference({ target: $('preference_control_' + DARK_MODE) });
+    onPreferenceChange: function(pref, newValue){
+      this._app.onPreferenceChange(pref, newValue);
     },
+
+
+    onScreenWidthChange: function () {
+      dojo.style('page-content', 'zoom', '');
+      dojo.style('page-title', 'zoom', '');
+      dojo.style('right-side-first-part', 'zoom', '');
+    },
+
+
+    /*
+     * Preference polyfill
+     */
+    setPreferenceValue: function(number, newValue) {
+			var optionSel = 'option[value="' + newValue + '"]'
+			dojo.query('#preference_control_' + number + ' > ' +	optionSel
+        +	', #preference_fontrol_' +number + ' > ' +	optionSel)
+				.attr('selected', true)
+			var select = $('preference_control_' + number)
+			if (dojo.isIE) {
+				select.fireEvent('onchange')
+			} else {
+				var event = document.createEvent('HTMLEvents')
+				event.initEvent('change', false, true)
+				select.dispatchEvent(event)
+			}
+		},
+
+		initPreferencesObserver: function() {
+			dojo.query('.preference_control').on(
+				'change',
+				dojo.hitch(this, function(e) {
+					var match = e.target.id.match(/^preference_control_(\d+)$/)
+					if (!match) {
+						return
+					}
+					var pref = match[1]
+					var newValue = e.target.value
+					this.prefs[pref].value = newValue
+					this.onPreferenceChange(pref, newValue)
+				})
+			)
+		},
   });
 });

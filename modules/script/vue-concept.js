@@ -1,4 +1,11 @@
 window.Concept = function(game){
+  let DARK_MODE = 100;
+  let DARK_MODE_DISABLED = 1;
+  let DARK_MODE_ENABLED = 2;
+
+  var isDebug = window.location.host == 'studio.boardgamearena.com' || window.location.hash.indexOf('debug') > -1;
+  var debug = isDebug ? console.info.bind(window.console) : function () { };
+
   return {
     el: '#concept-app',
     data: {
@@ -78,16 +85,7 @@ window.Concept = function(game){
       if($("concept-guess"))
         $("concept-guess").focus();
 
-      // Darkmode switch
-      dojo.place(`
-        <div class='upperrightmenu_item' id="darkmode-switch">
-          <input type="checkbox" class="checkbox" id="chk-darkmode" />
-        	<label class="label" for="chk-darkmode">
-        		<div class="ball"></div>
-        	</label>
-        </div>
-        `, 'upperrightmenu', 'first');
-      dojo.connect($('chk-darkmode'), 'onchange', () => this.toggleDarkMode($('chk-darkmode').checked));
+      this.addDarkModeSwitch();
     },
 
 
@@ -152,7 +150,7 @@ window.Concept = function(game){
         data = data || {};
         data.lock = true;
         callback = callback || function (res) { };
-        var gameName = this.game.name();
+        var gameName = this.game.game_name;
         this.game.ajaxcall("/" + gameName + "/" + gameName + "/" + action + ".html", data, this, callback);
       },
 
@@ -292,6 +290,8 @@ window.Concept = function(game){
       //////  Guesses   ///////
       /////////////////////////
       newGuess: function(){
+        if(this.guess == "") return;
+
         this.takeAction("newGuess", { guess: this.guess });
         this.guess = "";
       },
@@ -304,6 +304,8 @@ window.Concept = function(game){
 
 
       showFeedbackChoices: function(guess){
+        if(guess.pId == -1) return;
+
         this.displayFeedback = true;
         this.guessFeedback = guess;
       },
@@ -374,16 +376,19 @@ window.Concept = function(game){
   		},
 
 
-      toggleDarkMode: function(enabled){
-        let val = enabled? DARK_MODE_ENABLED : DARK_MODE_DISABLED;
-        this.game.prefs[DARK_MODE].value = val;
-        $('preference_control_'  + DARK_MODE).value = val;
-        this.game.ajaxcall('/table/table/changePreference.html', {
-          id: DARK_MODE,
-          value: val,
-          game: this.game.game_name,
-        }, this, function(){});
+      /////////////////////////////////////////////
+      /////////////	  Preferences 	 /////////////
+      ////////////////////////////////////////////
+      onPreferenceChange: function(pref, value) {
+        if(pref == DARK_MODE)
+          this.toggleDarkMode(value == DARK_MODE_ENABLED, false);
+		  },
 
+      setPreferenceValue: function(pref, newVal){
+        this.game.setPreferenceValue(pref, newVal)
+      },
+
+      toggleDarkMode: function(enabled){
         if(enabled){
           dojo.query("html").addClass("darkmode");
           $('chk-darkmode').checked = true;
@@ -391,6 +396,26 @@ window.Concept = function(game){
           dojo.query("html").removeClass("darkmode");
           $('chk-darkmode').checked = false;
         }
+      },
+
+      addDarkModeSwitch: function(){
+        // Darkmode switch
+        dojo.place(`
+          <div class='upperrightmenu_item' id="darkmode-switch">
+            <input type="checkbox" class="checkbox" id="chk-darkmode" />
+            <label class="label" for="chk-darkmode">
+              <div class="ball"></div>
+            </label>
+          </div>
+          `, 'upperrightmenu', 'first');
+
+        dojo.connect(
+          $('chk-darkmode'),
+          'onchange',
+          () => this.setPreferenceValue(DARK_MODE, $('chk-darkmode').checked? DARK_MODE_ENABLED : DARK_MODE_DISABLED)
+        );
+
+        this.toggleDarkMode(this.game.prefs[DARK_MODE].value == DARK_MODE_ENABLED);
       },
 
       ///////////////////////////////////////////////////

@@ -4,31 +4,31 @@ $gameinfos = [
 	'game_name' => "Concept",
 	'designer' => 'Gaëtan Beaujannot, Alain Rivollet',
 	'artist' => 'Éric Azagury, Cédric Chevalier',
-	'year' => 2013,                 
-	'publisher' => 'Repos Production',                     
-	'publisher_website' => 'https://www.concept-the-game.com/',   
+	'year' => 2013,
+	'publisher' => 'Repos Production',
+	'publisher_website' => 'https://www.concept-the-game.com/',
 	'publisher_bgg_id' => 4384,
 	'bgg_id' => 147151,
-	'players' => [4,5,6,7,8,9,10,11,12],
+	'players' => [2,3,4,5,6,7,8,9,10,11,12],
 	'suggest_player_number' => null,
 	'not_recommend_player_number' => null,
 
-	'estimated_duration' => 30,           
-	'fast_additional_time' => 30,           
-	'medium_additional_time' => 40,           
-	'slow_additional_time' => 50,           
+	'estimated_duration' => 30,
+	'fast_additional_time' => 30,
+	'medium_additional_time' => 40,
+	'slow_additional_time' => 50,
 
 	'tie_breaker_description' => "",
 	'losers_not_ranked' => false,
 
 
-	'is_beta' => 1,                     
-	'is_coop' => 1, 
+	'is_beta' => 1,
+	'is_coop' => 1,
 
 
-	'complexity' => 3,    
+	'complexity' => 3,
 	'luck' => 0,
-	'strategy' => 1,    
+	'strategy' => 1,
 	'diplomacy' => 4,
 
 	'player_colors' => ["ff0000", "008000", "0000ff", "ffa500", "773300"],
@@ -39,7 +39,7 @@ $gameinfos = [
 	'disable_player_order_swap_on_rematch' => false,
 
 	'game_interface_width' => [
-    'min' => 740,
+    'min' => 1100,
     'max' => null
 	],
 
