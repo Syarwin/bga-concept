@@ -259,14 +259,17 @@ $columns:(
         flex-shrink: 0;
 
         div.concept-hint {
-          width:2rem;
-          height:2rem;
+          width:30px;
+          height:30px;
           position:absolute;
           background-size:500%;
+          animation: pulse 2s;
+          animation-iteration-count: 4;
+          border-radius:5px;
 
           &[data-mark="0"], &[data-mark="2"], &[data-mark="4"], &[data-mark="6"], &[data-mark="8"], {
             background-image:url("img/main-marks.png");
-            height:3rem;
+            height:55px;
           }
           &[data-mark="1"], &[data-mark="3"], &[data-mark="5"], &[data-mark="7"], &[data-mark="9"], {
             background-image:url("img/cube-marks.png");
@@ -275,6 +278,15 @@ $columns:(
           @for $i from 0 through 4 {
             &[data-mark="#{2*$i}"] { background-position:$i*100%/4 center; }
             &[data-mark="#{2*$i + 1}"] { background-position:$i*100%/4 center; }
+          }
+
+          @keyframes pulse {
+            0% {
+              box-shadow: 0 0 0 2px #ffc400;
+            }
+            50% {
+              box-shadow: 0 0 0 10px transparent;
+            }
           }
         }
 
@@ -354,14 +366,14 @@ $columns:(
 
     div {
     	display:block;
-    	width:2rem;
-    	height:2rem;
+    	width:30px;
+    	height:30px;
       margin: 0.5rem 0;
       border: 1px solid transparent;
     	cursor:move;
       background-size:500%;
 
-      &#mark-0, &#mark-2, &#mark-4, &#mark-6, &#mark-8 { background-image:url("img/main-marks.png"); height:3rem;}
+      &#mark-0, &#mark-2, &#mark-4, &#mark-6, &#mark-8 { background-image:url("img/main-marks.png"); height:55px;}
       &#mark-1, &#mark-3, &#mark-5, &#mark-7, &#mark-9 { background-image:url("img/cube-marks.png"); }
 
       @for $i from 0 through 4 {

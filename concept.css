@@ -176,13 +176,16 @@ html.darkmode {
       flex-grow: 0;
       flex-shrink: 0; }
       #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint {
-        width: 2rem;
-        height: 2rem;
+        width: 30px;
+        height: 30px;
         position: absolute;
-        background-size: 500%; }
+        background-size: 500%;
+        animation: pulse 2s;
+        animation-iteration-count: 4;
+        border-radius: 5px; }
         #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="0"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="2"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="4"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="6"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="8"] {
           background-image: url("img/main-marks.png");
-          height: 3rem; }
+          height: 55px; }
         #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="1"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="3"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="5"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="7"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="9"] {
           background-image: url("img/cube-marks.png"); }
         #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="0"] {
@@ -205,6 +208,11 @@ html.darkmode {
           background-position: 100% center; }
         #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="9"] {
           background-position: 100% center; }
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 2px #ffc400; }
+  50% {
+    box-shadow: 0 0 0 10px transparent; } }
       #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol {
         width: 100px;
         height: 50px;
@@ -1109,15 +1117,15 @@ html.darkmode {
   margin: auto 30px; }
   #concept-app div#concept-marks div {
     display: block;
-    width: 2rem;
-    height: 2rem;
+    width: 30px;
+    height: 30px;
     margin: 0.5rem 0;
     border: 1px solid transparent;
     cursor: move;
     background-size: 500%; }
     #concept-app div#concept-marks div#mark-0, #concept-app div#concept-marks div#mark-2, #concept-app div#concept-marks div#mark-4, #concept-app div#concept-marks div#mark-6, #concept-app div#concept-marks div#mark-8 {
       background-image: url("img/main-marks.png");
-      height: 3rem; }
+      height: 55px; }
     #concept-app div#concept-marks div#mark-1, #concept-app div#concept-marks div#mark-3, #concept-app div#concept-marks div#mark-5, #concept-app div#concept-marks div#mark-7, #concept-app div#concept-marks div#mark-9 {
       background-image: url("img/cube-marks.png"); }
     #concept-app div#concept-marks div#mark-0 {

@@ -20,7 +20,7 @@ window.Concept = function(game){
       guesses:game.gamedatas.guesses,
       players:game.gamedatas.players,
       displayCard:false,
-      card:null,
+      card:{},
       displayFeedback:false,
       guessFeedback:null,
       marks:[
@@ -58,6 +58,10 @@ window.Concept = function(game){
         let w = this.game.gamedatas.word;
         if(w == null) return '';
         else return this.game.gamedatas.cards[w.card][w.i][w.j];
+      },
+
+      isGlueGiver: function(){
+        return this.isCurrentPlayerActive(); // TODO
       },
     },
 
@@ -159,7 +163,7 @@ window.Concept = function(game){
       //////	Choose word	 ///////
       ////////////////////////////
       onEnteringStateStartRound: function(args){
-        this.card = this.game.gamedatas.cards[args['_private']];
+        Object.assign(this.card, this.game.gamedatas.cards[args['_private']]);
         this.displayCard = true;
         this.addPrimaryActionButton('buttonShowCard', _('Show card'), () => { this.displayCard = true });
       },
@@ -217,7 +221,7 @@ window.Concept = function(game){
       moveHintAt(event){
         if(this.draggedHint != null){
           var box = $('concept-grid').getBoundingClientRect();
-          var box2 = $('mark-0').getBoundingClientRect();
+          var box2 = event.target.getBoundingClientRect();
           this.draggedHint.x = parseInt(event.clientX - box.x - box2.width/2 + this.dragOffset.x);
           this.draggedHint.y = parseInt(event.clientY - box.y - box2.height/2 + this.dragOffset.y);
         }

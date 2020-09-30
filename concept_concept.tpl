@@ -3,7 +3,7 @@
 <div id="concept-app">
 	<div id="concept-container" @mousemove="moveHintAt" @mouseup="dragHintStop" @mouseleave="dragHintStop">
 		<div id="concept-guesses-container">
-				<h2 v-if="isCurrentPlayerActive()" id="word-display">{{ word }}</h2>
+				<h2 v-if="isGlueGiver" id="word-display">{{ word }}</h2>
 				<h2>Guesses</h2>
 				<ul id="concept-guesses">
 					<input type="text" id="concept-guess"
@@ -13,7 +13,7 @@
 					/>
 					<li v-for="guess in guesses"
 							@click="showFeedbackChoices(guess)"
-							v-bind:style="{cursor: isCurrentPlayerActive && guess.pId != -1? 'pointer' : 'default' }"
+							v-bind:style="{cursor: isGlueGiver && guess.pId != -1? 'pointer' : 'default' }"
 							v-bind:data-feedback="guess.feedback"
 							v-bind:class="{ separator : guess.pId == -1}">
 						<v-template v-if="guess.pId != -1">
@@ -25,7 +25,7 @@
 		</div>
 
 		<div id="concept-grid-container">
-			<div id="concept-marks" v-show="isCurrentPlayerActive">
+			<div id="concept-marks" v-show="isGlueGiver">
 				<div v-for="(mark, markIndex) in marks" :id="'mark-' + markIndex"
 						v-bind:class="{ disabled: marksUses[markIndex] >= mark.m && mark.m != -1 }"
 						v-bind:disabled="marksUses[markIndex] >= mark.m && mark.m != -1"
@@ -46,6 +46,7 @@
 					 v-bind:style="{
 						 left:hint.x + 'px',
 						 top:hint.y + 'px',
+						 cursor: isGlueGiver? 'move' : 'default'
 					 }"
 					 @mousedown="dragHintStart(hintIndex, $event)">
 				</div>
