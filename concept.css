@@ -128,7 +128,7 @@ html.darkmode {
         border-bottom: 1px dotted rgba(0, 0, 0, 0.3); }
         #concept-app #concept-container div#concept-guesses-container ul li.separator {
           background-color: #DDD; }
-        #concept-app #concept-container div#concept-guesses-container ul li[data-feedback]::after {
+        #concept-app #concept-container div#concept-guesses-container ul li[data-feedback]::before {
           content: "";
           width: 24px;
           height: 24px;
@@ -182,31 +182,22 @@ html.darkmode {
         background-size: 500%;
         animation: pulse 2s;
         animation-iteration-count: 4;
-        border-radius: 5px; }
-        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="0"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="2"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="4"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="6"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="8"] {
+        border-radius: 5px;
+        background-repeat: no-repeat; }
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-type="0"] {
           background-image: url("img/main-marks.png");
           height: 55px; }
-        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="1"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="3"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="5"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="7"], #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="9"] {
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-type="1"] {
           background-image: url("img/cube-marks.png"); }
-        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="0"] {
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-color="1"] {
           background-position: 0% center; }
-        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="1"] {
-          background-position: 0% center; }
-        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="2"] {
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-color="2"] {
           background-position: 25% center; }
-        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="3"] {
-          background-position: 25% center; }
-        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="4"] {
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-color="3"] {
           background-position: 50% center; }
-        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="5"] {
-          background-position: 50% center; }
-        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="6"] {
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-color="4"] {
           background-position: 75% center; }
-        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="7"] {
-          background-position: 75% center; }
-        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="8"] {
-          background-position: 100% center; }
-        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-mark="9"] {
+        #concept-app #concept-container #concept-grid-container #concept-grid div.concept-hint[data-color="5"] {
           background-position: 100% center; }
 @keyframes pulse {
   0% {
@@ -1108,50 +1099,79 @@ html.darkmode {
         #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-117 div.symbol-img {
           background-position: 100% center; }
 #concept-app div#concept-marks {
-  display: block;
-  background-color: white;
-  padding: 9px 11px;
-  border: 1px solid #BBB;
-  border-radius: 30px;
-  height: 510px;
-  margin: auto 30px; }
-  #concept-app div#concept-marks div {
+  display: flex;
+  flex-flow: row; }
+  #concept-app div#concept-marks div#concept-marks-clear {
+    width: 62px;
+    height: 650px; }
+    #concept-app div#concept-marks div#concept-marks-clear div {
+      width: 50px;
+      height: 50px;
+      background-color: white;
+      border: 1px solid #BBB;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 54px auto 0;
+      cursor: pointer; }
+      #concept-app div#concept-marks div#concept-marks-clear div svg {
+        width: 50%;
+        height: 50%; }
+      #concept-app div#concept-marks div#concept-marks-clear div:hover svg {
+        width: 55%;
+        height: 55%; }
+      #concept-app div#concept-marks div#concept-marks-clear div#clearAll {
+        width: 60px;
+        height: 60px;
+        margin-top: 0px; }
+      #concept-app div#concept-marks div#concept-marks-clear div[data-color="1"] {
+        color: #06a24a;
+        margin-top: 38px; }
+      #concept-app div#concept-marks div#concept-marks-clear div[data-color="2"] {
+        color: #1c639c; }
+      #concept-app div#concept-marks div#concept-marks-clear div[data-color="3"] {
+        color: #a11116; }
+      #concept-app div#concept-marks div#concept-marks-clear div[data-color="4"] {
+        color: #f5a50f; }
+      #concept-app div#concept-marks div#concept-marks-clear div[data-color="5"] {
+        color: #343031; }
+  #concept-app div#concept-marks div#concept-marks-container {
     display: block;
-    width: 30px;
-    height: 30px;
-    margin: 0.5rem 0;
-    border: 1px solid transparent;
-    cursor: move;
-    background-size: 500%; }
-    #concept-app div#concept-marks div#mark-0, #concept-app div#concept-marks div#mark-2, #concept-app div#concept-marks div#mark-4, #concept-app div#concept-marks div#mark-6, #concept-app div#concept-marks div#mark-8 {
-      background-image: url("img/main-marks.png");
-      height: 55px; }
-    #concept-app div#concept-marks div#mark-1, #concept-app div#concept-marks div#mark-3, #concept-app div#concept-marks div#mark-5, #concept-app div#concept-marks div#mark-7, #concept-app div#concept-marks div#mark-9 {
-      background-image: url("img/cube-marks.png"); }
-    #concept-app div#concept-marks div#mark-0 {
-      background-position: 0% center; }
-    #concept-app div#concept-marks div#mark-1 {
-      background-position: 0% center; }
-    #concept-app div#concept-marks div#mark-2 {
-      background-position: 25% center; }
-    #concept-app div#concept-marks div#mark-3 {
-      background-position: 25% center; }
-    #concept-app div#concept-marks div#mark-4 {
-      background-position: 50% center; }
-    #concept-app div#concept-marks div#mark-5 {
-      background-position: 50% center; }
-    #concept-app div#concept-marks div#mark-6 {
-      background-position: 75% center; }
-    #concept-app div#concept-marks div#mark-7 {
-      background-position: 75% center; }
-    #concept-app div#concept-marks div#mark-8 {
-      background-position: 100% center; }
-    #concept-app div#concept-marks div#mark-9 {
-      background-position: 100% center; }
-    #concept-app div#concept-marks div:hover {
-      border: 1px dotted black; }
-    #concept-app div#concept-marks div.disabled {
-      background-size: 0; }
+    background-color: white;
+    padding: 9px 11px;
+    border: 1px solid #BBB;
+    border-radius: 30px;
+    height: 540px;
+    margin: auto 30px auto 10px; }
+    #concept-app div#concept-marks div#concept-marks-container div {
+      display: block;
+      width: 30px;
+      height: 30px;
+      margin: 0.5rem 0;
+      border: 1px solid transparent;
+      cursor: move;
+      background-size: 500%;
+      background-repeat: no-repeat; }
+      #concept-app div#concept-marks div#concept-marks-container div[data-type="0"] {
+        background-image: url("img/main-marks.png");
+        height: 55px; }
+      #concept-app div#concept-marks div#concept-marks-container div[data-type="1"] {
+        background-image: url("img/cube-marks.png"); }
+      #concept-app div#concept-marks div#concept-marks-container div[data-color="1"] {
+        background-position: 0% center; }
+      #concept-app div#concept-marks div#concept-marks-container div[data-color="2"] {
+        background-position: 25% center; }
+      #concept-app div#concept-marks div#concept-marks-container div[data-color="3"] {
+        background-position: 50% center; }
+      #concept-app div#concept-marks div#concept-marks-container div[data-color="4"] {
+        background-position: 75% center; }
+      #concept-app div#concept-marks div#concept-marks-container div[data-color="5"] {
+        background-position: 100% center; }
+      #concept-app div#concept-marks div#concept-marks-container div:hover {
+        border: 1px dotted black; }
+      #concept-app div#concept-marks div#concept-marks-container div.disabled {
+        background-size: 0; }
 
 div#concept-card-overlay {
   position: fixed;

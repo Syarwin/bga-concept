@@ -47,10 +47,11 @@ class action_concept extends APP_GameAction
 
   public function addHint() {
     self::setAjaxMode();
-    $mid = self::getArg("mid", AT_posint, true );
+    $mColor = self::getArg("mColor", AT_posint, true );
+    $mType = self::getArg("mType", AT_posint, true );
     $x = self::getArg("x", AT_posint, true );
     $y = self::getArg("y", AT_posint, true );
-    $result = $this->game->addHint($mid, $x, $y);
+    $result = $this->game->addHint($mColor, $mType, $x, $y);
     self::ajaxResponse();
   }
 
@@ -70,10 +71,30 @@ class action_concept extends APP_GameAction
     self::ajaxResponse();
   }
 
+  public function clearHints() {
+    self::setAjaxMode();
+    $color = self::getArg("color", AT_posint, true );
+    $result = $this->game->clearHints($color);
+    self::ajaxResponse();
+  }
+
+  public function confirmHints() {
+    self::setAjaxMode();
+    $result = $this->game->confirmHints();
+    self::ajaxResponse();
+  }
+
+
   public function newGuess() {
     self::setAjaxMode();
-    $guess = self::getArg("guess", AT_alphanum, true );
+    $guess = self::getArg("guess", AT_base64, true );
     $result = $this->game->newGuess($guess);
+    self::ajaxResponse();
+  }
+
+  public function pass() {
+    self::setAjaxMode();
+    $result = $this->game->pass();
     self::ajaxResponse();
   }
 

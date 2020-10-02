@@ -203,7 +203,7 @@ $columns:(
             background-color:#DDD;
           }
 
-          &[data-feedback]::after {
+          &[data-feedback]::before {
             content: "";
             width: 24px;
             height: 24px;
@@ -214,12 +214,12 @@ $columns:(
             background-size:cover;
           }
 
-          &[data-feedback="0"]::after { background-position:0% 0%; }
-          &[data-feedback="1"]::after { background-position:0% 20%; }
-          &[data-feedback="2"]::after { background-position:0% 40%; }
-          &[data-feedback="3"]::after { background-position:0% 60%; }
-          &[data-feedback="4"]::after { background-position:0% 80%; }
-          &[data-feedback="5"]::after { background-position:0% 100%; }
+          &[data-feedback="0"]::before { background-position:0% 0%; }
+          &[data-feedback="1"]::before { background-position:0% 20%; }
+          &[data-feedback="2"]::before { background-position:0% 40%; }
+          &[data-feedback="3"]::before { background-position:0% 60%; }
+          &[data-feedback="4"]::before { background-position:0% 80%; }
+          &[data-feedback="5"]::before { background-position:0% 100%; }
 
 
           span {
@@ -266,18 +266,13 @@ $columns:(
           animation: pulse 2s;
           animation-iteration-count: 4;
           border-radius:5px;
+          background-repeat:no-repeat;
 
-          &[data-mark="0"], &[data-mark="2"], &[data-mark="4"], &[data-mark="6"], &[data-mark="8"], {
-            background-image:url("img/main-marks.png");
-            height:55px;
-          }
-          &[data-mark="1"], &[data-mark="3"], &[data-mark="5"], &[data-mark="7"], &[data-mark="9"], {
-            background-image:url("img/cube-marks.png");
-          }
+          &[data-type="0"] { background-image:url("img/main-marks.png"); height:55px; }
+          &[data-type="1"] { background-image:url("img/cube-marks.png"); }
 
           @for $i from 0 through 4 {
-            &[data-mark="#{2*$i}"] { background-position:$i*100%/4 center; }
-            &[data-mark="#{2*$i + 1}"] { background-position:$i*100%/4 center; }
+            &[data-color="#{$i+1}"] { background-position:$i*100%/4 center; }
           }
 
           @keyframes pulse {
@@ -354,39 +349,77 @@ $columns:(
   }
 
 
-
   div#concept-marks {
-  	display:block;
-    background-color:white;
-    padding: 9px 11px;
-  	border:1px solid #BBB;
-    border-radius:30px;
-  	height:510px;
-    margin:auto 30px;
+    display: flex;
+    flex-flow:row;
 
-    div {
+    div#concept-marks-clear {
+      width:62px;
+      height:650px;
+
+      div {
+        width: 50px;
+        height: 50px;
+        background-color: white;
+        border: 1px solid #BBB;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin:54px auto 0;
+        cursor:pointer;
+
+        svg {
+          width:50%;
+          height:50%;
+        }
+        &:hover svg {
+          width:55%;
+          height:55%;
+        }
+
+        &#clearAll { width:60px; height:60px; margin-top:0px; }
+        &[data-color="1"] { color:#06a24a; margin-top:38px; }
+        &[data-color="2"] { color:#1c639c; }
+        &[data-color="3"] { color:#a11116; }
+        &[data-color="4"] { color:#f5a50f; }
+        &[data-color="5"] { color:#343031; }
+      }
+    }
+
+    div#concept-marks-container {
     	display:block;
-    	width:30px;
-    	height:30px;
-      margin: 0.5rem 0;
-      border: 1px solid transparent;
-    	cursor:move;
-      background-size:500%;
+      background-color:white;
+      padding: 9px 11px;
+    	border:1px solid #BBB;
+      border-radius:30px;
+    	height:540px;
+      margin:auto 30px auto 10px;
 
-      &#mark-0, &#mark-2, &#mark-4, &#mark-6, &#mark-8 { background-image:url("img/main-marks.png"); height:55px;}
-      &#mark-1, &#mark-3, &#mark-5, &#mark-7, &#mark-9 { background-image:url("img/cube-marks.png"); }
+      div {
+      	display:block;
+      	width:30px;
+      	height:30px;
+        margin: 0.5rem 0;
+        border: 1px solid transparent;
+      	cursor:move;
+        background-size:500%;
+        background-repeat:no-repeat;
 
-      @for $i from 0 through 4 {
-        &#mark-#{2*$i}   { background-position:$i*100%/4 center; }
-        &#mark-#{2*$i+1} { background-position:$i*100%/4 center; }
-      }
+        &[data-type="0"] { background-image:url("img/main-marks.png"); height:55px; }
+        &[data-type="1"] { background-image:url("img/cube-marks.png"); }
 
-      &:hover {
-        border:1px dotted black;
-      }
+        @for $i from 0 through 4 {
+          &[data-color="#{$i+1}"] { background-position:$i*100%/4 center; }
+        }
 
-      &.disabled {
-        background-size:0;
+        &:hover {
+          border:1px dotted black;
+        }
+
+        &.disabled {
+          background-size:0;
+        }
       }
     }
   }

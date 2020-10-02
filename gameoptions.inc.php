@@ -15,7 +15,7 @@
  *
  */
 
-require_once("modules/constants.inc.php");
+require_once("modules/php/constants.inc.php");
 
 $game_options = [
  OPTION_TEAM_SIZE => [

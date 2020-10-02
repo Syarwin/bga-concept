@@ -35,31 +35,47 @@ $machinestates = [
 		'action' => 'stNextRound',
 		"possibleactions" => ["start", "stop"],
 		"transitions" => [
-			"startRound" => ST_START_ROUND,
+			"startRound" => ST_PICK_WORD,
 			"endGame" => ST_GAME_END
 		]
   ],
 
-	ST_START_ROUND => [
-		"name" => "startRound",
+	ST_PICK_WORD => [
+		"name" => "pickWord",
 		"description" => clienttranslate('Other players must choose a word'),
 		"descriptionmyturn" => clienttranslate('${you} must choose a word'),
 		'type' => 'multipleactiveplayer',
-		'action' => "stStartRound",
-		'args' => "argStartRound",
+		'args' => "argPickWord",
 		"possibleactions" => ["pickWord"],
-		"transitions" => ['' => ST_GUESS]
+		"transitions" => ['' => ST_ADD_HINT]
   ],
 
 
-  ST_GUESS => [
-		"name" => "guessWord",
-		"description" => clienttranslate('Other players can add an hint'),
-		"descriptionmyturn" => clienttranslate('${you} can add an hint'),
+	ST_ADD_HINT => [
+		"name" => "addHint",
+		"description" => clienttranslate('Other players can add hints on the board'),
+		"descriptionmyturn" => clienttranslate('${you} can add hints on the board'),
 		'type' => 'multipleactiveplayer',
-		'args' => "argGuessWord",
+		'action' => "stAddHint",
+		'args' => "argAddHint",
 		"possibleactions" => ["addHint", "pass"],
 		"transitions" => [
+			'confirm' => ST_GUESS_WORD,
+			'found' => ST_NEXT_ROUND,
+		]
+  ],
+
+
+  ST_GUESS_WORD => [
+		"name" => "guessWord",
+		"description" => clienttranslate('Other players can make a guess'),
+		"descriptionmyturn" => clienttranslate('${you} can make a guess'),
+		'type' => 'multipleactiveplayer',
+		'action' => "stGuessWord",
+		'args' => "argGuessWord",
+		"possibleactions" => ["pass"],
+		"transitions" => [
+			'pass' => ST_ADD_HINT,
 			'found' => ST_NEXT_ROUND,
 		]
   ],

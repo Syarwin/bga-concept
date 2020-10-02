@@ -1,15 +1,16 @@
 <?php
+namespace CPT;
+use Concept;
 
 /*
  * PlayerManager: all utility functions concerning players
  */
 
-
-class PlayerManager extends APP_GameClass
+class PlayerManager extends \APP_DbObject
 {
 	public static function setupNewGame($players)	{
 		self::DbQuery('DELETE FROM player');
-		$gameInfos = Concept::$instance->getGameinfos();
+		$gameInfos = Concept::get()->getGameinfos();
 		$sql = 'INSERT INTO player (player_id, player_color, player_canal, player_name, player_avatar) VALUES ';
 
 		$values = [];
@@ -23,8 +24,8 @@ class PlayerManager extends APP_GameClass
 			$values[] = "($pId, '$color','$canal','$name','$avatar')";
 		}
 		self::DbQuery($sql . implode($values, ','));
-    Concept::$instance->reattributeColorsBasedOnPreferences($players, $gameInfos['player_colors'] );
-		Concept::$instance->reloadPlayersBasicInfos();
+    Concept::get()->reattributeColorsBasedOnPreferences($players, $gameInfos['player_colors'] );
+		Concept::get()->reloadPlayersBasicInfos();
 	}
 
 
@@ -89,5 +90,24 @@ class PlayerManager extends APP_GameClass
   public static function getNextPlayer($player) {
     $players = self::getLivingPlayersStartingWith($player);
 		return self::getPlayer($players[1]);
+  }
+
+  public static function getNewTeam(){
+    $optionTeam = intval(Concept::get()->getGameStateValue('optionTeam'));
+    $previousTeam = Log::getCurrentTeam();
+    $newTeam = [];
+
+    // First team : pick the two first players by no
+    if(is_null($previousTeam)){
+      $players = self::getPlayersLeft();
+      $newTeam = $optionTeam == ONE_PLAYER? [$players[0]] : [$players[0], $players[1]];
+    }
+    // Otherwise : pick the following two
+    else {
+      $players = self::getPlayersLeftStartingWith($previousTeam[ONE_PLAYER? 0 : 1]);
+      $newTeam = $optionTeam == ONE_PLAYER? [$players[1]] : [$players[1], $players[2]];
+    }
+
+    return $newTeam;
   }
 }

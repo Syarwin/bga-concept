@@ -20,10 +20,10 @@
    "dojo/_base/declare",
    "ebg/core/gamegui",
    "ebg/counter",
-   g_gamethemeurl + "modules/script/popper.min.js",
-   g_gamethemeurl + "modules/script/symbols.js",
-   g_gamethemeurl + "modules/script/vue.js",
-   g_gamethemeurl + "modules/script/vue-concept.js"
+   g_gamethemeurl + "modules/js/popper.min.js",
+   g_gamethemeurl + "modules/js/symbols.js",
+   g_gamethemeurl + "modules/js/vue.js",
+   g_gamethemeurl + "modules/js/vue-concept.js"
  ], function (dojo, declare) {
  	return declare("bgagame.concept", ebg.core.gamegui, {
     constructor: function () {

@@ -19,18 +19,11 @@ window.Concept = function(game){
       hints:game.gamedatas.hints,
       guesses:game.gamedatas.guesses,
       players:game.gamedatas.players,
+      team:[],
       displayCard:false,
       card:{},
       displayFeedback:false,
       guessFeedback:null,
-      marks:[
-        {pid:null, m:1 }, {pid:0, m:-1 },
-        {pid:null, m:1 }, {pid:2, m:-1 },
-        {pid:null, m:1 }, {pid:4, m:-1 },
-        {pid:null, m:1 }, {pid:6, m:-1 },
-        {pid:null, m:1 }, {pid:8, m:-1 },
-      ],
-
       draggedHint:null,
       draggedHintIndex:null,
       dragOffset:null,
@@ -42,26 +35,14 @@ window.Concept = function(game){
       activePlayerId: function(){ return this.getActivePlayerId() },
 
       // Concept stuff
-      editing: function() { return true; },
-
-      // Compute the number of times the marks are used to disable them if maxUse is reached
-  		marksUses: function(){
-  			var t = [];
-  			for(var i = 0; i < this.marks.length; i++)
-  				t[i] = 0;
-  			for(var j = 0; j < this.hints.length; j++)
-  				t[this.hints[j].mid]++;
-  			return t;
-  		},
-
       word:function(){
         let w = this.game.gamedatas.word;
         if(w == null) return '';
         else return this.game.gamedatas.cards[w.card][w.i][w.j];
       },
 
-      isGlueGiver: function(){
-        return this.isCurrentPlayerActive(); // TODO
+      isClueGiver: function(){
+        return this.team.includes(this.playerId);
       },
     },
 
@@ -100,6 +81,7 @@ window.Concept = function(game){
       addPrimaryActionButton: function(id, msg, callback){ this.game.addActionButton(id, msg, callback, null, false, "blue"); },
       checkAction: function(action) { return this.game.checkAction(action); },
       removeActionButtons: function() { this.game.removeActionButtons(); },
+      decode: function(a) { return atob(a); },
 
       /*
        * onEnteringState:
@@ -112,7 +94,13 @@ window.Concept = function(game){
         debug('Entering state: ' + stateName, args);
 
         // Stop here if it's not the current player's turn for some states
-      	if (["startRound"].includes(stateName) && !this.isCurrentPlayerActive()) return;
+      	if (["pickWord"].includes(stateName) && !this.isCurrentPlayerActive()) return;
+
+        if(args.args && args.args['team'])
+          this.team = args.args['team'].map(o => parseInt(o));
+
+        if(stateName == "addHint" || stateName == "guessWord")
+          this.game.gamedatas.word = args.args['_private'];
 
       	// Call appropriate method
       	var methodName = "onEnteringState" + stateName.charAt(0).toUpperCase() + stateName.slice(1);
@@ -144,6 +132,12 @@ window.Concept = function(game){
 
       	if (!this.isCurrentPlayerActive()) // Make sure the player is active
       		return;
+
+        if (stateName == "addHint" && !this.game.bRealtime){
+          this.addPrimaryActionButton("btnConfirmHints", _("Done"), () => this.confirmHints());
+        } else if (stateName == "guessWord" && !this.game.bRealtime){
+          this.addPrimaryActionButton("btnPass", _("Pass"), () => this.pass());
+        }
       },
 
 
@@ -162,7 +156,7 @@ window.Concept = function(game){
       ////////////////////////////
       //////	Choose word	 ///////
       ////////////////////////////
-      onEnteringStateStartRound: function(args){
+      onEnteringStatePickWord: function(args){
         Object.assign(this.card, this.game.gamedatas.cards[args['_private']]);
         this.displayCard = true;
         this.addPrimaryActionButton('buttonShowCard', _('Show card'), () => { this.displayCard = true });
@@ -175,22 +169,18 @@ window.Concept = function(game){
         this.takeAction("pickWord", { i : i, j : j});
       },
 
-
-      onEnteringStateGuessWord: function(args){
-        this.game.gamedatas.word = args['_private'];
-      },
-
       ////////////////////////////////////
       ////// Add/move/suppr hints	 ///////
       ////////////////////////////////////
       /*
        * newHint: when mousedown on a mark, create a hint and start dragging
        */
-      newHint(markIndex, event){
-        if(!this.isCurrentPlayerActive()) return;
+      newHint(color, type, event){
+        if(!this.isClueGiver || event.button != 0) return;
 
         var hint = {
-          mid : markIndex,
+          mColor : color,
+          mType : type,
           x:0,
           y:0,
         };
@@ -202,15 +192,16 @@ window.Concept = function(game){
        * dragHintStart: make the hint start following the mouse
        */
       dragHintStart(hintIndex, event) {
-        if(!this.isCurrentPlayerActive()) return;
+        if(!this.isClueGiver || event.button != 0) return;
 
         if (event.preventDefault) event.preventDefault();
         this.draggedHintIndex = hintIndex;
         this.draggedHint = this.hints[hintIndex];
-        var box = event.target.getBoundingClientRect();
+        var boxGrid = $('concept-grid').getBoundingClientRect();
+        var boxHint = event.target.getBoundingClientRect();
         this.dragOffset = {
-          x : box.x + box.width/2 - event.clientX,
-          y : box.y + box.height/2 - event.clientY,
+          x : boxGrid.x + event.clientX - boxHint.x,
+          y : boxGrid.y + event.clientY - boxHint.y,
         };
         this.moveHintAt(event);
       },
@@ -220,10 +211,8 @@ window.Concept = function(game){
        */
       moveHintAt(event){
         if(this.draggedHint != null){
-          var box = $('concept-grid').getBoundingClientRect();
-          var box2 = event.target.getBoundingClientRect();
-          this.draggedHint.x = parseInt(event.clientX - box.x - box2.width/2 + this.dragOffset.x);
-          this.draggedHint.y = parseInt(event.clientY - box.y - box2.height/2 + this.dragOffset.y);
+          this.draggedHint.x = parseInt(event.clientX - this.dragOffset.x);
+          this.draggedHint.y = parseInt(event.clientY - this.dragOffset.y);
         }
       },
 
@@ -262,10 +251,27 @@ window.Concept = function(game){
       },
 
 
+      /*
+       * clearHints: clear all the hints of given color
+       */
+      clearHints: function(mColor){
+        this.takeAction("clearHints", {color:mColor});
+      },
+
+      /*
+       * confirmHints: make the player inactive
+       */
+      confirmHints: function(){
+        this.takeAction("confirmHints", {});
+      },
 
       ////////////////////////////////////
       ////// Hints Notifications   ///////
       ////////////////////////////////////
+      isMarkUsed: function(color){
+        return false;
+      },
+
       notif_addHint: function(n){
         debug("Notif: new hint", n);
         this.hints.push(n.args);
@@ -290,13 +296,24 @@ window.Concept = function(game){
       },
 
 
+      notif_clearHints: function(n){
+        debug("Notif: clearing all hints", n);
+        this.hints = [];
+      },
+
+      notif_clearColor: function(n){
+        debug("Notif: clearing all hints of a color", n);
+        this.hints = this.hints.filter(hint => hint.mColor != n.args.color);
+      },
+
+
       /////////////////////////
       //////  Guesses   ///////
       /////////////////////////
       newGuess: function(){
         if(this.guess == "") return;
 
-        this.takeAction("newGuess", { guess: this.guess });
+        this.takeAction("newGuess", { guess: btoa(this.guess) });
         this.guess = "";
       },
 
@@ -307,8 +324,16 @@ window.Concept = function(game){
       },
 
 
+      /*
+       * pass: make the player inactive
+       */
+      pass: function(){
+        this.takeAction("pass", {});
+      },
+
+
       showFeedbackChoices: function(guess){
-        if(guess.pId == -1) return;
+        if(guess.pId == -1 || !this.isClueGiver) return;
 
         this.displayFeedback = true;
         this.guessFeedback = guess;
@@ -436,6 +461,8 @@ window.Concept = function(game){
       		['addHint',10],
           ['moveHint',10],
           ['deleteHint',10],
+          ['clearHints',10],
+          ['clearColor',10],
           ['newGuess',10],
           ['newFeedback',10],
       	];
