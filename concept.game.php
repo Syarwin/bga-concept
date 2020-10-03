@@ -45,6 +45,9 @@ class Concept extends Table
 
 		self::initGameStateLabels([
 			'optionTeam' => OPTION_TEAM_SIZE,
+			'optionHint' => OPTION_HINT_MODE,
+			'optionScoring' => OPTION_SCORING,
+			'optionScore' => OPTION_EOG_SCORE,
 		]);
 	}
 	public static function get(){
@@ -71,6 +74,7 @@ class Concept extends Table
 	 */
 	protected function getAllDatas(){
 		return [
+			'mode' => $this->getGameStateValue('optionHint') == FREE? 'free' : 'snapped',
 			'cards' => CONCEPT_CARDS,
 			'hints' => CPT\Hint::getUiData(),
 			'players' => CPT\PlayerManager::getUiData(),

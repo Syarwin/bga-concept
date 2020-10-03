@@ -43,6 +43,63 @@ $game_options = [
      ],
    ],
  ],
+
+ OPTION_HINT_MODE => [
+   'name' => totranslate('Hint mode'),
+   'values' => [
+     SNAPPED => [
+       'name' => totranslate('Snapped'),
+       'tmdisplay' => totranslate('Snapped'),
+       'description' => totranslate('A hint is associated to a symbol'),
+     ],
+     FREE => [
+       'name' => totranslate('Free'),
+       'tmdisplay' => totranslate('Anywhere on the board'),
+       'description' => totranslate('Hints can be put anywhere on the board. Disclaimer : for big enough screen only !'),
+       'nobeginner' => true,
+     ],
+   ],
+ ],
+
+ OPTION_SCORING => [
+   'name' => totranslate('Scoring mode'),
+   'values' => [
+      FUN => [
+       'name' => totranslate('No scoring'),
+       'tmdisplay' => totranslate('Playing for fun'),
+       'description' => totranslate('Play as long as you want, no scoring and no end of game'),
+     ],
+     COMPETITIVE => [
+       'name' => totranslate('Scoring'),
+       'tmdisplay' => totranslate('Keeping track of the score'),
+       'description' => totranslate('Score for each word guessed correctly and trigger end of game when a certain score is reached'),
+       'nobeginner' => true,
+     ],
+   ],
+ ],
+
+ OPTION_EOG_SCORE=> [
+   'name' => totranslate('Scoring mode'),
+   'values' => [
+     STANDARD => [
+       'name' => totranslate('12 words'),
+       'tmdisplay' => totranslate('12 words'),
+       'description' => totranslate('Stop when 12 words are guess correctly'),
+     ],
+     DOUBLE => [
+       'name' => totranslate('24 words'),
+       'tmdisplay' => totranslate('24 words'),
+       'description' => totranslate('Stop when 24 words are guess correctly'),
+     ],
+   ],
+   'displaycondition' => [
+      [
+        'type' => 'otheroption',
+        'id' => OPTION_SCORING,
+        'value' => COMPETITIVE,
+      ],
+    ],
+  ]
 ];
 
 

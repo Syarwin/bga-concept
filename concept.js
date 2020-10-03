@@ -20,10 +20,13 @@
    "dojo/_base/declare",
    "ebg/core/gamegui",
    "ebg/counter",
-   g_gamethemeurl + "modules/js/popper.min.js",
-   g_gamethemeurl + "modules/js/symbols.js",
    g_gamethemeurl + "modules/js/vue.js",
-   g_gamethemeurl + "modules/js/vue-concept.js"
+   g_gamethemeurl + "modules/js/popper.min.js",
+   g_gamethemeurl + "modules/js/sortable.js",
+   g_gamethemeurl + "modules/js/vuedraggable.js",
+   g_gamethemeurl + "modules/js/symbols.js",
+   g_gamethemeurl + "modules/js/vue-concept.js",
+   g_gamethemeurl + "modules/js/vue-concept-snapped.js",
  ], function (dojo, declare) {
  	return declare("bgagame.concept", ebg.core.gamegui, {
     constructor: function () {
@@ -31,7 +34,7 @@
       this._app = null;
     },
     setup: function (gamedatas) {
-      this._app = new Vue(Concept(this));
+      this._app = gamedatas.mode == "free"? new Vue(Concept(this)) : new Vue(ConceptSnapped(this));
       this.initPreferencesObserver();
     },
     onEnteringState: function (stateName, args) {

@@ -13,6 +13,7 @@
  */
 
 require_once( APP_BASE_PATH."view/common/game.view.php" );
+require_once('modules/php/constants.inc.php');
 
 class view_concept_concept extends game_view
 {
@@ -20,7 +21,17 @@ class view_concept_concept extends game_view
       return "concept";
   }
 
-	function build_page( $viewArgs )
+	function build_page($viewArgs)
 	{
+    $this->page->begin_block("concept_concept", "snapped");
+    $this->page->begin_block("concept_concept", "free");
+
+    if($this->game->getGameStateValue('optionHint') == FREE){
+      $this->page->unset_var("snapped");
+      $this->page->insert_block("free", []);
+    } else {
+      $this->page->unset_var("free");
+      $this->page->insert_block("snapped", []);
+    }
 	}
 }

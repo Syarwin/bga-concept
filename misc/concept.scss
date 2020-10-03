@@ -258,7 +258,7 @@ $columns:(
         flex-grow: 0;
         flex-shrink: 0;
 
-        div.concept-hint {
+        & > div.concept-hint {
           width:30px;
           height:30px;
           position:absolute;
@@ -328,6 +328,17 @@ $columns:(
             flex-wrap:wrap;
             align-items:center;
             position:relative;
+
+            div.concept-hint {
+              background-size:500%;
+              background-repeat:no-repeat;
+
+              &[data-type="0"] { background-image:url("img/main-marks-centered.png");}
+              &[data-type="1"] { background-image:url("img/cube-marks.png"); }
+              @for $i from 0 through 4 {
+                &[data-color="#{$i+1}"] { background-position:$i*100%/4 center; }
+              }
+            }
           }
 
           div.symbol-img {
@@ -344,6 +355,54 @@ $columns:(
             &#symbol-#{$i} div.symbol-img { background-position:$i*100%/$numberOfSymbols center; }
           }
         }
+      }
+    }
+  }
+
+  div#concept-marks-popper {
+    position:absolute;
+    display:block;
+    background:#EEE;
+    padding: 4px;
+    border-radius: 4px;
+  	border:1px solid #333;
+  	width:65px;
+    z-index:1100;
+    box-shadow:1px 1px 4px black;
+
+    &[x-placement^='left'] { margin-right:0.5rem; }
+    &[x-placement^='right'] { margin-left:0.5rem; }
+
+    &.fade-enter-active, .fade-leave-active {
+      transition: opacity .5s;
+    }
+    &.fade-enter, .fade-leave-to {
+      opacity: 0;
+    }
+
+    div {
+      display:inline-block;
+      width:30px;
+      height:30px;
+      margin: 0;
+      border: 1px solid transparent;
+      cursor:pointer;
+      background-size:500%;
+      background-repeat:no-repeat;
+
+      &[data-type="0"] { background-image:url("img/main-marks.png"); height:40px; width:25px; }
+      &[data-type="1"] { background-image:url("img/cube-marks.png"); }
+
+      @for $i from 0 through 4 {
+        &[data-color="#{$i+1}"] { background-position:$i*100%/4 center; }
+      }
+
+      &:hover {
+        border:1px dotted black;
+      }
+
+      &.disabled {
+        background-size:0;
       }
     }
   }
@@ -420,6 +479,93 @@ $columns:(
         &.disabled {
           background-size:0;
         }
+      }
+    }
+  }
+
+  /*
+  * Right col with all the hints
+  */
+  div#hints {
+  	width:11rem;
+  	background-color:white;
+  	border:1px solid #333;
+  	display:flex;
+  	flex-direction:column;
+  	overflow:auto;
+  	flex-shrink:0;
+
+    li.hint {
+    	display:flex;
+    	flex-direction:row;
+    	align-items:center;
+    	justify-content:center;
+    	padding:0.5rem;
+      border-bottom:1px solid rgba(0,0,0,.125);
+
+      div.img {
+        position:relative;
+      	width:3.5rem;
+      	height:3.5rem;
+      	background-size:contain;
+      	background-repeat:no-repeat;
+      	background-position:center center;
+        background-image:url("img/concept-symbols.png");
+        background-size:cover;
+
+        @for $i from 0 through $numberOfSymbols {
+          &[data-symbol="#{$i}"] { background-position:$i*100%/$numberOfSymbols center; }
+        }
+
+        div.mark {
+          display:block;
+        	width:30px;
+        	height:30px;
+          margin: 0.5rem 0;
+          border: 1px solid transparent;
+        	cursor:move;
+          background-size:500%;
+          background-repeat:no-repeat;
+          position:absolute;
+          bottom: -20px;
+          right: -19px;
+          filter: drop-shadow(-1px -1px 0px white) drop-shadow(1px 1px 0px black);
+
+          &[data-type="0"] { background-image:url("img/main-marks.png"); height:55px; }
+          &[data-type="1"] { background-image:url("img/cube-marks.png"); }
+
+          @for $i from 0 through 4 {
+            &[data-color="#{$i+1}"] { background-position:$i*100%/4 center; }
+          }
+        }
+      }
+
+      button {
+        width:35px;
+        height:35px;
+        color: #dc3545;
+        border: 1px solid #dc3545;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        margin-left:30px;
+        cursor:pointer;
+        border-radius:5px;
+
+        &:hover {
+          background-color:#dc3545;
+          color:white;
+        }
+
+        svg {
+          width:80%;
+          height:80%;
+        }
+      }
+
+      &.ghost {
+        opacity: 0.5;
+        background: #c8ebfb;
       }
     }
   }

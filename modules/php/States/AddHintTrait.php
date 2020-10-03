@@ -36,14 +36,16 @@ trait AddHintTrait {
   /*
    * addHint: add a new hint on the board
    */
-  function addHint($mColor, $mType, $x, $y){
-    $id = Hint::add($mColor, $mType, $x,$y);
+  function addHint($mColor, $mType, $x, $y, $sId){
+    $id = Hint::add($mColor, $mType, $x,$y, $sId);
 		$this->notifyAllPlayers('addHint', '', [
 			'id' => $id,
+			'mId'=> (int) $mColor*2 + $mType,
 			'mColor' => $mColor,
 			'mType' => $mType,
 			'x' => $x,
 			'y' => $y,
+			'sId' => $sId,
 		]);
   }
 

@@ -21,6 +21,18 @@ define('OPTION_TEAM_SIZE', 100);
 define('ONE_PLAYER', 1);
 define('TWO_PLAYERS', 2);
 
+define('OPTION_HINT_MODE', 101);
+define('SNAPPED', 1);
+define('FREE', 2);
+
+define('OPTION_SCORING', 102);
+define('FUN', 1);
+define('COMPETITIVE', 2);
+
+define('OPTION_EOG_SCORE', 103);
+define('STANDARD', 1);
+define('DOUBLE', 2);
+
 
 define('DARK_MODE', 100);
 define('DARK_MODE_DISABLED', 1);

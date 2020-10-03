@@ -1,4 +1,4 @@
-window.Concept = function(game){
+window.ConceptSnapped = function(game){
   let DARK_MODE = 100;
   let DARK_MODE_DISABLED = 1;
   let DARK_MODE_ENABLED = 2;
@@ -8,6 +8,9 @@ window.Concept = function(game){
 
   return {
     el: '#concept-app',
+    components: {
+      'draggable' : window.vuedraggable,
+    },
     data: {
       // Basic bga stuff
       game: game,
@@ -27,6 +30,7 @@ window.Concept = function(game){
       draggedHint:null,
       draggedHintIndex:null,
       dragOffset:null,
+      selectedSymbol:null,
       guess:'',
     },
     computed:{
@@ -44,6 +48,31 @@ window.Concept = function(game){
       isClueGiver: function(){
         return this.team.includes(this.playerId);
       },
+
+      dragOptions:function() {
+        return {
+          animation: 100,
+          group: "description",
+          disabled: !this.isClueGiver,
+          ghostClass: "ghost"
+        };
+      },
+
+
+      // Compute the corresponding hints per symbol
+  		hintsPerSymbol:function(){
+  			var t = [];
+  			for(var i = 0; i < this.symbols.length; i++)
+  				t[i] = {};
+
+  			for(var j = 0; j < this.hints.length; j++){
+  				if(typeof t[this.hints[j].sId][this.hints[j].mId] == "undefined")
+  					t[this.hints[j].sId][this.hints[j].mId] = 0;
+  				t[this.hints[j].sId][this.hints[j].mId]++;
+  			}
+
+  			return t;
+  		},
     },
 
 
@@ -83,7 +112,8 @@ window.Concept = function(game){
       removeActionButtons: function() { this.game.removeActionButtons(); },
       decode: function(a) { return atob(a); },
 
-      unselectSymbol: function(){ },
+      moveHintAt:function(){ },
+      dragHintStop: function(){ },
 
       /*
        * onEnteringState:
@@ -121,20 +151,6 @@ window.Concept = function(game){
       onLeavingState: function (stateName) {
       	debug('Leaving state: ' + stateName);
       	this.clearPossible();
-      },
-
-
-      /*
-       * clearPossible:	clear every clickable space
-       */
-      clearPossible: function () {
-        debug("Clearing everything");
-
-        this.draggedHint = null;
-        this.draggedHintIndex = null;
-        this.displayCard = false;
-      	this.removeActionButtons();
-      	this.onUpdateActionButtons(this.game.gamedatas.gamestate.name, this.game.gamedatas.gamestate.args);
       },
 
 
@@ -188,84 +204,45 @@ window.Concept = function(game){
       ////////////////////////////////////
       ////// Add/move/suppr hints	 ///////
       ////////////////////////////////////
-      /*
-       * newHint: when mousedown on a mark, create a hint and start dragging
-       */
-      newHint(color, type, event){
-        if(!this.isClueGiver || event.button != 0) return;
+      selectSymbol: function(event, id){
+  			if(!this.isClueGiver) return;
+  			event.stopPropagation();
 
-        var hint = {
+  			// Show tooltip
+        this.selectedSymbol = id;
+  			var target = event.target;
+  			if(!target.classList.contains("concept-symbol"))
+  				target = target.parentNode;
+
+        setTimeout( () => {
+          new Popper(target, document.getElementById("concept-marks-popper"), {
+      			placement: (dojo.style(target.firstChild, "order") == 0)? 'left' : 'right',
+    			});
+        }, 1);
+  		},
+
+
+      // Trigger when clicking outside of symbol
+  		unselectSymbol:function(){
+  			this.selectedSymbol = null;
+  		},
+
+
+  		// Triggered when a mark is clicked
+  		addHint: function(color, type){
+        this.takeAction('addHint', {
           mColor : color,
           mType : type,
+          sId:this.selectedSymbol,
           x:0,
           y:0,
-        };
-        this.hints.push(hint);
-        this.dragHintStart(this.hints.length - 1, event);
+        });
+        this.selectedSymbol = null;
+  		},
+
+      removeHint:function(id){
+        this.takeAction("deleteHint", { id : id} );
       },
-
-      /*
-       * dragHintStart: make the hint start following the mouse
-       */
-      dragHintStart(hintIndex, event) {
-        if(!this.isClueGiver || event.button != 0) return;
-
-        if (event.preventDefault) event.preventDefault();
-        this.draggedHintIndex = hintIndex;
-        this.draggedHint = this.hints[hintIndex];
-        var boxGrid = $('concept-grid').getBoundingClientRect();
-        var boxHint = event.target.getBoundingClientRect();
-        this.dragOffset = {
-          x : boxGrid.x + event.clientX - boxHint.x,
-          y : boxGrid.y + event.clientY - boxHint.y,
-        };
-        this.moveHintAt(event);
-      },
-
-      /*
-       * moveHintAt: during the drag, move hint around
-       */
-      moveHintAt(event){
-        if(this.draggedHint != null){
-          this.draggedHint.x = parseInt(event.clientX - this.dragOffset.x);
-          this.draggedHint.y = parseInt(event.clientY - this.dragOffset.y);
-        }
-      },
-
-
-      /*
-       * dragHintStop: onmouseup, stop the drag and react whether
-       *     it's inside the board or outside
-       */
-      dragHintStop() {
-        if(this.draggedHint == null) return;
-        if(!this.isCurrentPlayerActive()) return;
-
-        var box = $('concept-grid').getBoundingClientRect();
-
-        // Delete hint by moving outside grid
-        if(this.draggedHint.x < 0 || this.draggedHint.x > box.width
-          || this.draggedHint.y < 0 || this.draggedHint.y > box.height){
-          this.hints.splice(this.draggedHintIndex, 1);
-          if(this.draggedHint.id)
-            this.takeAction("deleteHint", { id : this.draggedHint.id} );
-        }
-        else {
-          // Moving already existing hint
-          if(this.draggedHint.id)
-            this.takeAction("moveHint", this.draggedHint);
-          // Creating new hint
-          else {
-            this.takeAction("addHint", this.draggedHint, () => {
-              this.hints.splice(this.draggedHintIndex, 1);
-            });
-          }
-        }
-
-        this.draggedHint = null;
-        this.dragOffset = null;
-      },
-
 
       /*
        * clearHints: clear all the hints of given color
@@ -291,17 +268,6 @@ window.Concept = function(game){
       notif_addHint: function(n){
         debug("Notif: new hint", n);
         this.hints.push(n.args);
-      },
-
-
-      notif_moveHint: function(n){
-        debug("Notif: new hint", n);
-        this.hints.forEach(hint => {
-          if(hint.id == n.args.id){
-            hint.x = n.args.x;
-            hint.y = n.args.y;
-          }
-        });
       },
 
       notif_deleteHint: function(n){
@@ -382,6 +348,45 @@ window.Concept = function(game){
         });
       },
 
+      ////////////////////////////////
+      ////////////////////////////////
+      /////////		Utils		////////////
+      ////////////////////////////////
+      ////////////////////////////////
+      /*
+       * clearPossible:	clear every clickable space
+       */
+      clearPossible: function () {
+        debug("Clearing everything");
+
+        this.draggedHint = null;
+        this.draggedHintIndex = null;
+        this.displayCard = false;
+      	this.removeActionButtons();
+      	this.onUpdateActionButtons(this.game.gamedatas.gamestate.name, this.game.gamedatas.gamestate.args);
+      },
+
+
+      getHintSize: function(id){
+  			var n = Object.keys(this.hintsPerSymbol[id]).length;
+  			switch(n){
+  				case 1: return 90;
+  				case 2: case 3: case 4: return 47;
+  				default: return (95 / Math.ceil(Math.sqrt(n)));
+  			}
+  		},
+
+
+  		getBadgeSize: function(id){
+  			var n = Object.keys(this.hintsPerSymbol[id]).length;
+  			switch(n){
+  				case 1: return 1;
+  				case 2: case 3: case 4: return 0.80;
+  				default: return (95 / Math.ceil(Math.sqrt(n)));
+  			}
+  		},
+
+
       /////////////////////////////////////////////
       /////////////	  Preferences 	 /////////////
       ////////////////////////////////////////////
@@ -436,7 +441,6 @@ window.Concept = function(game){
       setupNotifications: function () {
       	var notifs = [
       		['addHint',10],
-          ['moveHint',10],
           ['deleteHint',10],
           ['clearHints',10],
           ['clearColor',10],

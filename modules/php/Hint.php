@@ -13,6 +13,8 @@ class Hint extends \APP_DbObject
         'id'  => (int) $hint['id'],
         'mType'  => (int) $hint['mark_type'],
         'mColor' => (int) $hint['mark_color'],
+        'mId'    => (int) $hint['mark_color'] * 2 + (int) $hint['mark_type'],
+        'sId'   => (int) $hint['symbol_id'],
         'x'   => (int) $hint['x'],
         'y'   => (int) $hint['y'],
       ];
@@ -23,8 +25,9 @@ class Hint extends \APP_DbObject
   /*
  	 * addHint: add a new hint on the board
  	 */
-	function add($mColor, $mType, $x, $y){
-		self::DbQuery("INSERT INTO hint (mark_color, mark_type, x, y) VALUES ($mColor, $mType, $x, $y)");
+	function add($mColor, $mType, $x, $y, $sId){
+    $symbol = is_null($sId)? 'NULL' : $sId;
+		self::DbQuery("INSERT INTO hint (mark_color, mark_type, x, y, symbol_id) VALUES ($mColor, $mType, $x, $y, $symbol)");
 		return self::DbGetLastId();
 	}
 

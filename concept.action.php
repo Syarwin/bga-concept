@@ -51,7 +51,8 @@ class action_concept extends APP_GameAction
     $mType = self::getArg("mType", AT_posint, true );
     $x = self::getArg("x", AT_posint, true );
     $y = self::getArg("y", AT_posint, true );
-    $result = $this->game->addHint($mColor, $mType, $x, $y);
+    $sId = self::isArg("sId")? self::getArg("sId", AT_posint, true) : null;
+    $result = $this->game->addHint($mColor, $mType, $x, $y, $sId);
     self::ajaxResponse();
   }
 
