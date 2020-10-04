@@ -88,4 +88,15 @@ trait AddHintTrait {
 			]);
 		}
   }
+
+
+	/*
+   * orderHints: change the order of the hints
+   */
+	function orderHints($order){
+		Hint::order($order);
+		$this->notifyAllPlayers('orderHints', '', [
+			'order' => $order,
+		]);
+	}
 }

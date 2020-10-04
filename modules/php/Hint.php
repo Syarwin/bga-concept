@@ -18,7 +18,7 @@ class Hint extends \APP_DbObject
         'x'   => (int) $hint['x'],
         'y'   => (int) $hint['y'],
       ];
-    }, self::getObjectListFromDB("SELECT * FROM hint") );
+    }, self::getObjectListFromDB("SELECT * FROM hint ORDER BY ordering") );
   }
 
 
@@ -27,7 +27,8 @@ class Hint extends \APP_DbObject
  	 */
 	function add($mColor, $mType, $x, $y, $sId){
     $symbol = is_null($sId)? 'NULL' : $sId;
-		self::DbQuery("INSERT INTO hint (mark_color, mark_type, x, y, symbol_id) VALUES ($mColor, $mType, $x, $y, $symbol)");
+    $order = (int) self::getUniqueValueFromDB("SELECT ordering FROM hint ORDER BY ordering DESC LIMIT 1") + 1;
+		self::DbQuery("INSERT INTO hint (mark_color, mark_type, x, y, symbol_id, ordering) VALUES ($mColor, $mType, $x, $y, $symbol, $order)");
 		return self::DbGetLastId();
 	}
 
@@ -59,5 +60,15 @@ class Hint extends \APP_DbObject
  	 */
 	function clearColor($color){
     self::DbQuery("DELETE FROM hint WHERE mark_color = $color");
+	}
+
+
+  /*
+ 	 * order: change the order of the hints
+ 	 */
+	function order($order){
+    foreach($order as $hint){
+		  self::DbQuery("UPDATE hint SET ordering = {$hint['order']} WHERE id = {$hint['hId']}");
+    }
 	}
 }

@@ -11,6 +11,7 @@
 
 CREATE TABLE IF NOT EXISTS `hint` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ordering` int(10),
   `symbol_id` int(11),
   `mark_type` int(2) NOT NULL,
   `mark_color` int(5) NOT NULL,

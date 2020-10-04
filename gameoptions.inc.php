@@ -40,6 +40,12 @@ $game_options = [
         'value' => 4,
         'message' => totranslate('Two clue givers needs at least 4 players'),
        ],
+       [
+        'type' => 'otheroption',
+        'id' => 200, //GAMESTATE_CLOCK_MODE
+        'value' => array(10,11,12,21),
+        'message' => totranslate('Two clue givers can only be played real time'),
+      ],
      ],
    ],
  ],
@@ -79,7 +85,7 @@ $game_options = [
  ],
 
  OPTION_EOG_SCORE=> [
-   'name' => totranslate('Scoring mode'),
+   'name' => totranslate('End of game'),
    'values' => [
      STANDARD => [
        'name' => totranslate('12 words'),

@@ -72,6 +72,30 @@ class action_concept extends APP_GameAction
     self::ajaxResponse();
   }
 
+
+  public function validateJSonAlphaNum($value, $argName = "unknown"){
+      if (is_array($value)) {
+          foreach ($value as $key => $v) {
+              $this->validateJSonAlphaNum($key);
+              $this->validateJSonAlphaNum($v);
+          }
+          return true;
+      }
+      if (is_int($value)) return true;
+      $bValid = ( preg_match( "/^[0-9a-zA-Z- ]*$/", $value ) === 1 );
+      if (!$bValid)
+          throw new feException( "Bad value for: $argName", true, true, FEX_bad_input_argument );
+      return true;
+  }
+
+  public function orderHints(){
+    self::setAjaxMode();
+    $order = self::getArg("order", AT_json, true);
+    $this->validateJSonAlphaNum($order,"order");
+    $this->game->orderHints($order);
+    self::ajaxResponse();
+  }
+
   public function clearHints() {
     self::setAjaxMode();
     $color = self::getArg("color", AT_posint, true );

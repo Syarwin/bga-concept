@@ -73,6 +73,48 @@ window.ConceptSnapped = function(game){
 
   			return t;
   		},
+
+
+      // Compute a succinct representation of hints using parentId
+      organizedHints: function(){
+        var t = [];
+        for(var i = 1; i < 5; i++)
+          t[i] = [];
+
+        var order = [];
+        this.hints.forEach(hint => {
+          if(!order.includes(hint.mColor))
+            order.push(hint.mColor);
+
+          // Already same symbol ?
+          var index = t[hint.mColor].reduce( (carry, h, j) => {
+            return (hint.mType == h.mType && hint.sId == h.sId)? j : carry;
+          }, null)
+
+          if(index != null){
+            t[hint.mColor][index].n++;
+          } else {
+            t[hint.mColor].push({
+              id:hint.id,
+              mType:hint.mType,
+              mColor:hint.mColor,
+              sId:hint.sId,
+              n:1
+            });
+          }
+        });
+
+        // ALways ?,! first
+        for(var i = 1; i < 5; i++)
+          t[i].sort(a => b => b.mType - a.mType);
+
+        // Sort the colors
+        var res = [];
+        for(var i = 0; i < order.length; i++)
+          res.push(t[order[i]]);
+
+        return res;
+      },
     },
 
 
@@ -196,7 +238,6 @@ window.ConceptSnapped = function(game){
 
 
       selectCardWord: function(i,j){
-        console.log("test");
         if(!this.checkAction('pickWord')) return;
         this.takeAction("pickWord", { i : i, j : j});
       },
@@ -258,6 +299,20 @@ window.ConceptSnapped = function(game){
         this.takeAction("confirmHints", {});
       },
 
+
+      /*
+       * reorderingHints: triggered whenever the clue giver dragndrop the hints
+       */
+      reorderingHints: function(){
+        var order = this.hints.map((hint, index) => {
+          return {
+            'hId' : hint.id,
+            'order' : index,
+          };
+        });
+        this.takeAction("orderHints", { order : JSON.stringify(order) });
+      },
+
       ////////////////////////////////////
       ////// Hints Notifications   ///////
       ////////////////////////////////////
@@ -288,7 +343,14 @@ window.ConceptSnapped = function(game){
         this.hints = this.hints.filter(hint => hint.mColor != n.args.color);
       },
 
-
+      notif_orderHints: function(n){
+        debug("Notif: reordering hints", n);
+        this.hints = this.hints.reduce((tab, hint) => {
+          let newIndex = n.args.order.reduce((carry, h) => h.hId == hint.id? h.order : carry, null);
+          tab[newIndex] = hint;
+          return tab;
+        }, []);
+      },
       /////////////////////////
       //////  Guesses   ///////
       /////////////////////////
@@ -446,6 +508,7 @@ window.ConceptSnapped = function(game){
           ['clearColor',10],
           ['newGuess',10],
           ['newFeedback',10],
+          ['orderHints', 10],
       	];
 
       	notifs.forEach(notif => {

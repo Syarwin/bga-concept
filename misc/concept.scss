@@ -168,7 +168,6 @@ $columns:(
 
     div#concept-guesses-container {
       width:200px;
-      height:800px;
       display:flex;
       flex-flow:column;
 
@@ -245,6 +244,7 @@ $columns:(
       display:flex;
       justify-content: center;
       align-items: center;
+      flex-flow:column;
 
       #concept-grid {
         height:auto;
@@ -332,11 +332,18 @@ $columns:(
             div.concept-hint {
               background-size:500%;
               background-repeat:no-repeat;
+              position:relative;
 
               &[data-type="0"] { background-image:url("img/main-marks-centered.png");}
               &[data-type="1"] { background-image:url("img/cube-marks.png"); }
               @for $i from 0 through 4 {
                 &[data-color="#{$i+1}"] { background-position:$i*100%/4 center; }
+              }
+
+              span {
+                position:absolute;
+                bottom:4px;
+                right:4px;
               }
             }
           }
@@ -353,6 +360,79 @@ $columns:(
 
           @for $i from 0 through $numberOfSymbols {
             &#symbol-#{$i} div.symbol-img { background-position:$i*100%/$numberOfSymbols center; }
+          }
+        }
+      }
+
+
+      div#hints-only {
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        justify-content:safe center;
+        align-items: stretch;
+        max-height:100%;
+        overflow:auto;
+        background-color:rgba(255, 255, 255, 0.7);
+        border-top:1px solid rgba(0, 0, 0, 0.3);
+        border-bottom:1px solid rgba(0, 0, 0, 0.3);
+
+        ul {
+          display:flex;
+          flex-direction:row;
+          justify-content:center;
+          align-items:center;
+          margin-bottom:0.5rem;
+          flex-wrap:wrap;
+
+          li.hint {
+            display:flex;
+            flex-direction:row;
+            align-items:center;
+            justify-content:center;
+            padding:0.5rem;
+            margin:0.1rem 0.5rem;
+
+            div.img {
+              position:relative;
+              width:3.5rem;
+              height:3.5rem;
+              background-size:contain;
+              background-repeat:no-repeat;
+              background-position:center center;
+              background-image:url("img/concept-symbols.png");
+              background-size:cover;
+
+              @for $i from 0 through $numberOfSymbols {
+                &[data-symbol="#{$i}"] { background-position:$i*100%/$numberOfSymbols center; }
+              }
+
+              div.mark {
+                display:block;
+                width:30px;
+                height:30px;
+                margin: 0.5rem 0;
+                background-size:500%;
+                background-repeat:no-repeat;
+                position:absolute;
+                bottom: -20px;
+                right: -19px;
+                filter: drop-shadow(-1px -1px 0px white) drop-shadow(1px 1px 0px black);
+
+                &[data-type="0"] { background-image:url("img/main-marks.png"); height:55px; }
+                &[data-type="1"] { background-image:url("img/cube-marks.png"); }
+
+                @for $i from 0 through 4 {
+                  &[data-color="#{$i+1}"] { background-position:$i*100%/4 center; }
+                }
+
+                span {
+                  position:absolute;
+                  bottom:19px;
+                  right:-1px;
+                }
+              }
+            }
           }
         }
       }
@@ -488,8 +568,8 @@ $columns:(
   */
   div#hints {
   	width:11rem;
-  	background-color:white;
-  	border:1px solid #333;
+  	background-color:rgba(255, 255, 255, 0.7);
+  	border:1px solid rgba(0, 0, 0, 0.3);
   	display:flex;
   	flex-direction:column;
   	overflow:auto;

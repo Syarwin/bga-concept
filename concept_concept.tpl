@@ -40,6 +40,19 @@
 		</transition>
 
 		<div id="concept-grid-container">
+			<div id="hints-only" v-if="!isClueGiver">
+				<ul v-for="row in organizedHints">
+					<li class="hint" v-for="hint in row" :key="hint.id">
+						<div class="img" :data-symbol="hint.sId">
+							<div class="mark" :data-color="hint.mColor" :data-type="hint.mType">
+								<span class="badge badge-secondary" v-if="hint.n > 1">{{ hint.n }}</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+
 			<div id="concept-grid" v-bind:style="{ borderColor: (draggedHint == null? 'transparent' : 'black') }">
 				<div v-for="(symbol, id) in symbols"
 					class="concept-symbol"
@@ -62,10 +75,11 @@
 					<div class="symbol-img"></div>
 				</div>
 			</div>
+
 		</div>
 
 		<div id="hints" v-bind:style="{ 'width' : isClueGiver? '9rem' : '7rem' }">
-			<draggable class="list-group" tag="ul" v-model="hints" v-bind="dragOptions">
+			<draggable class="list-group" tag="ul" v-model="hints" v-bind="dragOptions" @end="reorderingHints">
 				<transition-group>
 					<li class="hint" v-for="(hint, index) in hints" :key="hint.id" v-bind:style="{cursor: isClueGiver? 'move':'default'}">
 						<div class="img" :data-symbol="hint.sId">
@@ -78,7 +92,6 @@
 				</transition-group>
 			</draggable>
 		</div>
-
 <!-- END snapped -->
 
 
