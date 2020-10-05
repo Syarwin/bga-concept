@@ -15,6 +15,7 @@ window.Concept = function(game){
       isSpectator: game.isSpectator,
 
       // Concept stuff
+      isFree:true,
       symbols:ConceptSymbols(),
       hints:game.gamedatas.hints,
       guesses:game.gamedatas.guesses,
@@ -28,6 +29,7 @@ window.Concept = function(game){
       draggedHintIndex:null,
       dragOffset:null,
       guess:'',
+      scale:1,
     },
     computed:{
       // BGA stuff
@@ -71,6 +73,9 @@ window.Concept = function(game){
         $("concept-guess").focus();
 
       this.addDarkModeSwitch();
+
+      dojo.connect(document, 'onmousemove', this.moveHintAt.bind(this));
+      dojo.connect(document, 'onmouseup', this.dragHintStop.bind(this));
     },
 
 
@@ -192,7 +197,7 @@ window.Concept = function(game){
        * newHint: when mousedown on a mark, create a hint and start dragging
        */
       newHint(color, type, event){
-        if(!this.isClueGiver || event.button != 0) return;
+        if(!this.isClueGiver || event.button != 0 || (type == 0 && this.isMarkUsed(color))) return;
 
         var hint = {
           mColor : color,
@@ -213,10 +218,10 @@ window.Concept = function(game){
         if (event.preventDefault) event.preventDefault();
         this.draggedHintIndex = hintIndex;
         this.draggedHint = this.hints[hintIndex];
-        var boxGrid = $('concept-grid').getBoundingClientRect();
+        var boxGrid = $('concept-grid-fixed-width').getBoundingClientRect();
         var boxHint = event.target.getBoundingClientRect();
         this.dragOffset = {
-          x : boxGrid.x + event.clientX - boxHint.x,
+          x : $('concept-marks').getBoundingClientRect()['width'] + boxGrid.x + event.clientX - boxHint.x,
           y : boxGrid.y + event.clientY - boxHint.y,
         };
         this.moveHintAt(event);
@@ -227,8 +232,8 @@ window.Concept = function(game){
        */
       moveHintAt(event){
         if(this.draggedHint != null){
-          this.draggedHint.x = parseInt(event.clientX - this.dragOffset.x);
-          this.draggedHint.y = parseInt(event.clientY - this.dragOffset.y);
+          this.draggedHint.x = parseInt((event.clientX - this.dragOffset.x) / this.scale);
+          this.draggedHint.y = parseInt((event.clientY - this.dragOffset.y) / this.scale);
         }
       },
 
@@ -285,7 +290,7 @@ window.Concept = function(game){
       ////// Hints Notifications   ///////
       ////////////////////////////////////
       isMarkUsed: function(color){
-        return false;
+        return this.hints.reduce((carry, hint) => carry || (hint.mType == 0 && hint.mColor == color), false);
       },
 
       notif_addHint: function(n){
@@ -424,6 +429,13 @@ window.Concept = function(game){
         this.toggleDarkMode(this.game.prefs[DARK_MODE].value == DARK_MODE_ENABLED);
       },
 
+
+      onScreenWidthChange: function(){
+        let gridWidth = 1280;
+        let gridHeight = 800;
+        let box = $('concept-grid-container').getBoundingClientRect();
+        this.scale = Math.min(box['width'] / gridWidth, box['height'] / gridHeight);
+      },
       ///////////////////////////////////////////////////
       //////	 Reaction to cometD notifications	 ///////
       ///////////////////////////////////////////////////

@@ -55,6 +55,8 @@
       dojo.style('page-content', 'zoom', '');
       dojo.style('page-title', 'zoom', '');
       dojo.style('right-side-first-part', 'zoom', '');
+      if(this._app)
+        this._app.onScreenWidthChange();
     },
 
 

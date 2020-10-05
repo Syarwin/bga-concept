@@ -245,6 +245,19 @@ $columns:(
       justify-content: center;
       align-items: center;
       flex-flow:column;
+      overflow:hidden;
+      &.free {
+        flex-flow:row;
+      }
+
+      #concept-grid-fixed-width {
+        width:1260px;
+        height:794px;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        transform-origin: center top;
+      }
 
       #concept-grid {
         height:auto;
@@ -558,6 +571,8 @@ $columns:(
 
         &.disabled {
           background-size:0;
+          cursor:not-allowed;
+          border:1px solid transparent;
         }
       }
     }

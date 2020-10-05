@@ -18,6 +18,7 @@ window.ConceptSnapped = function(game){
       isSpectator: game.isSpectator,
 
       // Concept stuff
+      isFree:false,
       symbols:ConceptSymbols(),
       hints:game.gamedatas.hints,
       guesses:game.gamedatas.guesses,

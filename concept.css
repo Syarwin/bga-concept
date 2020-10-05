@@ -167,7 +167,17 @@ html.darkmode {
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-flow: column; }
+      flex-flow: column;
+      overflow: hidden; }
+      #concept-app #concept-container #concept-grid-container.free {
+        flex-flow: row; }
+      #concept-app #concept-container #concept-grid-container #concept-grid-fixed-width {
+        width: 1260px;
+        height: 794px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform-origin: center top; }
       #concept-app #concept-container #concept-grid-container #concept-grid {
         height: auto;
         width: 1100px;
@@ -1544,7 +1554,9 @@ html.darkmode {
         #concept-app div#concept-marks div#concept-marks-container div:hover {
           border: 1px dotted black; }
         #concept-app div#concept-marks div#concept-marks-container div.disabled {
-          background-size: 0; }
+          background-size: 0;
+          cursor: not-allowed;
+          border: 1px solid transparent; }
   #concept-app div#hints {
     width: 11rem;
     background-color: rgba(255, 255, 255, 0.7);
