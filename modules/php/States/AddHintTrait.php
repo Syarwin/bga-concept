@@ -62,6 +62,19 @@ trait AddHintTrait {
   }
 
 
+
+  /*
+   * moveMark: move an existing '?!' on another symbol
+   */
+  function moveMark($color, $sId){
+    Hint::moveMark($color, $sId);
+		$this->notifyAllPlayers('moveMark', '', [
+			'mColor' => $color,
+			'sId' => $sId,
+		]);
+  }
+
+
   /*
    * deleteHint: delete an existing hint on the board
    */
@@ -76,7 +89,7 @@ trait AddHintTrait {
 	/*
    * clearHints: delete all the hints of given color
    */
-  function clearHints($color){
+  function clearHints($color = 0){
 		if($color == 0){
 			Hint::clearAll();
 			$this->notifyAllPlayers('clearHints', '', []);

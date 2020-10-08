@@ -18,11 +18,30 @@
   border: 1px solid rgba(0,0,0,0.3);
 }
 
+#right-side {
+  width: 170px !important;
+  margin-left: -170px !important;
+}
+
+.mobile_version #right-side {
+  width:100% !important;
+  margin-left: 0px !important;
+}
+
+#left-side {
+  margin-right: 174px !important;
+}
+.mobile_version #left-side {
+  margin-right: 0px !important;
+}
+
+
 .player-board {
   background: white !important;
   box-shadow: none !important;
   border-style: solid;
   border-width: 1px;
+  width:170px !important;
 }
 
 .player_elo_wrap {
@@ -168,6 +187,7 @@ $columns:(
 
     div#concept-guesses-container {
       width:200px;
+      flex-shrink: 0;
       display:flex;
       flex-flow:column;
 
@@ -189,6 +209,7 @@ $columns:(
 
       ul {
         flex-grow:1;
+        max-height:100vh;
         overflow:auto;
         background:rgba(255,255,255,0.7);
         border: 1px solid rgba(0,0,0,0.3);
@@ -197,6 +218,7 @@ $columns:(
         li {
           padding:2px;
           border-bottom:1px dotted rgba(0,0,0,0.3);
+          word-wrap:break-word;
 
           &.separator {
             background-color:#DDD;
@@ -214,11 +236,8 @@ $columns:(
           }
 
           &[data-feedback="0"]::before { background-position:0% 0%; }
-          &[data-feedback="1"]::before { background-position:0% 20%; }
-          &[data-feedback="2"]::before { background-position:0% 40%; }
-          &[data-feedback="3"]::before { background-position:0% 60%; }
-          &[data-feedback="4"]::before { background-position:0% 80%; }
-          &[data-feedback="5"]::before { background-position:0% 100%; }
+          &[data-feedback="1"]::before { background-position:0% 50%; }
+          &[data-feedback="2"]::before { background-position:0% 100%; }
 
 
           span {
@@ -251,7 +270,6 @@ $columns:(
       }
 
       #concept-grid-fixed-width {
-        width:1260px;
         height:794px;
         display:flex;
         justify-content: center;
@@ -496,6 +514,8 @@ $columns:(
 
       &.disabled {
         background-size:0;
+        cursor:default;
+        border-color: transparent !important;
       }
     }
   }
@@ -582,7 +602,7 @@ $columns:(
   * Right col with all the hints
   */
   div#hints {
-  	width:11rem;
+  	width:9rem;
   	background-color:rgba(255, 255, 255, 0.7);
   	border:1px solid rgba(0, 0, 0, 0.3);
   	display:flex;
@@ -754,11 +774,8 @@ div#concept-feedback-overlay {
         cursor:pointer;
 
         &#concept-feedback-0 { background-position:0% 0%; }
-        &#concept-feedback-1 { background-position:0% 20%; }
-        &#concept-feedback-2 { background-position:0% 40%; }
-        &#concept-feedback-3 { background-position:0% 60%; }
-        &#concept-feedback-4 { background-position:0% 80%; }
-        &#word-found { background-position:0% 100%; margin-left:20px;}
+        &#concept-feedback-1 { background-position:0% 50%; }
+        &#concept-feedback-2 { background-position:0% 100%;}
       }
     }
   }

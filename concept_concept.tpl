@@ -30,17 +30,16 @@
 			<div key="concept-popper" id="concept-marks-popper" v-show="selectedSymbol != null && this.isClueGiver">
 				<template v-for="mColor in 5">
 					<div :data-color="mColor" data-type="0"
-						v-bind:class="{ disabled: isMarkUsed(mColor) }"
-						v-bind:disabled="isMarkUsed(mColor)"
 						@click="addHint(mColor,0)"></div>
 					<div :data-color="mColor" data-type="1"
+						v-bind:class="{ disabled: !isMarkUsed(mColor) }"
 						@click="addHint(mColor,1)"></div>
 				</template>
 			</div>
 		</transition>
 
 		<div id="concept-grid-container">
-			<div id="hints-only" v-if="!isClueGiver">
+			<div id="hints-only" v-if="!isClueGiver" v-show="hints.length > 0">
 				<ul v-for="row in organizedHints">
 					<li class="hint" v-for="hint in row" :key="hint.id">
 						<div class="img" :data-symbol="hint.sId">
@@ -53,39 +52,41 @@
 			</div>
 
 
-			<div id="concept-grid" v-bind:style="{ borderColor: (draggedHint == null? 'transparent' : 'black') }">
-				<div v-for="(symbol, id) in symbols"
-					class="concept-symbol"
-					:id="'symbol-' + id"
-        	v-bind:class="{ 'active' : selectedSymbol == id }"
-					v-bind:style="{ 'cursor' : isClueGiver? 'pointer' : 'default' }"
-					@click="selectSymbol($event, id)">
-					<div class="symbol-zone">
-	          <div v-for="(nbr, mark) in hintsPerSymbol[id]"
-	             class="concept-hint"
-	             :data-color="parseInt(mark/2)"
-							 :data-type="mark % 2"
-	             v-bind:style="{
-	              width : getHintSize(id) + '%',
-	              height : getHintSize(id) + '%'
-	            }">
-	            <span class="badge" v-if="nbr > 1" v-bind:style="{ transform : 'scale(' + getBadgeSize(id) + ')' }">{{ nbr }}</span>
-	          </div>
+			<div id="concept-grid-fixed-width" v-bind:style="{ 'transform' : 'scale(' + scale +')', 'width' : '1100px' }">
+				<div id="concept-grid" v-bind:style="{ borderColor: (draggedHint == null? 'transparent' : 'black') }">
+					<div v-for="(symbol, id) in symbols"
+						class="concept-symbol"
+						:id="'symbol-' + id"
+	        	v-bind:class="{ 'active' : selectedSymbol == id }"
+						v-bind:style="{ 'cursor' : isClueGiver? 'pointer' : 'default' }"
+						@click="selectSymbol($event, id)">
+						<div class="symbol-zone">
+		          <div v-for="(nbr, mark) in hintsPerSymbol[id]"
+		             class="concept-hint"
+		             :data-color="parseInt(mark/2)"
+								 :data-type="mark % 2"
+		             v-bind:style="{
+		              width : getHintSize(id) + '%',
+		              height : getHintSize(id) + '%'
+		            }">
+		            <span class="badge" v-if="nbr > 1" v-bind:style="{ transform : 'scale(' + getBadgeSize(id) + ')' }">{{ nbr }}</span>
+		          </div>
+						</div>
+						<div class="symbol-img"></div>
 					</div>
-					<div class="symbol-img"></div>
 				</div>
 			</div>
 
 		</div>
 
-		<div id="hints" v-bind:style="{ 'width' : isClueGiver? '9rem' : '7rem' }">
+		<div id="hints" v-if="isClueGiver">
 			<draggable class="list-group" tag="ul" v-model="hints" v-bind="dragOptions" @end="reorderingHints">
 				<transition-group>
 					<li class="hint" v-for="(hint, index) in hints" :key="hint.id" v-bind:style="{cursor: isClueGiver? 'move':'default'}">
 						<div class="img" :data-symbol="hint.sId">
 							<div class="mark" :data-color="hint.mColor" :data-type="hint.mType"></div>
 						</div>
-						<button type="button" @click="removeHint(hint.id)" v-if="isClueGiver">
+						<button type="button" @click="hint.mType == 0? clearHints(hint.mColor) : removeHint(hint.id)" v-if="isClueGiver">
 							<svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M268 416h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12zM432 80h-82.41l-34-56.7A48 48 0 0 0 274.41 0H173.59a48 48 0 0 0-41.16 23.3L98.41 80H16A16 16 0 0 0 0 96v16a16 16 0 0 0 16 16h16v336a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128h16a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16zM171.84 50.91A6 6 0 0 1 177 48h94a6 6 0 0 1 5.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12z"></path></svg>
 						</button>
 					</li>
@@ -97,7 +98,7 @@
 
 <!-- BEGIN free -->
 		<div id="concept-grid-container" class="free">
-			<div id="concept-grid-fixed-width" v-bind:style="{ 'transform' : 'scale(' + scale +')' }">
+			<div id="concept-grid-fixed-width" v-bind:style="{ 'transform' : 'scale(' + scale +')', 'width' : '1260px' }">
 				<div id="concept-marks" v-show="isClueGiver">
 					<div id="concept-marks-clear">
 						<div id="clearAll" @click="clearHints(0)">
@@ -172,11 +173,7 @@
 			<ul>
         <li @click="addFeedback(0)" id="concept-feedback-0"></li>
         <li @click="addFeedback(1)" id="concept-feedback-1"></li>
-        <li @click="addFeedback(2)" id="concept-feedback-2"></li>
-        <li @click="addFeedback(3)" id="concept-feedback-3"></li>
-        <li @click="addFeedback(4)" id="concept-feedback-4"></li>
-
-				<li @click="wordFound()" id="word-found"></li>
+				<li @click="wordFound()" id="concept-feedback-2"></li>
       </ul>
     </div>
   </div>

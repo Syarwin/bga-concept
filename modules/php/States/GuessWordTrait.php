@@ -37,6 +37,11 @@ trait GuessWordTrait {
  	 * newGuess: when someone make a guess
  	 */
 	function newGuess($guess){
+    if($this->gamestate->state()['name'] == 'pickWord'){
+      $this->notifyAllPlayers('message', '', []);
+      return;
+    }
+
 		$pId = self::getCurrentPlayerId();
 		$gId = Guess::new($guess, $pId);
 		$this->notifyAllPlayers('newGuess', '', [
@@ -78,8 +83,16 @@ trait GuessWordTrait {
 		]);
 		$this->notifyAllPlayers('message', clienttranslate('${player_name} found the word ! It was : ${word}'), [
 			'word' => CONCEPT_CARDS[$word['card']][$word['i']][$word['j']],
-			'player_name' => $player['player_name'],
+			'player_name' => $player['name'],
 		]);
+
+    // Update scores
+    if($this->getGameStateValue('optionScoring') == COMPETITIVE){
+      $amount = intval(Concept::get()->getGameStateValue('optionTeam')) == ONE_PLAYER? 1 : 2;
+      PlayerManager::addScore($player['id'], $amount);
+      PlayerManager::addScoreTeam();
+      PlayerManager::updateUi();
+    }
 
 		$this->gamestate->nextState('found');
 	}

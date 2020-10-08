@@ -15,11 +15,26 @@ html {
   box-shadow: none !important;
   border: 1px solid rgba(0, 0, 0, 0.3); }
 
+#right-side {
+  width: 170px !important;
+  margin-left: -170px !important; }
+
+.mobile_version #right-side {
+  width: 100% !important;
+  margin-left: 0px !important; }
+
+#left-side {
+  margin-right: 174px !important; }
+
+.mobile_version #left-side {
+  margin-right: 0px !important; }
+
 .player-board {
   background: white !important;
   box-shadow: none !important;
   border-style: solid;
-  border-width: 1px; }
+  border-width: 1px;
+  width: 170px !important; }
 
 .player_elo_wrap {
   display: none !important; }
@@ -106,6 +121,7 @@ html.darkmode {
     position: relative; }
     #concept-app #concept-container div#concept-guesses-container {
       width: 200px;
+      flex-shrink: 0;
       display: flex;
       flex-flow: column; }
       #concept-app #concept-container div#concept-guesses-container h2 {
@@ -122,13 +138,15 @@ html.darkmode {
           margin-bottom: 10px; }
       #concept-app #concept-container div#concept-guesses-container ul {
         flex-grow: 1;
+        max-height: 100vh;
         overflow: auto;
         background: rgba(255, 255, 255, 0.7);
         border: 1px solid rgba(0, 0, 0, 0.3);
         border-top: none; }
         #concept-app #concept-container div#concept-guesses-container ul li {
           padding: 2px;
-          border-bottom: 1px dotted rgba(0, 0, 0, 0.3); }
+          border-bottom: 1px dotted rgba(0, 0, 0, 0.3);
+          word-wrap: break-word; }
           #concept-app #concept-container div#concept-guesses-container ul li.separator {
             background-color: #DDD; }
           #concept-app #concept-container div#concept-guesses-container ul li[data-feedback]::before {
@@ -143,14 +161,8 @@ html.darkmode {
           #concept-app #concept-container div#concept-guesses-container ul li[data-feedback="0"]::before {
             background-position: 0% 0%; }
           #concept-app #concept-container div#concept-guesses-container ul li[data-feedback="1"]::before {
-            background-position: 0% 20%; }
+            background-position: 0% 50%; }
           #concept-app #concept-container div#concept-guesses-container ul li[data-feedback="2"]::before {
-            background-position: 0% 40%; }
-          #concept-app #concept-container div#concept-guesses-container ul li[data-feedback="3"]::before {
-            background-position: 0% 60%; }
-          #concept-app #concept-container div#concept-guesses-container ul li[data-feedback="4"]::before {
-            background-position: 0% 80%; }
-          #concept-app #concept-container div#concept-guesses-container ul li[data-feedback="5"]::before {
             background-position: 0% 100%; }
           #concept-app #concept-container div#concept-guesses-container ul li span {
             font-weight: bold;
@@ -172,7 +184,6 @@ html.darkmode {
       #concept-app #concept-container #concept-grid-container.free {
         flex-flow: row; }
       #concept-app #concept-container #concept-grid-container #concept-grid-fixed-width {
-        width: 1260px;
         height: 794px;
         display: flex;
         justify-content: center;
@@ -1480,7 +1491,9 @@ html.darkmode {
       #concept-app div#concept-marks-popper div:hover {
         border: 1px dotted black; }
       #concept-app div#concept-marks-popper div.disabled {
-        background-size: 0; }
+        background-size: 0;
+        cursor: default;
+        border-color: transparent !important; }
   #concept-app div#concept-marks {
     display: flex;
     flex-flow: row; }
@@ -1558,7 +1571,7 @@ html.darkmode {
           cursor: not-allowed;
           border: 1px solid transparent; }
   #concept-app div#hints {
-    width: 11rem;
+    width: 9rem;
     background-color: rgba(255, 255, 255, 0.7);
     border: 1px solid rgba(0, 0, 0, 0.3);
     display: flex;
@@ -1940,16 +1953,9 @@ div#concept-feedback-overlay {
         div#concept-feedback-overlay div#concept-feedback-container ul li#concept-feedback-0 {
           background-position: 0% 0%; }
         div#concept-feedback-overlay div#concept-feedback-container ul li#concept-feedback-1 {
-          background-position: 0% 20%; }
+          background-position: 0% 50%; }
         div#concept-feedback-overlay div#concept-feedback-container ul li#concept-feedback-2 {
-          background-position: 0% 40%; }
-        div#concept-feedback-overlay div#concept-feedback-container ul li#concept-feedback-3 {
-          background-position: 0% 60%; }
-        div#concept-feedback-overlay div#concept-feedback-container ul li#concept-feedback-4 {
-          background-position: 0% 80%; }
-        div#concept-feedback-overlay div#concept-feedback-container ul li#word-found {
-          background-position: 0% 100%;
-          margin-left: 20px; }
+          background-position: 0% 100%; }
 
 .badge {
   color: #fff;

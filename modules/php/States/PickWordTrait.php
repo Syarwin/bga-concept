@@ -26,6 +26,7 @@ trait PickWordTrait {
 	 */
 	function pickWord($i, $j){
 		Log::newWord($i,$j);
+    $this->clearHints();
 		$this->gamestate->nextState();
 	}
 }

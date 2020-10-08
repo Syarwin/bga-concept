@@ -40,6 +40,14 @@ class Hint extends \APP_DbObject
 	}
 
 
+  /*
+ 	 * moveMark: move an existing '?!' on another symbol
+ 	 */
+	function moveMark($color, $sId){
+		self::DbQuery("UPDATE hint SET symbol_id = $sId WHERE mark_color = $color AND mark_type = 0");
+	}
+
+
 	/*
  	 * deleteHint: move an existing hint on the board
  	 */

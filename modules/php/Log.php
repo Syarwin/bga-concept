@@ -37,12 +37,12 @@ class Log extends \APP_DbObject
     $players = PlayerManager::getPlayers($team);
     if(count($team) == 1){
       Concept::$instance->notifyAllPlayers('message', clienttranslate('${player_name} is now the clue giver'), [
-        'player_name' => $players[0]['player_name'],
+        'player_name' => $players[0]['name'],
   		]);
     } else {
       Concept::$instance->notifyAllPlayers('message', clienttranslate('${player1_name} and ${player2_name} are now the clue givers'), [
-        'player1_name' => $players[0]['player_name'],
-        'player2_name' => $players[1]['player_name'],
+        'player1_name' => $players[0]['name'],
+        'player2_name' => $players[1]['name'],
   		]);
     }
   }

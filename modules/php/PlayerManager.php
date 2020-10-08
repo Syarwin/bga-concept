@@ -44,7 +44,7 @@ class PlayerManager extends \APP_DbObject
 	public static function getPlayers($playerIds = null, $asArrayCollection = false) {
 		$columns = ["id", "no", "name", "color", "eliminated", "score", "zombie"];
 		$sqlcolumns = [];
-		foreach($columns as $col) $sqlcolumns[] = "player_$col";
+		foreach($columns as $col) $sqlcolumns[] = "player_$col $col";
 		$sql = "SELECT " . implode(", ", $sqlcolumns) . " FROM player" ;
 		if (is_array($playerIds)) {
 			$sql .= " WHERE player_id IN ('" . implode("','", $playerIds) . "')";
@@ -109,5 +109,23 @@ class PlayerManager extends \APP_DbObject
     }
 
     return $newTeam;
+  }
+
+
+  public static function addScore($pId, $amount = 1){
+    self::DbQuery("UPDATE player SET player_score = player_score + $amount WHERE player_id = $pId");
+  }
+
+  public static function addScoreTeam(){
+    $team = Log::getCurrentTeam();
+    if(!is_null($team)){
+      foreach($team as $pId){
+        self::addScore($pId);
+      }
+    }
+  }
+
+  public static function updateUi(){
+    Concept::get()->notifyAllPlayers("updatePlayersInfo", '', ['players' => self::getUiData() ]);
   }
 }

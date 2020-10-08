@@ -65,6 +65,16 @@ class action_concept extends APP_GameAction
     self::ajaxResponse();
   }
 
+
+  public function moveMark() {
+    self::setAjaxMode();
+    $sId = self::getArg("sId", AT_posint, true );
+    $mColor = self::getArg("mColor", AT_posint, true );
+    $result = $this->game->moveMark($mColor, $sId);
+    self::ajaxResponse();
+  }
+
+
   public function deleteHint() {
     self::setAjaxMode();
     $id = self::getArg("id", AT_posint, true );

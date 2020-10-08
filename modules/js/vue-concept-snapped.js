@@ -33,6 +33,7 @@ window.ConceptSnapped = function(game){
       dragOffset:null,
       selectedSymbol:null,
       guess:'',
+      scale:1,
     },
     computed:{
       // BGA stuff
@@ -84,6 +85,8 @@ window.ConceptSnapped = function(game){
 
         var order = [];
         this.hints.forEach(hint => {
+          if(! [1,2,3,4,5].includes(hint.mColor)) return;
+
           if(!order.includes(hint.mColor))
             order.push(hint.mColor);
 
@@ -250,6 +253,19 @@ window.ConceptSnapped = function(game){
   			if(!this.isClueGiver) return;
   			event.stopPropagation();
 
+        // First hint ? Must be the green '?'
+        if(this.hints.length == 0){
+          this.takeAction('addHint', {
+            mColor : 1,
+            mType : 0,
+            sId:id,
+            x:0,
+            y:0,
+          });
+          return;
+        }
+
+
   			// Show tooltip
         this.selectedSymbol = id;
   			var target = event.target;
@@ -272,6 +288,19 @@ window.ConceptSnapped = function(game){
 
   		// Triggered when a mark is clicked
   		addHint: function(color, type){
+        if(!this.isMarkUsed(color) && type == 1)
+          return;
+
+        // If we try to click on ?,! when it's already placed, then move the mark
+        if(this.isMarkUsed(color) && type == 0){
+          this.takeAction('moveMark', {
+            mColor : color,
+            sId:this.selectedSymbol,
+          });
+
+          return;
+        }
+
         this.takeAction('addHint', {
           mColor : color,
           mType : type,
@@ -318,7 +347,7 @@ window.ConceptSnapped = function(game){
       ////// Hints Notifications   ///////
       ////////////////////////////////////
       isMarkUsed: function(color){
-        return false;
+        return this.hints.reduce((carry, hint) => carry || (hint.mType == 0 && hint.mColor == color), false);
       },
 
       notif_addHint: function(n){
@@ -333,6 +362,15 @@ window.ConceptSnapped = function(game){
           this.hints.splice(index, 1);
       },
 
+
+      notif_moveMark: function(n){
+        debug("Notif: move marks", n);
+        this.hints.forEach(hint => {
+          if(hint.mColor == n.args.mColor && hint.mType == 0){
+            hint.sId = n.args.sId;
+          }
+        });
+      },
 
       notif_clearHints: function(n){
         debug("Notif: clearing all hints", n);
@@ -450,6 +488,15 @@ window.ConceptSnapped = function(game){
   		},
 
 
+      notif_updatePlayersInfo: function(n){
+        debug("Notif: update users", n);
+
+        Object.values(n.args.players).forEach(player => {
+          this.game.scoreCtrl[player.id].setValue(player.score);
+        });
+      },
+
+
       /////////////////////////////////////////////
       /////////////	  Preferences 	 /////////////
       ////////////////////////////////////////////
@@ -492,6 +539,13 @@ window.ConceptSnapped = function(game){
         this.toggleDarkMode(this.game.prefs[DARK_MODE].value == DARK_MODE_ENABLED);
       },
 
+      onScreenWidthChange: function(){
+        let gridWidth = 1100;
+        let gridHeight = 800;
+        let box = $('concept-grid-container').getBoundingClientRect();
+        this.scale = Math.min(box['width'] / gridWidth, box['height'] / gridHeight);
+        dojo.style('concept-guesses-container', 'maxHeight', (790 * this.scale) + 'px');
+      },
       ///////////////////////////////////////////////////
       //////	 Reaction to cometD notifications	 ///////
       ///////////////////////////////////////////////////
@@ -503,13 +557,15 @@ window.ConceptSnapped = function(game){
        */
       setupNotifications: function () {
       	var notifs = [
-      		['addHint',10],
-          ['deleteHint',10],
-          ['clearHints',10],
-          ['clearColor',10],
-          ['newGuess',10],
-          ['newFeedback',10],
-          ['orderHints', 10],
+      		['addHint',5],
+          ['moveMark',5],
+          ['deleteHint',5],
+          ['clearHints',5],
+          ['clearColor',5],
+          ['newGuess',5],
+          ['newFeedback',5],
+          ['orderHints', 5],
+          ['updatePlayersInfo',5]
       	];
 
       	notifs.forEach(notif => {

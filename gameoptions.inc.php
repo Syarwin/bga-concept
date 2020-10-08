@@ -40,14 +40,16 @@ $game_options = [
         'value' => 4,
         'message' => totranslate('Two clue givers needs at least 4 players'),
        ],
-       [
-        'type' => 'otheroption',
-        'id' => 200, //GAMESTATE_CLOCK_MODE
-        'value' => array(10,11,12,21),
-        'message' => totranslate('Two clue givers can only be played real time'),
-      ],
      ],
    ],
+   'displaycondition' => [
+     [
+      'type' => 'otheroption',
+      'id' => GAMESTATE_CLOCK_MODE,
+      'value' => [0,1,2,9],
+    ],
+    'notdisplayedmessage' => totranslate('Two clue givers can only be played real time'),
+  ]
  ],
 
  OPTION_HINT_MODE => [
