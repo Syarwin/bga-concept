@@ -1,22 +1,22 @@
 _ Mode normal par défaut, à voir la durée du sablier pour le joueur actif (entre 3 et 5min)
 
-_ Mode 1 joueur par défaut
+X Mode 1 joueur par défaut
 
-_ Mode Snapped par défaut
+X Mode Snapped par défaut
 
-_ Mode Scoring par défaut avec 1 point pour le joueur actif et un point pour celui qui a trouvé.
+X Mode Scoring par défaut avec 1 point pour le joueur actif et un point pour celui qui a trouvé.
 
 _ Durée : 12 mots pour les partie de 6j ou moins et 2  tours de table pour les parties à 7j et plus.
 
-_ Ne garder que 3 smileys : rouge pas content = c’est faux, orange moyen = c’est pas ça mais c’est pas loin, sourire vert = c’est la bonne réponse.
+X Ne garder que 3 smileys : rouge pas content = c’est faux, orange moyen = c’est pas ça mais c’est pas loin, sourire vert = c’est la bonne réponse.
 
-_ Quand un mot est validé (smiley vert), ça passe direct au joueur actif suivant. Tous les joueurs voient le plateau précédent jusqu’à ce que le joueur actif ait choisi son mot.
+X Quand un mot est validé (smiley vert), ça passe direct au joueur actif suivant. Tous les joueurs voient le plateau précédent jusqu’à ce que le joueur actif ait choisi son mot.
 
 _ Langue par défaut : (à voir avec BGA) La table est dans la langue de celui qui crée la table si cette langue fait partie des langues traduites physiquement. Sinon Anglais par défaut avec option de choisir une autre.
 
-_ Le drapeau de la langue doit être visible sur la table (dans le listing des tables disponibles).
+O Le drapeau de la langue doit être visible sur la table (dans le listing des tables disponibles).
 
-_ Appelle à l’aide : NON
+X Appelle à l’aide : NON
 
 _ Bouton Je passe pour le joueur actif : s’il clique, ça passe directement à un nouveau mot avec un nouveau joueur actif et personne ne gagne de point, n’y n’en perd.
 
@@ -24,24 +24,24 @@ _ Bouton Je passe pour les autres joueurs : à la fin du sablier, un bouton Je p
 
 _ Un décompte du nombre de cliques Je passe est visible pour que le joueur actif se rende compte de l’état d’esprit des autres joueurs.
 
-_ La difficulté du mot choisi doit toujours être visible pour tous les joueurs.
+X La difficulté du mot choisi doit toujours être visible pour tous les joueurs.
 
 _ Créer un léger halo blanc autour des pions.
 
-_ Snapped - Restreindre les possibilités des pions lorsque le joueur actif clique sur une case.
+X Snapped - Restreindre les possibilités des pions lorsque le joueur actif clique sur une case.
 
-Toujours le ? en premier
+X Toujours le ? en premier
 
-Puis disponibilité des cubes verts et des !
+X Puis disponibilité des cubes verts et des !
 
-Puis disponibilité des cubes correspondants aux ! déjà posés.
+X Puis disponibilité des cubes correspondants aux ! déjà posés.
 
-Disponibilité des ! déjà posés et du ? sur les autres cases, dans ce cas, le pion change de case.
+X Disponibilité des ! déjà posés et du ? sur les autres cases, dans ce cas, le pion change de case.
 
-Si suppression d’un !, suppression automatique des cubes de la même couleur.
+X Si suppression d’un !, suppression automatique des cubes de la même couleur.
 
-_ Affichage sur l’écran du joueur actif : plateau + historique
+X Affichage sur l’écran du joueur actif : plateau + historique
 
 _ Affichage sur l’écran des autres joueurs : Style RS + plateau (avec un bouton permettant de cacher le plateau ou de la faire réapparaitre.
 
-_ Affichage des textes helper sur les icones style RS
+X Affichage des textes helper sur les icones style RS

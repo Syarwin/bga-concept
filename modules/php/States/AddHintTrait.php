@@ -2,6 +2,7 @@
 namespace CPT\States;
 
 use Concept;
+use CPT\Guess;
 use CPT\Hint;
 use CPT\Log;
 
@@ -20,6 +21,8 @@ trait AddHintTrait {
 	function argAddHint(){
 		return [
 			'team' => Log::getCurrentTeam(),
+			'word' => Log::getCurrentWord(0),
+			'wordCount' => Guess::countFoundWords(),
 			'_private' => [
 				'active' => Log::getCurrentWord()
 			]

@@ -27,6 +27,8 @@ trait GuessWordTrait {
 	function argGuessWord(){
 		return [
 			'team' => Log::getCurrentTeam(),
+      'wordCount' => Guess::countFoundWords(),
+      'word' => Log::getCurrentWord(0),
 			'_private' => [
 				'active' => Log::getCurrentWord()
 			]
@@ -52,11 +54,22 @@ trait GuessWordTrait {
 		]);
 	}
 
+  /*
+   * checkFeedback
+   */
+  function checkFeedback($gId){
+    if(!Guess::isOnCurrent($gId)){
+      throw new \BgaUserException(_('You cannot give feedback on guess of previous words'));
+    }
+  }
+
 
 	/*
  	 * addFeedback: when team add feedback
  	 */
 	function addFeedback($gId, $feedback){
+    self::checkFeedback($gId);
+
 		Guess::feedback($gId, $feedback);
 		$this->notifyAllPlayers('newFeedback', '', [
 			'gId' => $gId,
@@ -69,22 +82,29 @@ trait GuessWordTrait {
  	 * wordFound: when team confirm word found
  	 */
 	function wordFound($gId){
+    self::checkFeedback($gId);
+
+    // Give feedback and notify
 		Guess::feedback($gId, WORD_FOUND);
+    $this->notifyAllPlayers('newFeedback', '', [
+      'gId' => $gId,
+      'feedback' => WORD_FOUND,
+    ]);
+
+    $player = Guess::getPlayer($gId);
+		$word = Log::getCurrentWord();
+		$this->notifyAllPlayers('wordFound', clienttranslate('${player_name} found the word ! It was : ${wordTxt}'), [
+			'wordTxt' => CONCEPT_CARDS[$word['card']][$word['i']][$word['j']],
+      'word' => $word,
+			'player_name' => $player['name'],
+		]);
+
+    // Add a separator
 		Guess::newSeparator();
 		$this->notifyAllPlayers('newGuess', '', [
 			'pId' => -1,
 		]);
 
-		$player = Guess::getPlayer($gId);
-		$word = Log::getCurrentWord();
-		$this->notifyAllPlayers('newFeedback', '', [
-			'gId' => $gId,
-			'feedback' => WORD_FOUND,
-		]);
-		$this->notifyAllPlayers('message', clienttranslate('${player_name} found the word ! It was : ${word}'), [
-			'word' => CONCEPT_CARDS[$word['card']][$word['i']][$word['j']],
-			'player_name' => $player['name'],
-		]);
 
     // Update scores
     if($this->getGameStateValue('optionScoring') == COMPETITIVE){

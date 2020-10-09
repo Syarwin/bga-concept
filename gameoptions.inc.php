@@ -90,14 +90,14 @@ $game_options = [
    'name' => totranslate('End of game'),
    'values' => [
      STANDARD => [
-       'name' => totranslate('12 words'),
-       'tmdisplay' => totranslate('12 words'),
-       'description' => totranslate('Stop when 12 words are guess correctly'),
+       'name' => totranslate('Standard'),
+       'tmdisplay' => totranslate('12 words / 2 words per players'),
+       'description' => totranslate('Stop when 12 words are guess correctly / 2 words per players'),
      ],
-     DOUBLE => [
-       'name' => totranslate('24 words'),
-       'tmdisplay' => totranslate('24 words'),
-       'description' => totranslate('Stop when 24 words are guess correctly'),
+     INFINITE => [
+       'name' => totranslate('No end'),
+       'tmdisplay' => totranslate('No limit'),
+       'description' => totranslate('Play as long as you want'),
      ],
    ],
    'displaycondition' => [

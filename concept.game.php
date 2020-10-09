@@ -47,7 +47,7 @@ class Concept extends Table
 			'optionTeam' => OPTION_TEAM_SIZE,
 			'optionHint' => OPTION_HINT_MODE,
 			'optionScoring' => OPTION_SCORING,
-			'optionScore' => OPTION_EOG_SCORE,
+			'optionEOG' => OPTION_EOG_SCORE,
 		]);
 	}
 	public static function get(){
@@ -80,6 +80,8 @@ class Concept extends Table
 			'players' => CPT\PlayerManager::getUiData(),
 			'team' => CPT\Log::getCurrentTeam(),
 			'word' => CPT\Log::getCurrentWord(self::getCurrentPlayerId()),
+			'wordCount' => CPT\Guess::countFoundWords(),
+			'endOfGame' => $this->getEndOfGameCondition(),
 			'guesses' => CPT\Guess::getCurrent(),
 		];
 	}
@@ -89,7 +91,16 @@ class Concept extends Table
 	 * getGameProgression:
 	 */
 	function getGameProgression(){
-		return 0; // TODO
+		$eog = $this->getEndOfGameCondition();
+		return $eog == -1? 50 : ((int) 100 * CPT\Guess::countFoundWords() / $eog);
+	}
+
+	function getEndOfGameCondition(){
+		if($this->getGameStateValue('optionEOG') == INFINITE)
+			return -1;
+
+		$nPlayers = count(CPT\PlayerManager::getPlayers());
+		return $nPlayers <= 6 ? 12 : (2*$nPlayers);
 	}
 
 
@@ -100,6 +111,11 @@ class Concept extends Table
 	 * stNextRound: determine who is gonna choose a word to guess
 	 */
 	function stNextRound(){
+		if(CPT\Guess::countFoundWords() == $this->getEndOfGameCondition()){
+			$this->gamestate->nextState('endGame');
+			return;
+		}
+
 		// Keep only cards not played yet, and draw a random on
 		$previousCards = CPT\Log::getCardsDrawn();
 		$cards = array_values(array_filter(array_keys(CONCEPT_CARDS), function($cardId) use ($previousCards){

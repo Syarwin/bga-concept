@@ -31,7 +31,7 @@ define('FUN', 2);
 
 define('OPTION_EOG_SCORE', 103);
 define('STANDARD', 1);
-define('DOUBLE', 2);
+define('INFINITE', 2);
 
 
 define('DARK_MODE', 100);

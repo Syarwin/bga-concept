@@ -40,7 +40,20 @@ window.Concept = function(game){
       word:function(){
         let w = this.game.gamedatas.word;
         if(w == null) return '';
-        else return this.game.gamedatas.cards[w.card][w.i][w.j];
+        else return w.j? this.game.gamedatas.cards[w.card][w.i][w.j] : '???';
+      },
+
+      wordLvl:function(){
+        let w = this.game.gamedatas.word;
+        return (w == null)? -1 : w.i;
+      },
+
+      wordCount: function(){
+        return parseInt(this.game.gamedatas.wordCount) + 1;
+      },
+
+      endOfGame: function(){
+        return this.game.gamedatas.endOfGame == -1 ? '∞' : this.game.gamedatas.endOfGame;
       },
 
       isClueGiver: function(){
@@ -73,7 +86,7 @@ window.Concept = function(game){
         $("concept-guess").focus();
 
       this.addDarkModeSwitch();
-
+      setTimeout(() => this.onScreenWidthChange(), 1000);
       dojo.connect(document, 'onmousemove', this.moveHintAt.bind(this));
       dojo.connect(document, 'onmouseup', this.dragHintStop.bind(this));
     },
@@ -106,8 +119,13 @@ window.Concept = function(game){
         if(args.args && args.args['team'])
           this.team = args.args['team'].map(o => parseInt(o));
 
-        if(stateName == "addHint" || stateName == "guessWord")
-          this.game.gamedatas.word = args.args['_private'];
+          if(stateName == "addHint" || stateName == "guessWord"){
+            this.game.gamedatas.word = args.args.word;
+            this.game.gamedatas.wordCount = args.args.wordCount;
+            if(args.args['_private'])
+              this.game.gamedatas.word = args.args['_private'];
+          }
+
 
       	// Call appropriate method
       	var methodName = "onEnteringState" + stateName.charAt(0).toUpperCase() + stateName.slice(1);
@@ -174,6 +192,15 @@ window.Concept = function(game){
       },
 
 
+      notif_updatePlayersInfo: function(n){
+        debug("Notif: update users", n);
+
+        Object.values(n.args.players).forEach(player => {
+          this.game.scoreCtrl[player.id].setValue(player.score);
+        });
+      },
+
+
       ////////////////////////////
       //////	Choose word	 ///////
       ////////////////////////////
@@ -185,7 +212,6 @@ window.Concept = function(game){
 
 
       selectCardWord: function(i,j){
-        console.log("test");
         if(!this.checkAction('pickWord')) return;
         this.takeAction("pickWord", { i : i, j : j});
       },
@@ -295,6 +321,9 @@ window.Concept = function(game){
 
       notif_addHint: function(n){
         debug("Notif: new hint", n);
+        for(var a in n.args){
+          n.args[a] = parseInt(n.args[a]);
+        }
         this.hints.push(n.args);
       },
 
@@ -387,6 +416,11 @@ window.Concept = function(game){
         });
       },
 
+      notif_wordFound: function(n){
+        debug("Notf: word found", n);
+        this.game.gamedatas.word = n.args.word;
+      },
+
       /////////////////////////////////////////////
       /////////////	  Preferences 	 /////////////
       ////////////////////////////////////////////
@@ -435,6 +469,7 @@ window.Concept = function(game){
         let gridHeight = 800;
         let box = $('concept-grid-container').getBoundingClientRect();
         this.scale = Math.min(box['width'] / gridWidth, box['height'] / gridHeight);
+        dojo.style('concept-guesses-container', 'maxHeight', (790 * this.scale) + 'px');
       },
       ///////////////////////////////////////////////////
       //////	 Reaction to cometD notifications	 ///////
@@ -454,6 +489,8 @@ window.Concept = function(game){
           ['clearColor',10],
           ['newGuess',10],
           ['newFeedback',10],
+          ['wordFound',5],
+          ['updatePlayersInfo',5]
       	];
 
       	notifs.forEach(notif => {

@@ -116,7 +116,7 @@ class Log extends \APP_DbObject
     $word = self::getLastAction('pickWord');
     if(is_null($word)) return $word;
     $team = self::getCurrentTeam();
-    return (is_null($pId) || in_array($pId, $team))? $word : null;
+    return (is_null($pId) || in_array($pId, $team))? $word : ['i' => $word['i']];
   }
 
   public static function getCurrentWordId()

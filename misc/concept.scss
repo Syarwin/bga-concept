@@ -10,15 +10,26 @@
   box-shadow: none !important;
   -webkit-box-shadow:none !important;
   border-bottom:1px solid rgba(0,0,0,0.3);
+  margin-bottom:0px !important;
+}
+
+#concept-topbar {
+  width:100%;
+  height:30px;
+  margin-bottom:2px;
+  background-image:url("img/background-concept.png");
+  border-bottom:1px solid rgba(0,0,0,0.3);
+  background-color:#FAFAFA;
 }
 
 #page-title {
-  background: white !important;
+  background-color: white !important;
   box-shadow: none !important;
   border: 1px solid rgba(0,0,0,0.3);
 }
 
 #right-side {
+  margin-top:0px !important;
   width: 170px !important;
   margin-left: -170px !important;
 }
@@ -26,6 +37,11 @@
 .mobile_version #right-side {
   width:100% !important;
   margin-left: 0px !important;
+  margin-top:35px !important;
+}
+
+#left-side-wrapper {
+  margin-top:0px !important;
 }
 
 #left-side {
@@ -97,6 +113,10 @@ html.darkmode {
     border-bottom:1px solid black;
   }
 
+  #concept-topbar {
+    background-color:rgba(0,0,0,0.2);
+  }
+
   #page-title {
     background:#292d33 !important;
     border:1px solid black;
@@ -142,6 +162,17 @@ html.darkmode {
       background:#292d33 !important;
       color:#AAA;
       border-color:black !important;
+    }
+  }
+
+  div#hints {
+    background:#3b4048 !important;
+
+    button {
+      background:#292d33 !important;
+      &:hover {
+        background:#dc3545 !important;
+      }
     }
   }
 
@@ -199,11 +230,50 @@ $columns:(
         justify-content: center;
         padding: 0.5rem 0;
         border: 1px solid rgba(0,0,0,0.3);
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+
+        &#word-counter {
+          border-bottom:0;
+        }
 
         &#word-display {
           font-weight: normal;
-          color:#00afec;
           margin-bottom:10px;
+          position:relative;
+          border-radius:0px;
+          border-bottom-left-radius: 5px;
+          border-bottom-right-radius: 5px;
+
+          &::after {
+            content:'';
+            display:block;
+            width:30px;
+            height:30px;
+            position:absolute;
+            bottom:-11px;
+            right:-15px;
+            background-image:url('img/lvl.png');
+            background-size:cover;
+          }
+
+          &[data-lvl="0"] {
+            color:#00afec;
+            border-color:#00afec;
+            &::after { background-position:center 0%; }
+          }
+
+          &[data-lvl="1"] {
+            color:red;
+            border-color:red;
+            &::after { background-position:center 50%; }
+          }
+
+          &[data-lvl="2"] {
+            color:black;
+            border-color:black;
+            &::after { background-position:center 100%; }
+          }
         }
       }
 
@@ -214,6 +284,8 @@ $columns:(
         background:rgba(255,255,255,0.7);
         border: 1px solid rgba(0,0,0,0.3);
         border-top:none;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
 
         li {
           padding:2px;
@@ -397,7 +469,7 @@ $columns:(
 
 
       div#hints-only {
-        width:100%;
+        width:97%;
         display:flex;
         flex-direction:column;
         justify-content:safe center;
@@ -405,8 +477,8 @@ $columns:(
         max-height:100%;
         overflow:auto;
         background-color:rgba(255, 255, 255, 0.7);
-        border-top:1px solid rgba(0, 0, 0, 0.3);
-        border-bottom:1px solid rgba(0, 0, 0, 0.3);
+        border:1px solid rgba(0, 0, 0, 0.3);
+        border-radius:5px;
 
         ul {
           display:flex;
@@ -433,6 +505,7 @@ $columns:(
               background-position:center center;
               background-image:url("img/concept-symbols.png");
               background-size:cover;
+              cursor:help;
 
               @for $i from 0 through $numberOfSymbols {
                 &[data-symbol="#{$i}"] { background-position:$i*100%/$numberOfSymbols center; }
@@ -605,6 +678,7 @@ $columns:(
   	width:9rem;
   	background-color:rgba(255, 255, 255, 0.7);
   	border:1px solid rgba(0, 0, 0, 0.3);
+    border-radius:5px;
   	display:flex;
   	flex-direction:column;
   	overflow:auto;

@@ -34,6 +34,13 @@ class Guess extends \APP_DbObject
     }, self::getObjectListFromDb("SELECT id, player_id, guess, feedback FROM guess ORDER BY id DESC"));
   }
 
+  public static function isOnCurrent($gId)
+  {
+    $word = (int) self::getUniqueValueFromDB("SELECT log_id FROM guess WHERE id = $gId OR log_id = -1 ORDER BY id DESC LIMIT 1");
+    return $word != -1 && $word == Log::getCurrentWordId();
+  }
+
+
   public static function feedback($gId, $feedback)
   {
     self::DbQuery("UPDATE guess SET feedback = $feedback WHERE id = $gId");
@@ -45,4 +52,8 @@ class Guess extends \APP_DbObject
     return PlayerManager::getPlayer($pId);
   }
 
+  public static function countFoundWords()
+  {
+    return (int) self::getUniqueValueFromDB("SELECT COUNT(id) FROM guess WHERE feedback = " . WORD_FOUND);
+  }
 }

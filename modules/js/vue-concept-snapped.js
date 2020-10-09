@@ -44,7 +44,20 @@ window.ConceptSnapped = function(game){
       word:function(){
         let w = this.game.gamedatas.word;
         if(w == null) return '';
-        else return this.game.gamedatas.cards[w.card][w.i][w.j];
+        else return w.j? this.game.gamedatas.cards[w.card][w.i][w.j] : '???';
+      },
+
+      wordLvl:function(){
+        let w = this.game.gamedatas.word;
+        return (w == null)? -1 : w.i;
+      },
+
+      wordCount: function(){
+        return parseInt(this.game.gamedatas.wordCount) + 1;
+      },
+
+      endOfGame: function(){
+        return this.game.gamedatas.endOfGame == -1 ? '∞' : this.game.gamedatas.endOfGame;
       },
 
       isClueGiver: function(){
@@ -133,6 +146,10 @@ window.ConceptSnapped = function(game){
         this.game.addTooltip("symbol-" + id, symbol.join(", "), '');
       });
 
+      dojo.query("#hints-only .hint .img").forEach(obj => {
+        this.game.addTooltip(obj.id, this.symbols[dojo.attr(obj, "data-symbol")].join(", "), '');
+      });
+
       dojo.connect(document, 'onkeydown', (evt) => {
         if(!$("concept-guess")) return;
 
@@ -146,8 +163,18 @@ window.ConceptSnapped = function(game){
         $("concept-guess").focus();
 
       this.addDarkModeSwitch();
+      setTimeout(() => this.onScreenWidthChange(), 1000);
     },
 
+    watch: {
+      organizedHints: function (newHints, oldHints) {
+        setTimeout(() => {
+          dojo.query("#hints-only .hint .img").forEach(obj => {
+            this.game.addTooltip(obj.id, this.symbols[dojo.attr(obj, "data-symbol")].join(", "), '');
+          });
+        }, 10);
+      }
+    },
 
     methods:{
       isCurrentPlayerActive: function(){ return this.game.isCurrentPlayerActive() },
@@ -177,8 +204,12 @@ window.ConceptSnapped = function(game){
         if(args.args && args.args['team'])
           this.team = args.args['team'].map(o => parseInt(o));
 
-        if(stateName == "addHint" || stateName == "guessWord")
-          this.game.gamedatas.word = args.args['_private'];
+        if(stateName == "addHint" || stateName == "guessWord"){
+          this.game.gamedatas.word = args.args.word;
+          this.game.gamedatas.wordCount = args.args.wordCount;
+          if(args.args['_private'])
+            this.game.gamedatas.word = args.args['_private'];
+        }
 
       	// Call appropriate method
       	var methodName = "onEnteringState" + stateName.charAt(0).toUpperCase() + stateName.slice(1);
@@ -352,6 +383,9 @@ window.ConceptSnapped = function(game){
 
       notif_addHint: function(n){
         debug("Notif: new hint", n);
+        for(var a in n.args){
+          n.args[a] = parseInt(n.args[a]);
+        }
         this.hints.push(n.args);
       },
 
@@ -447,6 +481,12 @@ window.ConceptSnapped = function(game){
           if(guess.id == n.args.gId)
             guess.feedback = n.args.feedback;
         });
+      },
+
+
+      notif_wordFound: function(n){
+        debug("Notf: word found", n);
+        this.game.gamedatas.word = n.args.word;
       },
 
       ////////////////////////////////
@@ -564,6 +604,7 @@ window.ConceptSnapped = function(game){
           ['clearColor',5],
           ['newGuess',5],
           ['newFeedback',5],
+          ['wordFound',5],
           ['orderHints', 5],
           ['updatePlayersInfo',5]
       	];

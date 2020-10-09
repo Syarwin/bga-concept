@@ -3,7 +3,10 @@
 <div id="concept-app" @click="unselectSymbol">
 	<div id="concept-container">
 		<div id="concept-guesses-container">
-				<h2 v-if="isClueGiver" id="word-display">{{ word }}</h2>
+				<h2 id="word-counter">
+					{{ wordCount }} / {{ endOfGame}}
+				</h2>
+				<h2 id="word-display" :data-lvl='wordLvl'>{{ word }}</h2>
 				<h2>Guesses</h2>
 				<ul id="concept-guesses">
 					<input type="text" id="concept-guess"
@@ -42,7 +45,7 @@
 			<div id="hints-only" v-if="!isClueGiver" v-show="hints.length > 0">
 				<ul v-for="row in organizedHints">
 					<li class="hint" v-for="hint in row" :key="hint.id">
-						<div class="img" :data-symbol="hint.sId">
+						<div class="img" :data-symbol="hint.sId" :id="'hints-only-' + hint.id">
 							<div class="mark" :data-color="hint.mColor" :data-type="hint.mType">
 								<span class="badge badge-secondary" v-if="hint.n > 1">{{ hint.n }}</span>
 							</div>
