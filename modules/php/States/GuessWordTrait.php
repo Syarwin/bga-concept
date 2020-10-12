@@ -100,7 +100,7 @@ trait GuessWordTrait {
     $player = Guess::getPlayer($gId);
 		$word = Log::getCurrentWord();
 		$this->notifyAllPlayers('wordFound', clienttranslate('${player_name} found the word ! It was : ${wordTxt}'), [
-			'wordTxt' => CONCEPT_CARDS[$word['card']][$word['i']][$word['j']],
+			'wordTxt' => $this->getCards()[$word['card']][$word['i']][$word['j']],
       'word' => $word,
 			'player_name' => $player['name'],
 		]);

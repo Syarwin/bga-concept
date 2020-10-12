@@ -72,10 +72,15 @@ class Concept extends Table
 	/*
 	 * getAllDatas:
 	 */
+	public function getCards(){
+ 		return $this->cards['EN'];
+ 	}
+
+
 	protected function getAllDatas(){
 		return [
 			'mode' => $this->getGameStateValue('optionHint') == FREE? 'free' : 'snapped',
-			'cards' => CONCEPT_CARDS,
+			'cards' => $this->getCards(),
 			'hints' => CPT\Hint::getUiData(),
 			'players' => CPT\PlayerManager::getUiData(),
 			'team' => CPT\Log::getCurrentTeam(),
@@ -110,7 +115,7 @@ class Concept extends Table
 	/*
 	 * stNextRound: determine who is gonna choose a word to guess
 	 */
-	function stNextRound(){
+	public function stNextRound(){
 		if(CPT\Guess::countFoundWords() == $this->getEndOfGameCondition()){
 			$this->gamestate->nextState('endGame');
 			return;
@@ -118,7 +123,7 @@ class Concept extends Table
 
 		// Keep only cards not played yet, and draw a random on
 		$previousCards = CPT\Log::getCardsDrawn();
-		$cards = array_values(array_filter(array_keys(CONCEPT_CARDS), function($cardId) use ($previousCards){
+		$cards = array_values(array_filter(array_keys($this->getCards()), function($cardId) use ($previousCards){
 			return !in_array($cardId, $previousCards);
 		}));
 		$newCardIndex = bga_rand(0, count($cards) - 1);
