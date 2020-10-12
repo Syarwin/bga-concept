@@ -24,15 +24,21 @@ trait GuessWordTrait {
 	/*
 	 * argGuessWord: display word only to the team members
 	 */
-	function argGuessWord(){
-		return [
-			'team' => Log::getCurrentTeam(),
+	function argPlay(){
+    $team = Log::getCurrentTeam();
+		$data = [
+			'team' => $team,
       'wordCount' => Guess::countFoundWords(),
       'word' => Log::getCurrentWord(0),
-			'_private' => [
-				'active' => Log::getCurrentWord()
-			]
+			'_private' => []
 		];
+
+    $word = Log::getCurrentWord();
+    foreach($team as $pId){
+      $data['_private'][$pId] = $word;
+    }
+
+    return $data;
 	}
 
 	/*

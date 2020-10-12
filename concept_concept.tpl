@@ -42,7 +42,7 @@
 		</transition>
 
 		<div id="concept-grid-container">
-			<div id="hints-only" v-if="!isClueGiver" v-show="hints.length > 0">
+			<div id="hints-only" v-if="!isClueGiver" v-if="hints.length > 0">
 				<ul v-for="row in organizedHints">
 					<li class="hint" v-for="hint in row" :key="hint.id">
 						<div class="img" :data-symbol="hint.sId" :id="'hints-only-' + hint.id">

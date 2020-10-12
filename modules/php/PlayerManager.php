@@ -100,12 +100,12 @@ class PlayerManager extends \APP_DbObject
     // First team : pick the two first players by no
     if(is_null($previousTeam)){
       $players = self::getPlayersLeft();
-      $newTeam = $optionTeam == ONE_PLAYER? [$players[0]] : [$players[0], $players[1]];
+      $newTeam = $optionTeam == TWO_PLAYERS? [$players[0], $players[1]] : [$players[0]];
     }
     // Otherwise : pick the following two
     else {
-      $players = self::getPlayersLeftStartingWith($previousTeam[ONE_PLAYER? 0 : 1]);
-      $newTeam = $optionTeam == ONE_PLAYER? [$players[1]] : [$players[1], $players[2]];
+      $players = self::getPlayersLeftStartingWith($previousTeam[$optionTeam == TWO_PLAYERS? 1 : 0]);
+      $newTeam = $optionTeam == TWO_PLAYERS? [$players[1], $players[2]] : [$players[0]];
     }
 
     return $newTeam;

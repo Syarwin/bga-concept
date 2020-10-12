@@ -93,7 +93,7 @@ window.ConceptSnapped = function(game){
       // Compute a succinct representation of hints using parentId
       organizedHints: function(){
         var t = [];
-        for(var i = 1; i < 5; i++)
+        for(var i = 1; i <= 5; i++)
           t[i] = [];
 
         var order = [];

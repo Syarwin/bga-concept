@@ -16,20 +16,6 @@ trait AddHintTrait {
 	}
 
 	/*
-	 * argAddHint: display word only to the team members
-	 */
-	function argAddHint(){
-		return [
-			'team' => Log::getCurrentTeam(),
-			'word' => Log::getCurrentWord(0),
-			'wordCount' => Guess::countFoundWords(),
-			'_private' => [
-				'active' => Log::getCurrentWord()
-			]
-		];
-	}
-
-	/*
  	 * confirmHints: allow a player to inactive itself for turn based games
  	 */
 	function confirmHints(){
