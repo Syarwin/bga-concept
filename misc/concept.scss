@@ -232,6 +232,7 @@ $columns:(
 
     div#concept-guesses-container {
       width:200px;
+      min-height:700px;
       flex-shrink: 0;
       display:flex;
       flex-flow:column;
@@ -386,6 +387,7 @@ $columns:(
           animation-iteration-count: 4;
           border-radius:5px;
           background-repeat:no-repeat;
+          filter:drop-shadow(2px 2px 0px white) drop-shadow(-2px -2px 0px white) drop-shadow(2px -2px 0px white) drop-shadow(-2px 2px 0px white);
 
           &[data-type="0"] { background-image:url("img/main-marks.png"); height:55px; }
           &[data-type="1"] { background-image:url("img/cube-marks.png"); }
@@ -452,6 +454,7 @@ $columns:(
               background-size:500%;
               background-repeat:no-repeat;
               position:relative;
+              filter:drop-shadow(2px 2px 0px white) drop-shadow(-2px -2px 0px white) drop-shadow(2px -2px 0px white) drop-shadow(-2px 2px 0px white);
 
               &[data-type="0"] { background-image:url("img/main-marks-centered.png");}
               &[data-type="1"] { background-image:url("img/cube-marks.png"); }
@@ -484,72 +487,141 @@ $columns:(
       }
 
 
-      div#hints-only {
-        width:97%;
-        display:flex;
-        flex-direction:column;
-        justify-content:safe center;
-        align-items: stretch;
-        max-height:100%;
-        overflow:auto;
-        background-color:rgba(255, 255, 255, 0.7);
-        border:1px solid rgba(0, 0, 0, 0.3);
-        border-radius:5px;
+      div#hints-only-container {
+        display: flex;
+        flex-flow:row;
+        width:100%;
 
-        ul {
+        div#toggle-grid {
+          width:120px;
+          height:40px;
+          margin:0 10px;
+          background-color:rgba(255, 255, 255, 0.7);
+          border:1px solid rgba(0, 0, 0, 0.3);
+          border-radius:5px;
+          position: absolute;
+          top: 0;
+          right: 0;
+
+          #grid-switch {
+            .checkbox {
+            	opacity: 0;
+            	position: absolute;
+            }
+
+            svg {
+              width:20px;
+              margin:0 3px;
+              position:relative;
+              left:4px;
+              top:2px;
+            }
+
+            .label {
+            	background-color: #2c3037;
+            	border-radius: 50px;
+            	cursor: pointer;
+            	display: inline-block;
+              position: relative;
+              top:7px;
+              left:4px;
+            	height: 26px;
+            	width: 50px;
+            }
+
+            .label .ball {
+            	background-color: #fff;
+            	border-radius: 50%;
+            	position: absolute;
+            	top: 2px;
+            	left: 2px;
+            	height: 22px;
+            	width: 22px;
+            	transform: translateX(0px);
+            	transition: transform 0.2s linear, color 0.7s linear;
+            }
+
+            .checkbox:checked + .label .ball {
+            	transform: translateX(24px);
+            }
+          }
+        }
+
+        div#hints-only {
+          flex-grow:1;
+          margin-left:10px;
+          margin-right:140px;
           display:flex;
-          flex-direction:row;
-          justify-content:center;
-          align-items:center;
-          margin-bottom:0.5rem;
-          flex-wrap:wrap;
+          flex-direction:column;
+          justify-content:safe center;
+          align-items: stretch;
+          max-height:100%;
+          overflow:auto;
+          background-color:rgba(255, 255, 255, 0.7);
+          border:1px solid rgba(0, 0, 0, 0.3);
+          border-radius:5px;
 
-          li.hint {
+          &.alone {
+            margin:0 !important;
+            background-color:transparent !important;
+            border:none !important;
+          }
+
+          ul {
             display:flex;
             flex-direction:row;
-            align-items:center;
             justify-content:center;
-            padding:0.5rem;
-            margin:0.1rem 0.5rem;
+            align-items:center;
+            margin-bottom:0.5rem;
+            flex-wrap:wrap;
 
-            div.img {
-              position:relative;
-              width:3.5rem;
-              height:3.5rem;
-              background-size:contain;
-              background-repeat:no-repeat;
-              background-position:center center;
-              background-image:url("img/concept-symbols.png");
-              background-size:cover;
-              cursor:help;
+            li.hint {
+              display:flex;
+              flex-direction:row;
+              align-items:center;
+              justify-content:center;
+              padding:0.5rem;
+              margin:0.1rem 0.5rem;
 
-              @for $i from 0 through $numberOfSymbols {
-                &[data-symbol="#{$i}"] { background-position:$i*100%/$numberOfSymbols center; }
-              }
-
-              div.mark {
-                display:block;
-                width:30px;
-                height:30px;
-                margin: 0.5rem 0;
-                background-size:500%;
+              div.img {
+                position:relative;
+                width:3.5rem;
+                height:3.5rem;
+                background-size:contain;
                 background-repeat:no-repeat;
-                position:absolute;
-                bottom: -20px;
-                right: -19px;
-                filter: drop-shadow(-1px -1px 0px white) drop-shadow(1px 1px 0px black);
+                background-position:center center;
+                background-image:url("img/concept-symbols.png");
+                background-size:cover;
+                cursor:help;
 
-                &[data-type="0"] { background-image:url("img/main-marks.png"); height:55px; }
-                &[data-type="1"] { background-image:url("img/cube-marks.png"); }
-
-                @for $i from 0 through 4 {
-                  &[data-color="#{$i+1}"] { background-position:$i*100%/4 center; }
+                @for $i from 0 through $numberOfSymbols {
+                  &[data-symbol="#{$i}"] { background-position:$i*100%/$numberOfSymbols center; }
                 }
 
-                span {
+                div.mark {
+                  display:block;
+                  width:30px;
+                  height:30px;
+                  margin: 0.5rem 0;
+                  background-size:500%;
+                  background-repeat:no-repeat;
                   position:absolute;
-                  bottom:19px;
-                  right:-1px;
+                  bottom: -20px;
+                  right: -19px;
+                  filter: drop-shadow(-1px -1px 0px white) drop-shadow(1px 1px 0px black);
+
+                  &[data-type="0"] { background-image:url("img/main-marks.png"); height:55px; }
+                  &[data-type="1"] { background-image:url("img/cube-marks.png"); }
+
+                  @for $i from 0 through 4 {
+                    &[data-color="#{$i+1}"] { background-position:$i*100%/4 center; }
+                  }
+
+                  span {
+                    position:absolute;
+                    bottom:19px;
+                    right:-1px;
+                  }
                 }
               }
             }
@@ -840,7 +912,7 @@ div#concept-feedback-overlay {
 
   div#concept-feedback-container {
     width:500px;
-    height:150px;
+    height:190px;
     background-color: white;
     border-radius:20px;
 
@@ -856,16 +928,22 @@ div#concept-feedback-overlay {
       justify-content: center;
 
       li {
-        width:75px;
-        height:75px;
-        background-image:url("img/feedback.png");
-        background-repeat:no-repeat;
-        background-size:cover;
         cursor:pointer;
+        width:90px;
+        text-align: center;
 
-        &#concept-feedback-0 { background-position:0% 0%; }
-        &#concept-feedback-1 { background-position:0% 50%; }
-        &#concept-feedback-2 { background-position:0% 100%;}
+        div {
+          width:75px;
+          height:75px;
+          margin:auto;
+          background-image:url("img/feedback.png");
+          background-repeat:no-repeat;
+          background-size:cover;
+        }
+
+        &#concept-feedback-0 div { background-position:0% 0%; }
+        &#concept-feedback-1 div { background-position:0% 50%; }
+        &#concept-feedback-2 div { background-position:0% 100%;}
       }
     }
   }

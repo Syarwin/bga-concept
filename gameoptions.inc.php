@@ -103,4 +103,14 @@ $game_preferences = [
       DARK_MODE_ENABLED   => ['name' => totranslate('Enabled')],
     ]
   ],
+
+  DISPLAY_GRID => [
+    'name' => totranslate('Grid display as guesser (snapped mode only)'),
+    'needReload' => false,
+    'values' => [
+      GRID_VISIBLE => ['name' => totranslate('Visible')],
+      GRID_HIDDEN  => ['name' => totranslate('Hidden')],
+    ]
+  ],
+
 ];

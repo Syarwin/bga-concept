@@ -35,3 +35,7 @@ define('INFINITE', 2);
 define('DARK_MODE', 100);
 define('DARK_MODE_DISABLED', 1);
 define('DARK_MODE_ENABLED', 2);
+
+define('DISPLAY_GRID', 101);
+define('GRID_VISIBLE', 1);
+define('GRID_HIDDEN', 2);

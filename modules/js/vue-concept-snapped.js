@@ -3,6 +3,10 @@ window.ConceptSnapped = function(game){
   let DARK_MODE_DISABLED = 1;
   let DARK_MODE_ENABLED = 2;
 
+  let DISPLAY_GRID = 101;
+  let GRID_VISIBLE = 1;
+  let GRID_HIDDEN = 2;
+
   var isDebug = window.location.host == 'studio.boardgamearena.com' || window.location.hash.indexOf('debug') > -1;
   var debug = isDebug ? console.info.bind(window.console) : function () { };
 
@@ -43,6 +47,10 @@ window.ConceptSnapped = function(game){
       activePlayerId: function(){ return this.getActivePlayerId() },
 
       // Concept stuff
+      displayGrid: function(){
+        return this.game.prefs[DISPLAY_GRID].value == GRID_VISIBLE;
+      },
+
       word:function(){
         let w = this.game.gamedatas.word;
         if(w == null) return '';
@@ -170,6 +178,11 @@ window.ConceptSnapped = function(game){
 
       this.addDarkModeSwitch();
       setTimeout(() => this.onScreenWidthChange(), 1000);
+
+      dojo.connect($('chk-grid'),'onchange',
+        () => this.setPreferenceValue(DISPLAY_GRID, $('chk-grid').checked? GRID_HIDDEN : GRID_VISIBLE)
+      );
+      $('chk-grid').checked = !this.displayGrid;
     },
 
     watch: {
@@ -178,6 +191,11 @@ window.ConceptSnapped = function(game){
           dojo.query("#hints-only .hint .img").forEach(obj => {
             this.game.addTooltip(obj.id, this.symbols[dojo.attr(obj, "data-symbol")].join(", "), '');
           });
+        }, 10);
+      },
+      displayGrid: function (newValue, oldValue){
+        setTimeout(() => {
+          this.onScreenWidthChange();
         }, 10);
       }
     },

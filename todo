@@ -6,7 +6,7 @@ X Mode Snapped par défaut
 
 X Mode Scoring par défaut avec 1 point pour le joueur actif et un point pour celui qui a trouvé.
 
-_ Durée : 12 mots pour les partie de 6j ou moins et 2  tours de table pour les parties à 7j et plus.
+X Durée : 12 mots pour les partie de 6j ou moins et 2  tours de table pour les parties à 7j et plus.
 
 X Ne garder que 3 smileys : rouge pas content = c’est faux, orange moyen = c’est pas ça mais c’est pas loin, sourire vert = c’est la bonne réponse.
 
@@ -18,15 +18,15 @@ O Le drapeau de la langue doit être visible sur la table (dans le listing des t
 
 X Appelle à l’aide : NON
 
-_ Bouton Je passe pour le joueur actif : s’il clique, ça passe directement à un nouveau mot avec un nouveau joueur actif et personne ne gagne de point, n’y n’en perd.
+X Bouton Je passe pour le joueur actif : s’il clique, ça passe directement à un nouveau mot avec un nouveau joueur actif et personne ne gagne de point, n’y n’en perd.
 
-_ Bouton Je passe pour les autres joueurs : à la fin du sablier, un bouton Je passe devient disponible pour les autres joueurs. Si tous les joueurs cliquent, ça passe automatiquement au mot suivant.
+X Bouton Je passe pour les autres joueurs : à la fin du sablier, un bouton Je passe devient disponible pour les autres joueurs. Si tous les joueurs cliquent, ça passe automatiquement au mot suivant.
 
-_ Un décompte du nombre de cliques Je passe est visible pour que le joueur actif se rende compte de l’état d’esprit des autres joueurs.
+X Un décompte du nombre de cliques Je passe est visible pour que le joueur actif se rende compte de l’état d’esprit des autres joueurs.
 
 X La difficulté du mot choisi doit toujours être visible pour tous les joueurs.
 
-_ Créer un léger halo blanc autour des pions.
+X Créer un léger halo blanc autour des pions.
 
 X Snapped - Restreindre les possibilités des pions lorsque le joueur actif clique sur une case.
 
@@ -42,6 +42,6 @@ X Si suppression d’un !, suppression automatique des cubes de la même couleur
 
 X Affichage sur l’écran du joueur actif : plateau + historique
 
-_ Affichage sur l’écran des autres joueurs : Style RS + plateau (avec un bouton permettant de cacher le plateau ou de la faire réapparaitre.
+X Affichage sur l’écran des autres joueurs : Style RS + plateau (avec un bouton permettant de cacher le plateau ou de la faire réapparaitre.
 
 X Affichage des textes helper sur les icones style RS
