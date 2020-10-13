@@ -62,6 +62,7 @@ $machinestates = [
 		"transitions" => [
 			'confirm' => ST_GUESS_WORD,
 			'found' => ST_NEXT_ROUND,
+			'giveup' => ST_NEXT_ROUND,
 		]
   ],
 
@@ -77,6 +78,7 @@ $machinestates = [
 		"transitions" => [
 			'pass' => ST_ADD_HINT,
 			'found' => ST_NEXT_ROUND,
+			'giveup' => ST_NEXT_ROUND,
 		]
   ],
 

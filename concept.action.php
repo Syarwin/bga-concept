@@ -133,6 +133,12 @@ class action_concept extends APP_GameAction
     self::ajaxResponse();
   }
 
+  public function giveUp() {
+    self::setAjaxMode();
+    $result = $this->game->giveUp();
+    self::ajaxResponse();
+  }
+
 
   public function addFeedback() {
     self::setAjaxMode();

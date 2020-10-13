@@ -25,11 +25,9 @@ define('OPTION_HINT_MODE', 101);
 define('SNAPPED', 1);
 define('FREE', 2);
 
-define('OPTION_SCORING', 102);
-define('COMPETITIVE', 1);
-define('FUN', 2);
 
 define('OPTION_EOG_SCORE', 103);
+define('SHORT', 0);
 define('STANDARD', 1);
 define('INFINITE', 2);
 

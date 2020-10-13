@@ -46,8 +46,8 @@ class Concept extends Table
 		self::initGameStateLabels([
 			'optionTeam' => OPTION_TEAM_SIZE,
 			'optionHint' => OPTION_HINT_MODE,
-			'optionScoring' => OPTION_SCORING,
 			'optionEOG' => OPTION_EOG_SCORE,
+			'timerMicros' => 10,
 		]);
 	}
 	public static function get(){
@@ -65,6 +65,7 @@ class Concept extends Table
    */
 	protected function setupNewGame( $players, $options = [] ){
 		PlayerManager::setupNewGame($players);
+    self::setGameStateInitialValue('timerMicros', -1);
 		$this->activeNextPlayer();
 	}
 
@@ -78,6 +79,7 @@ class Concept extends Table
 
 
 	protected function getAllDatas(){
+		$start = floatval($this->getGameStateValue('timerMicros'));
 		return [
 			'mode' => $this->getGameStateValue('optionHint') == FREE? 'free' : 'snapped',
 			'cards' => $this->getCards(),
@@ -88,6 +90,7 @@ class Concept extends Table
 			'wordCount' => CPT\Guess::countFoundWords(),
 			'endOfGame' => $this->getEndOfGameCondition(),
 			'guesses' => CPT\Guess::getCurrent(),
+			'timer' => $start == -1? null : (microtime(true) - $start),
 		];
 	}
 
@@ -105,7 +108,10 @@ class Concept extends Table
 			return -1;
 
 		$nPlayers = count(CPT\PlayerManager::getPlayers());
-		return $nPlayers <= 6 ? 12 : (2*$nPlayers);
+		if($this->getGameStateValue('optionEOG') == SHORT)
+		 	return $nPlayers;
+		else
+			return $nPlayers <= 6 ? 12 : (2*$nPlayers);
 	}
 
 
@@ -133,10 +139,31 @@ class Concept extends Table
 		$newTeam = CPT\PlayerManager::getNewTeam();
 		CPT\Log::newTeam($newTeam);
 		$this->gamestate->setPlayersMultiactive($newTeam, 'startRound', true);
+		CPT\PlayerManager::resetFlag();
 		$this->gamestate->nextState('startRound');
 	}
 
 
+	public function giveUp(){
+		$continue = CPT\PlayerManager::giveUp(self::getCurrentPlayerId());
+		if(!$continue){
+			$word = CPT\Log::getCurrentWord();
+	    $wordTxt = $this->getCards()[$word['card']][$word['i']][$word['j']];
+			$this->notifyAllPlayers('wordFound', clienttranslate('Everyone gave up, the word was : ${wordTxt}'), [
+				'wordTxt' => $wordTxt,
+	      'word' => $word,
+			]);
+
+	    // Add a separator
+			Guess::newSeparator($wordTxt);
+			$this->notifyAllPlayers('newGuess', '', [
+				'pId' => -1,
+	      'guess' => base64_encode($wordTxt),
+			]);
+
+			$this->gamestate->nextState('giveup');
+		}
+	}
 
 
 	////////////////////////////////////

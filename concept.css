@@ -49,6 +49,10 @@ html {
   border-style: solid;
   border-width: 1px;
   width: 170px !important; }
+  .player-board.gaveup {
+    border-style: dashed;
+    border-width: 1px;
+    background: repeating-linear-gradient(45deg, rgba(120, 120, 120, 0.4), rgba(120, 120, 120, 0.6) 5px, rgba(120, 120, 120, 0.6) 5px, rgba(120, 120, 120, 0.4) 10px) !important; }
 
 .player_elo_wrap {
   display: none !important; }
@@ -111,6 +115,10 @@ html.darkmode {
   html.darkmode div#concept-guesses-container ul {
     background: #3b4048 !important;
     border-color: black !important; }
+    html.darkmode div#concept-guesses-container ul li {
+      color: white !important; }
+      html.darkmode div#concept-guesses-container ul li.separator {
+        background-color: #414851 !important; }
   html.darkmode div#concept-guesses-container input {
     background: #292d33 !important;
     color: #AAA;
@@ -204,7 +212,9 @@ html.darkmode {
           border-bottom: 1px dotted rgba(0, 0, 0, 0.3);
           word-wrap: break-word; }
           #concept-app #concept-container div#concept-guesses-container ul li.separator {
-            background-color: #DDD; }
+            background-color: #DDD;
+            text-align: center;
+            font-size: 12px; }
           #concept-app #concept-container div#concept-guesses-container ul li[data-feedback]::before {
             content: "";
             width: 24px;

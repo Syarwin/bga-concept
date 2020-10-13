@@ -69,29 +69,18 @@ $game_options = [
    ],
  ],
 
- OPTION_SCORING => [
-   'name' => totranslate('Scoring mode'),
-   'values' => [
-      FUN => [
-       'name' => totranslate('No scoring'),
-       'tmdisplay' => totranslate('Playing for fun'),
-       'description' => totranslate('Play as long as you want, no scoring and no end of game'),
-     ],
-     COMPETITIVE => [
-       'name' => totranslate('Scoring'),
-       'tmdisplay' => totranslate('Keeping track of the score'),
-       'description' => totranslate('Score for each word guessed correctly and trigger end of game when a certain score is reached'),
-       'nobeginner' => true,
-     ],
-   ],
- ],
-
  OPTION_EOG_SCORE=> [
    'name' => totranslate('End of game'),
+   'default' => STANDARD,
    'values' => [
+     SHORT => [
+       'name' => totranslate('Short'),
+       'tmdisplay' => totranslate('1 word per player'),
+       'description' => totranslate('Stop when 1 word per player are guess correctly'),
+     ],
      STANDARD => [
        'name' => totranslate('Standard'),
-       'tmdisplay' => totranslate('12 words / 2 words per players'),
+       'tmdisplay' => totranslate('12 words / 2 words per player'),
        'description' => totranslate('Stop when 12 words are guess correctly / 2 words per players'),
      ],
      INFINITE => [
@@ -100,13 +89,6 @@ $game_options = [
        'description' => totranslate('Play as long as you want'),
      ],
    ],
-   'displaycondition' => [
-      [
-        'type' => 'otheroption',
-        'id' => OPTION_SCORING,
-        'value' => COMPETITIVE,
-      ],
-    ],
   ]
 ];
 

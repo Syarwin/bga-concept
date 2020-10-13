@@ -26,10 +26,12 @@ trait GuessWordTrait {
 	 */
 	function argPlay(){
     $team = Log::getCurrentTeam();
+    $elapsed = microtime(true) - floatval($this->getGameStateValue('timerMicros'));
 		$data = [
 			'team' => $team,
       'wordCount' => Guess::countFoundWords(),
       'word' => Log::getCurrentWord(0),
+      'timer' => $elapsed,
 			'_private' => []
 		];
 
@@ -99,26 +101,26 @@ trait GuessWordTrait {
 
     $player = Guess::getPlayer($gId);
 		$word = Log::getCurrentWord();
+    $wordTxt = $this->getCards()[$word['card']][$word['i']][$word['j']];
 		$this->notifyAllPlayers('wordFound', clienttranslate('${player_name} found the word ! It was : ${wordTxt}'), [
-			'wordTxt' => $this->getCards()[$word['card']][$word['i']][$word['j']],
+			'wordTxt' => $wordTxt,
       'word' => $word,
 			'player_name' => $player['name'],
 		]);
 
     // Add a separator
-		Guess::newSeparator();
+		Guess::newSeparator($wordTxt);
 		$this->notifyAllPlayers('newGuess', '', [
 			'pId' => -1,
+      'guess' => base64_encode($wordTxt),
 		]);
 
 
     // Update scores
-    if($this->getGameStateValue('optionScoring') == COMPETITIVE){
-      $amount = intval(Concept::get()->getGameStateValue('optionTeam')) == ONE_PLAYER? 1 : 2;
-      PlayerManager::addScore($player['id'], $amount);
-      PlayerManager::addScoreTeam();
-      PlayerManager::updateUi();
-    }
+    $amount = intval(Concept::get()->getGameStateValue('optionTeam')) == ONE_PLAYER? 1 : 2;
+    PlayerManager::addScore($player['id'], $amount);
+    PlayerManager::addScoreTeam();
+    PlayerManager::updateUi();
 
 		$this->gamestate->nextState('found');
 	}

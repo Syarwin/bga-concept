@@ -58,6 +58,12 @@
   border-style: solid;
   border-width: 1px;
   width:170px !important;
+
+  &.gaveup {
+    border-style:dashed;
+    border-width: 1px;
+    background:repeating-linear-gradient( 45deg, rgba(120, 120, 120, 0.4), rgba(120, 120, 120, 0.6) 5px, rgba(120, 120, 120, 0.6) 5px, rgba(120, 120, 120, 0.4) 10px ) !important;
+  }
 }
 
 .player_elo_wrap {
@@ -156,6 +162,14 @@ html.darkmode {
     ul {
       background: #3b4048 !important;
       border-color:black !important;
+
+      li {
+        color:white !important;
+
+        &.separator {
+          background-color:#414851 !important;
+        }
+      }
     }
 
     input {
@@ -294,6 +308,8 @@ $columns:(
 
           &.separator {
             background-color:#DDD;
+            text-align: center;
+            font-size:12px;
           }
 
           &[data-feedback]::before {

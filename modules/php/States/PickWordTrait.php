@@ -27,6 +27,7 @@ trait PickWordTrait {
 	function pickWord($i, $j){
 		Log::newWord($i,$j);
     $this->clearHints();
+    self::setGameStateValue('timerMicros', microtime(true));
 		$this->gamestate->nextState();
 	}
 }

@@ -6,7 +6,7 @@
 				<h2 id="word-counter">
 					{{ wordCount }} / {{ endOfGame}}
 				</h2>
-				<h2 id="word-display" :data-lvl='wordLvl'>{{ word }}</h2>
+				<h2 id="word-display" :data-lvl='wordLvl' v-if="word != null"	>{{ word }}</h2>
 				<h2>Guesses</h2>
 				<ul id="concept-guesses">
 					<input type="text" id="concept-guess"
@@ -21,8 +21,8 @@
 							v-bind:class="{ separator : guess.pId == -1}">
 						<template v-if="guess.pId != -1">
 							<span v-bind:style="{ color : '#' + players[guess.pId].color }">{{ players[guess.pId].name}} </span>
-							{{ decode(guess.guess) }}
 						</template>
+							{{ decode(guess.guess) }}
 					</li>
 				</ul>
 		</div>

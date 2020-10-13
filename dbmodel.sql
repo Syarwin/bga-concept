@@ -39,3 +39,5 @@ CREATE TABLE IF NOT EXISTS `log` (
   `player_id` int(11),
   PRIMARY KEY (`log_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+ALTER TABLE `player` ADD `player_gaveup` INT(1) UNSIGNED NOT NULL;

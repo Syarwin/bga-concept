@@ -20,6 +20,8 @@ window.Concept = function(game){
       hints:game.gamedatas.hints,
       guesses:game.gamedatas.guesses,
       players:game.gamedatas.players,
+      timer:game.gamedatas.timer,
+      interval:"",
       team:[],
       displayCard:false,
       card:{},
@@ -59,12 +61,16 @@ window.Concept = function(game){
       isClueGiver: function(){
         return this.team.includes(this.playerId);
       },
+
+      gaveUp: function(){
+        return this.players[this.playerId].gaveup == 1;
+      },
     },
 
 
     created: function (){
       debug("SETUP", this.game.gamedatas);
-
+      this.updatePlayers(this.game.gamedatas.players);
       this.setupNotifications();
     },
 
@@ -122,6 +128,9 @@ window.Concept = function(game){
           if(stateName == "addHint" || stateName == "guessWord"){
             this.game.gamedatas.word = args.args.word;
             this.game.gamedatas.wordCount = args.args.wordCount;
+            this.game.gamedatas.timer = args.args.timer;
+            this.timer = args.args.timer;
+            this.launchInterval();
             if(args.args['_private'])
               this.game.gamedatas.word = args.args['_private'];
           }
@@ -169,6 +178,10 @@ window.Concept = function(game){
       onUpdateActionButtons: function (stateName, args) {
       	debug('Update action buttons: ' + stateName, args);
 
+        if (["addHint", "guessWord"].includes(stateName) && this.timer > 180 && !this.gaveUp){
+          this.addPrimaryActionButton("btnGiveUp", _("Give up"), () => this.giveUp());
+        }
+
       	if (!this.isCurrentPlayerActive()) // Make sure the player is active
       		return;
 
@@ -192,12 +205,38 @@ window.Concept = function(game){
       },
 
 
+      launchInterval: function(){
+        this.interval = setInterval( () => {
+          this.timer += 1;
+          if(this.timer > 180){
+            clearInterval(this.interval);
+            this.clearPossible();
+          }
+        }, 1000);
+      },
+
+      giveUp: function(){
+        this.takeAction("giveUp", {});
+        this.removeActionButtons();
+      },
+
+
+      updatePlayers: function(players){
+        Object.values(players).forEach(player => {
+          if(this.game.scoreCtrl[player.id])
+            this.game.scoreCtrl[player.id].setValue(player.score);
+
+          dojo.removeClass('overall_player_board_' + player.id, "gaveup cluegiver")
+          if(player.gaveup == 1){
+            console.log(player,"test")
+            dojo.addClass('overall_player_board_' + player.id, "gaveup");
+          }
+        });
+      },
+
       notif_updatePlayersInfo: function(n){
         debug("Notif: update users", n);
-
-        Object.values(n.args.players).forEach(player => {
-          this.game.scoreCtrl[player.id].setValue(player.score);
-        });
+        this.updatePlayers(n.args.players);
       },
 
 

@@ -15,9 +15,10 @@ class Guess extends \APP_DbObject
     return self::DbGetLastId();
   }
 
-  public static function newSeparator()
+  public static function newSeparator($txt)
   {
-    self::DbQuery("INSERT INTO guess (`log_id`, `player_id`) VALUES (-1,-1)");
+    $safe = addslashes(base64_encode($txt));
+    self::DbQuery("INSERT INTO guess (`log_id`, `player_id`, `guess`) VALUES (-1,-1, '$safe')");
   }
 
   public static function getCurrent()

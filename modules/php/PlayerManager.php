@@ -11,7 +11,7 @@ class PlayerManager extends \APP_DbObject
 	public static function setupNewGame($players)	{
 		self::DbQuery('DELETE FROM player');
 		$gameInfos = Concept::get()->getGameinfos();
-		$sql = 'INSERT INTO player (player_id, player_color, player_canal, player_name, player_avatar) VALUES ';
+		$sql = 'INSERT INTO player (player_id, player_color, player_canal, player_name, player_avatar, player_gaveup) VALUES ';
 
 		$values = [];
 		$i = 0;
@@ -21,7 +21,7 @@ class PlayerManager extends \APP_DbObject
 			$name = $player['player_name'];
 			$avatar = addslashes($player['player_avatar']);
 			$name = addslashes($player['player_name']);
-			$values[] = "($pId, '$color','$canal','$name','$avatar')";
+			$values[] = "($pId, '$color','$canal','$name','$avatar', 0)";
 		}
 		self::DbQuery($sql . implode($values, ','));
     Concept::get()->reattributeColorsBasedOnPreferences($players, $gameInfos['player_colors'] );
@@ -42,7 +42,7 @@ class PlayerManager extends \APP_DbObject
 	 * if $asArrayCollection is set to true it return the result as a map $id=>array
 	 */
 	public static function getPlayers($playerIds = null, $asArrayCollection = false) {
-		$columns = ["id", "no", "name", "color", "eliminated", "score", "zombie"];
+		$columns = ["id", "no", "name", "color", "eliminated", "score", "zombie", "gaveup"];
 		$sqlcolumns = [];
 		foreach($columns as $col) $sqlcolumns[] = "player_$col $col";
 		$sql = "SELECT " . implode(", ", $sqlcolumns) . " FROM player" ;
@@ -84,7 +84,7 @@ class PlayerManager extends \APP_DbObject
 
 
 	public static function getPlayersLeftStartingWith($pId) {
-		return self::getObjectListFromDB("SELECT player_id id FROM player WHERE player_eliminated = 0 ORDER BY player_no <= (SELECT player_no no FROM player WHERE player_id = $pId), player_no", true);
+		return self::getObjectListFromDB("SELECT player_id id FROM player WHERE player_eliminated = 0 ORDER BY player_no < (SELECT player_no no FROM player WHERE player_id = $pId), player_no", true);
 	}
 
   public static function getNextPlayer($player) {
@@ -105,7 +105,7 @@ class PlayerManager extends \APP_DbObject
     // Otherwise : pick the following two
     else {
       $players = self::getPlayersLeftStartingWith($previousTeam[$optionTeam == TWO_PLAYERS? 1 : 0]);
-      $newTeam = $optionTeam == TWO_PLAYERS? [$players[1], $players[2]] : [$players[0]];
+      $newTeam = $optionTeam == TWO_PLAYERS? [$players[1], $players[2]] : [$players[1]];
     }
 
     return $newTeam;
@@ -123,6 +123,39 @@ class PlayerManager extends \APP_DbObject
         self::addScore($pId);
       }
     }
+  }
+
+  public static function resetFlag(){
+    self::DbQuery("UPDATE player SET player_gaveup = 0");
+    self::updateUi();
+  }
+
+  public static function giveUp($pId){
+    self::DbQuery("UPDATE player SET player_gaveup = 1 WHERE player_id = $pId");
+    $player = self::getPlayer($pId);
+    Concept::get()->notifyAllPlayers("updatePlayersInfo", clienttranslate('${player_name} gave up'), [
+      'player_name' => $player['name'],
+      'players' => self::getUiData(),
+    ]);
+
+    // Are we still playing ?
+    $players = self::getStillPlayingPlayers();
+		$team = Log::getCurrentTeam();
+		$continueHint = false;
+		$continueGuess = false;
+		foreach($players as $pId){
+			if(in_array($pId, $team))
+				$continueGuess = true;
+			else
+				$continueHint = true;
+		}
+
+    return $continueHint && $continueGuess;
+  }
+
+  public static function getStillPlayingPlayers(){
+    return self::getObjectListFromDB("SELECT player_id id FROM player WHERE player_gaveup = 0", true);
+
   }
 
   public static function updateUi(){
