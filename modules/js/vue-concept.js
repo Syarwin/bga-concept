@@ -3,6 +3,10 @@ window.Concept = function(game){
   let DARK_MODE_DISABLED = 1;
   let DARK_MODE_ENABLED = 2;
 
+  let DISPLAY_TIMER = 102;
+  let TIMER_VISIBLE = 1;
+  let TIMER_HIDDEN = 2;
+
   var isDebug = window.location.host == 'studio.boardgamearena.com' || window.location.hash.indexOf('debug') > -1;
   var debug = isDebug ? console.info.bind(window.console) : function () { };
 
@@ -39,6 +43,19 @@ window.Concept = function(game){
       activePlayerId: function(){ return this.getActivePlayerId() },
 
       // Concept stuff
+      displayTimer: function(){
+        return this.game.prefs[DISPLAY_TIMER].value == TIMER_VISIBLE;
+      },
+
+      formatedTimer: function(){
+        if(this.timer == null)
+          return "";
+
+        let m = parseInt(this.timer/60);
+        let s = "" + parseInt(this.timer)%60;
+        return m + ":" + s.padStart(2, '0');
+      },
+
       word:function(){
         let w = this.game.gamedatas.word;
         if(w == null) return '';
@@ -118,6 +135,9 @@ window.Concept = function(game){
        */
       onEnteringState: function(stateName, args){
         debug('Entering state: ' + stateName, args);
+
+        if(stateName == "pickWord")
+          clearInterval(this.interval);
 
         // Stop here if it's not the current player's turn for some states
       	if (["pickWord"].includes(stateName) && !this.isCurrentPlayerActive()) return;
@@ -206,10 +226,13 @@ window.Concept = function(game){
 
 
       launchInterval: function(){
+        if(this.interval)
+          clearInterval(this.interval);
+
         this.interval = setInterval( () => {
           this.timer += 1;
           if(this.timer > 180){
-            clearInterval(this.interval);
+//            clearInterval(this.interval);
             this.clearPossible();
           }
         }, 1000);

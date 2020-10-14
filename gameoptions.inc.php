@@ -113,4 +113,13 @@ $game_preferences = [
     ]
   ],
 
+  DISPLAY_TIMER => [
+    'name' => totranslate('Display the timer'),
+    'needReload' => false,
+    'values' => [
+      TIMER_VISIBLE => ['name' => totranslate('Visible')],
+      TIMER_HIDDEN  => ['name' => totranslate('Hidden')],
+    ]
+  ],
+
 ];

@@ -165,8 +165,27 @@ html.darkmode {
         border: 1px solid rgba(0, 0, 0, 0.3);
         border-top-left-radius: 5px;
         border-top-right-radius: 5px; }
-        #concept-app #concept-container div#concept-guesses-container h2#word-counter {
-          border-bottom: 0; }
+        #concept-app #concept-container div#concept-guesses-container h2#current-word {
+          border-bottom: 0;
+          display: flex;
+          flex-flow: row;
+          justify-content: space-around; }
+          #concept-app #concept-container div#concept-guesses-container h2#current-word #word-timer {
+            display: flex;
+            align-items: center;
+            margin-left: 10px; }
+            #concept-app #concept-container div#concept-guesses-container h2#current-word #word-timer::after {
+              content: '';
+              display: block;
+              width: 30px;
+              height: 34px;
+              background-image: url("img/timer.png");
+              background-size: contain;
+              float: right;
+              margin-left: 9px;
+              margin-top: -6px;
+              margin-bottom: -6px;
+              background-repeat: no-repeat; }
         #concept-app #concept-container div#concept-guesses-container h2#word-display {
           font-weight: normal;
           margin-bottom: 10px;
@@ -1275,7 +1294,8 @@ html.darkmode {
           #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only.alone {
             margin: 0 !important;
             background-color: transparent !important;
-            border: none !important; }
+            border: none !important;
+            transform: scale(1.5); }
           #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul {
             display: flex;
             flex-direction: row;

@@ -7,6 +7,10 @@ window.ConceptSnapped = function(game){
   let GRID_VISIBLE = 1;
   let GRID_HIDDEN = 2;
 
+  let DISPLAY_TIMER = 102;
+  let TIMER_VISIBLE = 1;
+  let TIMER_HIDDEN = 2;
+
   var isDebug = window.location.host == 'studio.boardgamearena.com' || window.location.hash.indexOf('debug') > -1;
   var debug = isDebug ? console.info.bind(window.console) : function () { };
 
@@ -49,6 +53,18 @@ window.ConceptSnapped = function(game){
       // Concept stuff
       displayGrid: function(){
         return this.game.prefs[DISPLAY_GRID].value == GRID_VISIBLE;
+      },
+      displayTimer: function(){
+        return this.game.prefs[DISPLAY_TIMER].value == TIMER_VISIBLE;
+      },
+
+      formatedTimer: function(){
+        if(this.timer == null)
+          return "";
+
+        let m = parseInt(this.timer/60);
+        let s = "" + parseInt(this.timer)%60;
+        return m + ":" + s.padStart(2, '0');
       },
 
       word:function(){
@@ -178,11 +194,6 @@ window.ConceptSnapped = function(game){
 
       this.addDarkModeSwitch();
       setTimeout(() => this.onScreenWidthChange(), 1000);
-
-      dojo.connect($('chk-grid'),'onchange',
-        () => this.setPreferenceValue(DISPLAY_GRID, $('chk-grid').checked? GRID_HIDDEN : GRID_VISIBLE)
-      );
-      $('chk-grid').checked = !this.displayGrid;
     },
 
     watch: {
@@ -222,6 +233,9 @@ window.ConceptSnapped = function(game){
       onEnteringState: function(stateName, args){
         debug('Entering state: ' + stateName, args);
 
+        if(stateName == "pickWord")
+          clearInterval(this.interval);
+
         // Stop here if it's not the current player's turn for some states
       	if (["pickWord"].includes(stateName) && !this.isCurrentPlayerActive()) return;
 
@@ -231,8 +245,8 @@ window.ConceptSnapped = function(game){
         if(stateName == "addHint" || stateName == "guessWord"){
           this.game.gamedatas.word = args.args.word;
           this.game.gamedatas.wordCount = args.args.wordCount;
-          this.game.gamedatas.timer = args.args.timer;
-          this.timer = args.args.timer;
+          this.game.gamedatas.timer = parseInt(args.args.timer);
+          this.timer = parseInt(args.args.timer);
           this.launchInterval();
           if(args.args['_private'])
             this.game.gamedatas.word = args.args['_private'];
@@ -295,10 +309,13 @@ window.ConceptSnapped = function(game){
 
 
       launchInterval: function(){
+        if(this.interval)
+          clearInterval(this.interval);
+
         this.interval = setInterval( () => {
           this.timer += 1;
           if(this.timer > 180){
-            clearInterval(this.interval);
+//            clearInterval(this.interval);
             this.clearPossible();
           }
         }, 1000);
@@ -605,6 +622,10 @@ window.ConceptSnapped = function(game){
 
       setPreferenceValue: function(pref, newVal){
         this.game.setPreferenceValue(pref, newVal)
+      },
+
+      toggleGrid: function(){
+        this.setPreferenceValue(DISPLAY_GRID, $('chk-grid').checked? GRID_HIDDEN : GRID_VISIBLE)
       },
 
       toggleDarkMode: function(enabled){

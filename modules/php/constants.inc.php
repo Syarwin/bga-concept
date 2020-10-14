@@ -39,3 +39,7 @@ define('DARK_MODE_ENABLED', 2);
 define('DISPLAY_GRID', 101);
 define('GRID_VISIBLE', 1);
 define('GRID_HIDDEN', 2);
+
+define('DISPLAY_TIMER', 102);
+define('TIMER_VISIBLE', 1);
+define('TIMER_HIDDEN', 2);
