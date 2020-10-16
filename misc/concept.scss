@@ -133,7 +133,7 @@ html.darkmode {
     background: #3b4048 !important;
   }
 
-  #concept-marks {
+  #concept-marks-container, #concept-marks-clear div {
     background-color:#383e46 !important;
     border-color: black !important;
   }
@@ -186,6 +186,22 @@ html.darkmode {
       background:#292d33 !important;
       &:hover {
         background:#dc3545 !important;
+      }
+    }
+  }
+
+  div#hints-only {
+    background-color:#3b4048 !important;
+  }
+
+  div#toggle-grid {
+    background-color:#3b4048 !important;
+    color:grey;
+
+    label {
+      background-color: #777 !important;
+      .ball {
+        background-color: #2c3037 !important;
       }
     }
   }
@@ -375,7 +391,6 @@ $columns:(
     #concept-grid-container {
       flex-grow:1;
       display:flex;
-      justify-content: center;
       align-items: center;
       flex-flow:column;
       overflow:hidden;
@@ -388,7 +403,6 @@ $columns:(
         display:flex;
         justify-content: center;
         align-items: center;
-        transform-origin: center top;
       }
 
       #concept-grid {
@@ -479,10 +493,9 @@ $columns:(
               background-size:500%;
               background-repeat:no-repeat;
               position:relative;
-              filter:drop-shadow(2px 2px 0px white) drop-shadow(-2px -2px 0px white) drop-shadow(2px -2px 0px white) drop-shadow(-2px 2px 0px white);
 
-              &[data-type="0"] { background-image:url("img/main-marks-centered.png");}
-              &[data-type="1"] { background-image:url("img/cube-marks.png"); }
+              &[data-type="0"] { background-image:url("img/main-marks-bordered.png");}
+              &[data-type="1"] { background-image:url("img/cube-marks-bordered.png"); }
               @for $i from 0 through 4 {
                 &[data-color="#{$i+1}"] { background-position:$i*100%/4 center; }
               }
@@ -979,6 +992,129 @@ div#concept-feedback-overlay {
     }
   }
 }
+
+
+div#concept-card-reveal {
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:100;
+  width:100vw;
+  height:100vh;
+  background-color:rgba(30,30,30,0.5);
+  display:flex;
+  align-items: center;
+  justify-content: center;
+
+  div#concept-reveal-container {
+    width:382px;
+    height:579px;
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    transform:rotateY(0deg);
+
+    &.toggle {
+      transform:rotateY(180deg);
+    }
+
+    #concept-reveal-back, #concept-reveal-front {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden; /* Safari */
+      backface-visibility: hidden;
+      background-color: white;
+      border-radius:10px;
+      display:flex;
+      filter:drop-shadow(3px 3px 5px #222);
+
+      & > div {
+        width:342px;
+        height:539px;
+        margin:auto;
+        border:5px solid #c7c8ca;
+        border-radius: 45px;
+      }
+    }
+
+    #concept-reveal-back {
+      div {
+        background-image:url("img/point-concept.png");
+        background-size:60%;
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+    }
+
+    #concept-reveal-front {
+      transform: rotateY(180deg);
+
+      div {
+        #concept-reveal-smiley {
+          width:150px;
+          height:150px;
+          margin:30px auto;
+          background-image:url("img/feedback.png");
+          background-repeat:no-repeat;
+          background-size:cover;
+          background-position:0% 0%;
+          &.found  { background-position:0% 100%; }
+        }
+
+
+        h2 {
+          margin:60px auto;
+          text-align: center;
+        }
+
+        #concept-reveal-word {
+          width: 75%;
+          border: 3px solid black;
+          margin: 30px auto;
+          padding: 30px 10px;
+          text-align: center;
+          border-radius: 25px;
+          border-top-right-radius: 0px;
+          border-bottom-left-radius: 0px;
+          position:relative;
+
+          &::after {
+            content:'';
+            display:block;
+            width:40px;
+            height:40px;
+            position:absolute;
+            top:-20px;
+            right:-20px;
+            background-image:url('img/lvl.png');
+            background-size:cover;
+          }
+
+
+          &[data-lvl="0"] {
+            color:#00afec;
+            border-color:#00afec;
+            &::after { background-position:center 0%; }
+          }
+
+          &[data-lvl="1"] {
+            color:red;
+            border-color:red;
+            &::after { background-position:center 50%; }
+          }
+
+          &[data-lvl="2"] {
+            color:black;
+            border-color:black;
+            &::after { background-position:center 100%; }
+          }
+        }
+      }
+    }
+  }
+}
+
 
 
 

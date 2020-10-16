@@ -44,6 +44,11 @@ window.ConceptSnapped = function(game){
       selectedSymbol:null,
       guess:'',
       scale:1,
+      displayReveal:false,
+      revealSmiley:false,
+      revealMessage:"",
+      revealWord:"",
+      revealLvl:"0",
     },
     computed:{
       // BGA stuff
@@ -314,8 +319,7 @@ window.ConceptSnapped = function(game){
 
         this.interval = setInterval( () => {
           this.timer += 1;
-          if(this.timer > 180){
-//            clearInterval(this.interval);
+          if(this.timer > 180 && this.timer < 190){
             this.clearPossible();
           }
         }, 1000);
@@ -550,7 +554,16 @@ window.ConceptSnapped = function(game){
 
       notif_wordFound: function(n){
         debug("Notf: word found", n);
-        this.game.gamedatas.word = n.args.word;
+        let w = n.args.word;
+        this.game.gamedatas.word = w;
+        this.revealWord = this.game.gamedatas.cards[w.card][w.i][w.j];
+        this.revealLvl = w.i;
+        this.revealSmiley = n.args.player_name? true : false;
+        this.revealMessage = n.args.player_name?
+          dojo.string.substitute(_("${player} found the word"), { player : n.args.player_name })
+          : _("No one found the word :");
+        this.displayReveal = true;
+        setTimeout( () => dojo.addClass("concept-reveal-container", "toggle"), 500);
       },
 
       ////////////////////////////////
@@ -683,7 +696,7 @@ window.ConceptSnapped = function(game){
           ['clearColor',5],
           ['newGuess',5],
           ['newFeedback',5],
-          ['wordFound',5],
+          ['wordFound',1500],
           ['orderHints', 5],
           ['updatePlayersInfo',5]
       	];

@@ -36,6 +36,11 @@ window.Concept = function(game){
       dragOffset:null,
       guess:'',
       scale:1,
+      displayReveal:false,
+      revealSmiley:false,
+      revealMessage:"",
+      revealWord:"",
+      revealLvl:"0",
     },
     computed:{
       // BGA stuff
@@ -480,7 +485,16 @@ window.Concept = function(game){
 
       notif_wordFound: function(n){
         debug("Notf: word found", n);
-        this.game.gamedatas.word = n.args.word;
+        let w = n.args.word;
+        this.game.gamedatas.word = w;
+        this.revealWord = this.game.gamedatas.cards[w.card][w.i][w.j];
+        this.revealLvl = w.i;
+        this.revealSmiley = n.args.player_name? true : false;
+        this.revealMessage = n.args.player_name?
+          dojo.string.substitute(_("${player} found the word"), { player : n.args.player_name })
+          : _("No one found the word :");
+        this.displayReveal = true;
+        setTimeout( () => dojo.addClass("concept-reveal-container", "toggle"), 500);
       },
 
       /////////////////////////////////////////////

@@ -73,7 +73,7 @@
 			</div>
 
 
-			<div id="concept-grid-fixed-width" v-show="isClueGiver || displayGrid" v-bind:style="{ 'transform' : 'scale(' + scale +')', 'width' : '1100px' }">
+			<div id="concept-grid-fixed-width" v-show="isClueGiver || displayGrid" v-bind:style="{ 'transform' : 'scale(' + scale +')', 'width' : '1100px', 'height' : (800*scale) + 'px' }">
 				<div id="concept-grid" v-bind:style="{ borderColor: (draggedHint == null? 'transparent' : 'black') }">
 					<div v-for="(symbol, id) in symbols"
 						class="concept-symbol"
@@ -167,7 +167,7 @@
 
   </div>
 
-  <div id="concept-card-overlay" @click="displayCard = false" v-if="card != null && displayCard">
+  <div id="concept-card-overlay" @click="displayCard = false" v-if="card != null && displayCard && !displayReveal">
     <div id="concept-card">
       <ul id="concept-card-easy">
         <li @click="selectCardWord(0,0)">{{ card[0][0] }}</li>
@@ -208,6 +208,23 @@
 			<h2>{{ _("The correct word: ") + word }}</h2>
     </div>
   </div>
+
+
+	<div id="concept-card-reveal" @click="displayReveal = false" v-if="displayReveal">
+		<div id="concept-reveal-container">
+			<div id="concept-reveal-back"><div></div></div>
+			<div id="concept-reveal-front">
+				<div>
+					<div id="concept-reveal-smiley" v-bind:class="{ 'found' : revealSmiley }"></div>
+					<h2 v-html="revealMessage"></h2>
+					<div id="concept-reveal-word" :data-lvl="revealLvl">
+						{{ revealWord }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
 
 {OVERALL_GAME_FOOTER}

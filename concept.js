@@ -30,7 +30,7 @@
  ], function (dojo, declare) {
  	return declare("bgagame.concept", ebg.core.gamegui, {
     constructor: function () {
-      this.default_viewport = 'width=1200, user-scalable=no';
+      this.default_viewport = 'width=900, user-scalable=yes';
       this._app = null;
     },
     setup: function (gamedatas) {
