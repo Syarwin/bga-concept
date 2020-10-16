@@ -990,253 +990,255 @@ html.darkmode {
                 bottom: 4px;
                 right: 4px; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol div.symbol-img {
-            width: 50px;
-            height: 50px;
-            background-repeat: no-repeat;
-            background-position: center center;
+            width: 52px;
+            height: 51px;
             cursor: help;
+            border: 1px solid #444;
+            border-radius: 10px;
+            box-sizing: border-box;
             background-image: url("img/concept-symbols.png");
-            background-size: cover; }
+            background-size: 1000%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-0 div.symbol-img {
-            background-position: 0% center; }
+            background-position: 0% 0%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-1 div.symbol-img {
-            background-position: 0.8547008547% center; }
+            background-position: 11.1111111111% 0%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-2 div.symbol-img {
-            background-position: 1.7094017094% center; }
+            background-position: 22.2222222222% 0%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-3 div.symbol-img {
-            background-position: 2.5641025641% center; }
+            background-position: 33.3333333333% 0%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-4 div.symbol-img {
-            background-position: 3.4188034188% center; }
+            background-position: 44.4444444444% 0%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-5 div.symbol-img {
-            background-position: 4.2735042735% center; }
+            background-position: 55.5555555556% 0%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-6 div.symbol-img {
-            background-position: 5.1282051282% center; }
+            background-position: 66.6666666667% 0%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-7 div.symbol-img {
-            background-position: 5.9829059829% center; }
+            background-position: 77.7777777778% 0%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-8 div.symbol-img {
-            background-position: 6.8376068376% center; }
+            background-position: 88.8888888889% 0%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-9 div.symbol-img {
-            background-position: 7.6923076923% center; }
+            background-position: 100% 0%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-10 div.symbol-img {
-            background-position: 8.547008547% center; }
+            background-position: 0% 9.0909090909%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-11 div.symbol-img {
-            background-position: 9.4017094017% center; }
+            background-position: 11.1111111111% 9.0909090909%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-12 div.symbol-img {
-            background-position: 10.2564102564% center; }
+            background-position: 22.2222222222% 9.0909090909%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-13 div.symbol-img {
-            background-position: 11.1111111111% center; }
+            background-position: 33.3333333333% 9.0909090909%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-14 div.symbol-img {
-            background-position: 11.9658119658% center; }
+            background-position: 44.4444444444% 9.0909090909%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-15 div.symbol-img {
-            background-position: 12.8205128205% center; }
+            background-position: 55.5555555556% 9.0909090909%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-16 div.symbol-img {
-            background-position: 13.6752136752% center; }
+            background-position: 66.6666666667% 9.0909090909%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-17 div.symbol-img {
-            background-position: 14.5299145299% center; }
+            background-position: 77.7777777778% 9.0909090909%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-18 div.symbol-img {
-            background-position: 15.3846153846% center; }
+            background-position: 88.8888888889% 9.0909090909%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-19 div.symbol-img {
-            background-position: 16.2393162393% center; }
+            background-position: 100% 9.0909090909%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-20 div.symbol-img {
-            background-position: 17.094017094% center; }
+            background-position: 0% 18.1818181818%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-21 div.symbol-img {
-            background-position: 17.9487179487% center; }
+            background-position: 11.1111111111% 18.1818181818%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-22 div.symbol-img {
-            background-position: 18.8034188034% center; }
+            background-position: 22.2222222222% 18.1818181818%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-23 div.symbol-img {
-            background-position: 19.6581196581% center; }
+            background-position: 33.3333333333% 18.1818181818%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-24 div.symbol-img {
-            background-position: 20.5128205128% center; }
+            background-position: 44.4444444444% 18.1818181818%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-25 div.symbol-img {
-            background-position: 21.3675213675% center; }
+            background-position: 55.5555555556% 18.1818181818%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-26 div.symbol-img {
-            background-position: 22.2222222222% center; }
+            background-position: 66.6666666667% 18.1818181818%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-27 div.symbol-img {
-            background-position: 23.0769230769% center; }
+            background-position: 77.7777777778% 18.1818181818%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-28 div.symbol-img {
-            background-position: 23.9316239316% center; }
+            background-position: 88.8888888889% 18.1818181818%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-29 div.symbol-img {
-            background-position: 24.7863247863% center; }
+            background-position: 100% 18.1818181818%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-30 div.symbol-img {
-            background-position: 25.641025641% center; }
+            background-position: 0% 27.2727272727%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-31 div.symbol-img {
-            background-position: 26.4957264957% center; }
+            background-position: 11.1111111111% 27.2727272727%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-32 div.symbol-img {
-            background-position: 27.3504273504% center; }
+            background-position: 22.2222222222% 27.2727272727%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-33 div.symbol-img {
-            background-position: 28.2051282051% center; }
+            background-position: 33.3333333333% 27.2727272727%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-34 div.symbol-img {
-            background-position: 29.0598290598% center; }
+            background-position: 44.4444444444% 27.2727272727%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-35 div.symbol-img {
-            background-position: 29.9145299145% center; }
+            background-position: 55.5555555556% 27.2727272727%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-36 div.symbol-img {
-            background-position: 30.7692307692% center; }
+            background-position: 66.6666666667% 27.2727272727%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-37 div.symbol-img {
-            background-position: 31.6239316239% center; }
+            background-position: 77.7777777778% 27.2727272727%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-38 div.symbol-img {
-            background-position: 32.4786324786% center; }
+            background-position: 88.8888888889% 27.2727272727%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-39 div.symbol-img {
-            background-position: 33.3333333333% center; }
+            background-position: 100% 27.2727272727%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-40 div.symbol-img {
-            background-position: 34.188034188% center; }
+            background-position: 0% 36.3636363636%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-41 div.symbol-img {
-            background-position: 35.0427350427% center; }
+            background-position: 11.1111111111% 36.3636363636%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-42 div.symbol-img {
-            background-position: 35.8974358974% center; }
+            background-position: 22.2222222222% 36.3636363636%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-43 div.symbol-img {
-            background-position: 36.7521367521% center; }
+            background-position: 33.3333333333% 36.3636363636%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-44 div.symbol-img {
-            background-position: 37.6068376068% center; }
+            background-position: 44.4444444444% 36.3636363636%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-45 div.symbol-img {
-            background-position: 38.4615384615% center; }
+            background-position: 55.5555555556% 36.3636363636%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-46 div.symbol-img {
-            background-position: 39.3162393162% center; }
+            background-position: 66.6666666667% 36.3636363636%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-47 div.symbol-img {
-            background-position: 40.1709401709% center; }
+            background-position: 77.7777777778% 36.3636363636%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-48 div.symbol-img {
-            background-position: 41.0256410256% center; }
+            background-position: 88.8888888889% 36.3636363636%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-49 div.symbol-img {
-            background-position: 41.8803418803% center; }
+            background-position: 100% 36.3636363636%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-50 div.symbol-img {
-            background-position: 42.735042735% center; }
+            background-position: 0% 45.4545454545%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-51 div.symbol-img {
-            background-position: 43.5897435897% center; }
+            background-position: 11.1111111111% 45.4545454545%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-52 div.symbol-img {
-            background-position: 44.4444444444% center; }
+            background-position: 22.2222222222% 45.4545454545%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-53 div.symbol-img {
-            background-position: 45.2991452991% center; }
+            background-position: 33.3333333333% 45.4545454545%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-54 div.symbol-img {
-            background-position: 46.1538461538% center; }
+            background-position: 44.4444444444% 45.4545454545%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-55 div.symbol-img {
-            background-position: 47.0085470085% center; }
+            background-position: 55.5555555556% 45.4545454545%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-56 div.symbol-img {
-            background-position: 47.8632478632% center; }
+            background-position: 66.6666666667% 45.4545454545%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-57 div.symbol-img {
-            background-position: 48.7179487179% center; }
+            background-position: 77.7777777778% 45.4545454545%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-58 div.symbol-img {
-            background-position: 49.5726495726% center; }
+            background-position: 88.8888888889% 45.4545454545%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-59 div.symbol-img {
-            background-position: 50.4273504274% center; }
+            background-position: 100% 45.4545454545%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-60 div.symbol-img {
-            background-position: 51.2820512821% center; }
+            background-position: 0% 54.5454545455%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-61 div.symbol-img {
-            background-position: 52.1367521368% center; }
+            background-position: 11.1111111111% 54.5454545455%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-62 div.symbol-img {
-            background-position: 52.9914529915% center; }
+            background-position: 22.2222222222% 54.5454545455%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-63 div.symbol-img {
-            background-position: 53.8461538462% center; }
+            background-position: 33.3333333333% 54.5454545455%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-64 div.symbol-img {
-            background-position: 54.7008547009% center; }
+            background-position: 44.4444444444% 54.5454545455%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-65 div.symbol-img {
-            background-position: 55.5555555556% center; }
+            background-position: 55.5555555556% 54.5454545455%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-66 div.symbol-img {
-            background-position: 56.4102564103% center; }
+            background-position: 66.6666666667% 54.5454545455%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-67 div.symbol-img {
-            background-position: 57.264957265% center; }
+            background-position: 77.7777777778% 54.5454545455%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-68 div.symbol-img {
-            background-position: 58.1196581197% center; }
+            background-position: 88.8888888889% 54.5454545455%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-69 div.symbol-img {
-            background-position: 58.9743589744% center; }
+            background-position: 100% 54.5454545455%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-70 div.symbol-img {
-            background-position: 59.8290598291% center; }
+            background-position: 0% 63.6363636364%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-71 div.symbol-img {
-            background-position: 60.6837606838% center; }
+            background-position: 11.1111111111% 63.6363636364%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-72 div.symbol-img {
-            background-position: 61.5384615385% center; }
+            background-position: 22.2222222222% 63.6363636364%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-73 div.symbol-img {
-            background-position: 62.3931623932% center; }
+            background-position: 33.3333333333% 63.6363636364%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-74 div.symbol-img {
-            background-position: 63.2478632479% center; }
+            background-position: 44.4444444444% 63.6363636364%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-75 div.symbol-img {
-            background-position: 64.1025641026% center; }
+            background-position: 55.5555555556% 63.6363636364%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-76 div.symbol-img {
-            background-position: 64.9572649573% center; }
+            background-position: 66.6666666667% 63.6363636364%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-77 div.symbol-img {
-            background-position: 65.811965812% center; }
+            background-position: 77.7777777778% 63.6363636364%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-78 div.symbol-img {
-            background-position: 66.6666666667% center; }
+            background-position: 88.8888888889% 63.6363636364%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-79 div.symbol-img {
-            background-position: 67.5213675214% center; }
+            background-position: 100% 63.6363636364%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-80 div.symbol-img {
-            background-position: 68.3760683761% center; }
+            background-position: 0% 72.7272727273%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-81 div.symbol-img {
-            background-position: 69.2307692308% center; }
+            background-position: 11.1111111111% 72.7272727273%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-82 div.symbol-img {
-            background-position: 70.0854700855% center; }
+            background-position: 22.2222222222% 72.7272727273%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-83 div.symbol-img {
-            background-position: 70.9401709402% center; }
+            background-position: 33.3333333333% 72.7272727273%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-84 div.symbol-img {
-            background-position: 71.7948717949% center; }
+            background-position: 44.4444444444% 72.7272727273%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-85 div.symbol-img {
-            background-position: 72.6495726496% center; }
+            background-position: 55.5555555556% 72.7272727273%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-86 div.symbol-img {
-            background-position: 73.5042735043% center; }
+            background-position: 66.6666666667% 72.7272727273%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-87 div.symbol-img {
-            background-position: 74.358974359% center; }
+            background-position: 77.7777777778% 72.7272727273%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-88 div.symbol-img {
-            background-position: 75.2136752137% center; }
+            background-position: 88.8888888889% 72.7272727273%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-89 div.symbol-img {
-            background-position: 76.0683760684% center; }
+            background-position: 100% 72.7272727273%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-90 div.symbol-img {
-            background-position: 76.9230769231% center; }
+            background-position: 0% 81.8181818182%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-91 div.symbol-img {
-            background-position: 77.7777777778% center; }
+            background-position: 11.1111111111% 81.8181818182%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-92 div.symbol-img {
-            background-position: 78.6324786325% center; }
+            background-position: 22.2222222222% 81.8181818182%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-93 div.symbol-img {
-            background-position: 79.4871794872% center; }
+            background-position: 33.3333333333% 81.8181818182%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-94 div.symbol-img {
-            background-position: 80.3418803419% center; }
+            background-position: 44.4444444444% 81.8181818182%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-95 div.symbol-img {
-            background-position: 81.1965811966% center; }
+            background-position: 55.5555555556% 81.8181818182%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-96 div.symbol-img {
-            background-position: 82.0512820513% center; }
+            background-position: 66.6666666667% 81.8181818182%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-97 div.symbol-img {
-            background-position: 82.905982906% center; }
+            background-position: 77.7777777778% 81.8181818182%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-98 div.symbol-img {
-            background-position: 83.7606837607% center; }
+            background-position: 88.8888888889% 81.8181818182%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-99 div.symbol-img {
-            background-position: 84.6153846154% center; }
+            background-position: 100% 81.8181818182%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-100 div.symbol-img {
-            background-position: 85.4700854701% center; }
+            background-position: 0% 90.9090909091%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-101 div.symbol-img {
-            background-position: 86.3247863248% center; }
+            background-position: 11.1111111111% 90.9090909091%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-102 div.symbol-img {
-            background-position: 87.1794871795% center; }
+            background-position: 22.2222222222% 90.9090909091%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-103 div.symbol-img {
-            background-position: 88.0341880342% center; }
+            background-position: 33.3333333333% 90.9090909091%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-104 div.symbol-img {
-            background-position: 88.8888888889% center; }
+            background-position: 44.4444444444% 90.9090909091%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-105 div.symbol-img {
-            background-position: 89.7435897436% center; }
+            background-position: 55.5555555556% 90.9090909091%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-106 div.symbol-img {
-            background-position: 90.5982905983% center; }
+            background-position: 66.6666666667% 90.9090909091%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-107 div.symbol-img {
-            background-position: 91.452991453% center; }
+            background-position: 77.7777777778% 90.9090909091%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-108 div.symbol-img {
-            background-position: 92.3076923077% center; }
+            background-position: 88.8888888889% 90.9090909091%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-109 div.symbol-img {
-            background-position: 93.1623931624% center; }
+            background-position: 100% 90.9090909091%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-110 div.symbol-img {
-            background-position: 94.0170940171% center; }
+            background-position: 0% 100%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-111 div.symbol-img {
-            background-position: 94.8717948718% center; }
+            background-position: 11.1111111111% 100%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-112 div.symbol-img {
-            background-position: 95.7264957265% center; }
+            background-position: 22.2222222222% 100%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-113 div.symbol-img {
-            background-position: 96.5811965812% center; }
+            background-position: 33.3333333333% 100%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-114 div.symbol-img {
-            background-position: 97.4358974359% center; }
+            background-position: 44.4444444444% 100%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-115 div.symbol-img {
-            background-position: 98.2905982906% center; }
+            background-position: 55.5555555556% 100%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-116 div.symbol-img {
-            background-position: 99.1452991453% center; }
+            background-position: 66.6666666667% 100%; }
           #concept-app #concept-container #concept-grid-container #concept-grid div.concept-symbol#symbol-117 div.symbol-img {
-            background-position: 100% center; }
+            background-position: 77.7777777778% 100%; }
       #concept-app #concept-container #concept-grid-container div#hints-only-container {
         display: flex;
         flex-flow: row;
-        width: 100%; }
+        width: 100%;
+        min-height: 42px; }
         #concept-app #concept-container #concept-grid-container div#hints-only-container div#toggle-grid {
           width: 120px;
           height: 40px;
@@ -1318,244 +1320,246 @@ html.darkmode {
                 background-repeat: no-repeat;
                 background-position: center center;
                 background-image: url("img/concept-symbols.png");
-                background-size: cover;
+                background-size: 1000%;
+                border: 1px solid #444;
+                border-radius: 10px;
                 cursor: help; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="0"] {
-                  background-position: 0% center; }
+                  background-position: 0% 0%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="1"] {
-                  background-position: 0.8547008547% center; }
+                  background-position: 11.1111111111% 0%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="2"] {
-                  background-position: 1.7094017094% center; }
+                  background-position: 22.2222222222% 0%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="3"] {
-                  background-position: 2.5641025641% center; }
+                  background-position: 33.3333333333% 0%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="4"] {
-                  background-position: 3.4188034188% center; }
+                  background-position: 44.4444444444% 0%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="5"] {
-                  background-position: 4.2735042735% center; }
+                  background-position: 55.5555555556% 0%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="6"] {
-                  background-position: 5.1282051282% center; }
+                  background-position: 66.6666666667% 0%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="7"] {
-                  background-position: 5.9829059829% center; }
+                  background-position: 77.7777777778% 0%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="8"] {
-                  background-position: 6.8376068376% center; }
+                  background-position: 88.8888888889% 0%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="9"] {
-                  background-position: 7.6923076923% center; }
+                  background-position: 100% 0%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="10"] {
-                  background-position: 8.547008547% center; }
+                  background-position: 0% 9.0909090909%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="11"] {
-                  background-position: 9.4017094017% center; }
+                  background-position: 11.1111111111% 9.0909090909%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="12"] {
-                  background-position: 10.2564102564% center; }
+                  background-position: 22.2222222222% 9.0909090909%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="13"] {
-                  background-position: 11.1111111111% center; }
+                  background-position: 33.3333333333% 9.0909090909%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="14"] {
-                  background-position: 11.9658119658% center; }
+                  background-position: 44.4444444444% 9.0909090909%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="15"] {
-                  background-position: 12.8205128205% center; }
+                  background-position: 55.5555555556% 9.0909090909%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="16"] {
-                  background-position: 13.6752136752% center; }
+                  background-position: 66.6666666667% 9.0909090909%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="17"] {
-                  background-position: 14.5299145299% center; }
+                  background-position: 77.7777777778% 9.0909090909%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="18"] {
-                  background-position: 15.3846153846% center; }
+                  background-position: 88.8888888889% 9.0909090909%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="19"] {
-                  background-position: 16.2393162393% center; }
+                  background-position: 100% 9.0909090909%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="20"] {
-                  background-position: 17.094017094% center; }
+                  background-position: 0% 18.1818181818%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="21"] {
-                  background-position: 17.9487179487% center; }
+                  background-position: 11.1111111111% 18.1818181818%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="22"] {
-                  background-position: 18.8034188034% center; }
+                  background-position: 22.2222222222% 18.1818181818%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="23"] {
-                  background-position: 19.6581196581% center; }
+                  background-position: 33.3333333333% 18.1818181818%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="24"] {
-                  background-position: 20.5128205128% center; }
+                  background-position: 44.4444444444% 18.1818181818%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="25"] {
-                  background-position: 21.3675213675% center; }
+                  background-position: 55.5555555556% 18.1818181818%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="26"] {
-                  background-position: 22.2222222222% center; }
+                  background-position: 66.6666666667% 18.1818181818%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="27"] {
-                  background-position: 23.0769230769% center; }
+                  background-position: 77.7777777778% 18.1818181818%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="28"] {
-                  background-position: 23.9316239316% center; }
+                  background-position: 88.8888888889% 18.1818181818%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="29"] {
-                  background-position: 24.7863247863% center; }
+                  background-position: 100% 18.1818181818%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="30"] {
-                  background-position: 25.641025641% center; }
+                  background-position: 0% 27.2727272727%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="31"] {
-                  background-position: 26.4957264957% center; }
+                  background-position: 11.1111111111% 27.2727272727%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="32"] {
-                  background-position: 27.3504273504% center; }
+                  background-position: 22.2222222222% 27.2727272727%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="33"] {
-                  background-position: 28.2051282051% center; }
+                  background-position: 33.3333333333% 27.2727272727%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="34"] {
-                  background-position: 29.0598290598% center; }
+                  background-position: 44.4444444444% 27.2727272727%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="35"] {
-                  background-position: 29.9145299145% center; }
+                  background-position: 55.5555555556% 27.2727272727%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="36"] {
-                  background-position: 30.7692307692% center; }
+                  background-position: 66.6666666667% 27.2727272727%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="37"] {
-                  background-position: 31.6239316239% center; }
+                  background-position: 77.7777777778% 27.2727272727%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="38"] {
-                  background-position: 32.4786324786% center; }
+                  background-position: 88.8888888889% 27.2727272727%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="39"] {
-                  background-position: 33.3333333333% center; }
+                  background-position: 100% 27.2727272727%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="40"] {
-                  background-position: 34.188034188% center; }
+                  background-position: 0% 36.3636363636%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="41"] {
-                  background-position: 35.0427350427% center; }
+                  background-position: 11.1111111111% 36.3636363636%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="42"] {
-                  background-position: 35.8974358974% center; }
+                  background-position: 22.2222222222% 36.3636363636%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="43"] {
-                  background-position: 36.7521367521% center; }
+                  background-position: 33.3333333333% 36.3636363636%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="44"] {
-                  background-position: 37.6068376068% center; }
+                  background-position: 44.4444444444% 36.3636363636%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="45"] {
-                  background-position: 38.4615384615% center; }
+                  background-position: 55.5555555556% 36.3636363636%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="46"] {
-                  background-position: 39.3162393162% center; }
+                  background-position: 66.6666666667% 36.3636363636%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="47"] {
-                  background-position: 40.1709401709% center; }
+                  background-position: 77.7777777778% 36.3636363636%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="48"] {
-                  background-position: 41.0256410256% center; }
+                  background-position: 88.8888888889% 36.3636363636%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="49"] {
-                  background-position: 41.8803418803% center; }
+                  background-position: 100% 36.3636363636%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="50"] {
-                  background-position: 42.735042735% center; }
+                  background-position: 0% 45.4545454545%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="51"] {
-                  background-position: 43.5897435897% center; }
+                  background-position: 11.1111111111% 45.4545454545%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="52"] {
-                  background-position: 44.4444444444% center; }
+                  background-position: 22.2222222222% 45.4545454545%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="53"] {
-                  background-position: 45.2991452991% center; }
+                  background-position: 33.3333333333% 45.4545454545%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="54"] {
-                  background-position: 46.1538461538% center; }
+                  background-position: 44.4444444444% 45.4545454545%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="55"] {
-                  background-position: 47.0085470085% center; }
+                  background-position: 55.5555555556% 45.4545454545%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="56"] {
-                  background-position: 47.8632478632% center; }
+                  background-position: 66.6666666667% 45.4545454545%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="57"] {
-                  background-position: 48.7179487179% center; }
+                  background-position: 77.7777777778% 45.4545454545%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="58"] {
-                  background-position: 49.5726495726% center; }
+                  background-position: 88.8888888889% 45.4545454545%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="59"] {
-                  background-position: 50.4273504274% center; }
+                  background-position: 100% 45.4545454545%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="60"] {
-                  background-position: 51.2820512821% center; }
+                  background-position: 0% 54.5454545455%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="61"] {
-                  background-position: 52.1367521368% center; }
+                  background-position: 11.1111111111% 54.5454545455%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="62"] {
-                  background-position: 52.9914529915% center; }
+                  background-position: 22.2222222222% 54.5454545455%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="63"] {
-                  background-position: 53.8461538462% center; }
+                  background-position: 33.3333333333% 54.5454545455%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="64"] {
-                  background-position: 54.7008547009% center; }
+                  background-position: 44.4444444444% 54.5454545455%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="65"] {
-                  background-position: 55.5555555556% center; }
+                  background-position: 55.5555555556% 54.5454545455%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="66"] {
-                  background-position: 56.4102564103% center; }
+                  background-position: 66.6666666667% 54.5454545455%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="67"] {
-                  background-position: 57.264957265% center; }
+                  background-position: 77.7777777778% 54.5454545455%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="68"] {
-                  background-position: 58.1196581197% center; }
+                  background-position: 88.8888888889% 54.5454545455%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="69"] {
-                  background-position: 58.9743589744% center; }
+                  background-position: 100% 54.5454545455%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="70"] {
-                  background-position: 59.8290598291% center; }
+                  background-position: 0% 63.6363636364%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="71"] {
-                  background-position: 60.6837606838% center; }
+                  background-position: 11.1111111111% 63.6363636364%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="72"] {
-                  background-position: 61.5384615385% center; }
+                  background-position: 22.2222222222% 63.6363636364%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="73"] {
-                  background-position: 62.3931623932% center; }
+                  background-position: 33.3333333333% 63.6363636364%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="74"] {
-                  background-position: 63.2478632479% center; }
+                  background-position: 44.4444444444% 63.6363636364%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="75"] {
-                  background-position: 64.1025641026% center; }
+                  background-position: 55.5555555556% 63.6363636364%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="76"] {
-                  background-position: 64.9572649573% center; }
+                  background-position: 66.6666666667% 63.6363636364%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="77"] {
-                  background-position: 65.811965812% center; }
+                  background-position: 77.7777777778% 63.6363636364%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="78"] {
-                  background-position: 66.6666666667% center; }
+                  background-position: 88.8888888889% 63.6363636364%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="79"] {
-                  background-position: 67.5213675214% center; }
+                  background-position: 100% 63.6363636364%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="80"] {
-                  background-position: 68.3760683761% center; }
+                  background-position: 0% 72.7272727273%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="81"] {
-                  background-position: 69.2307692308% center; }
+                  background-position: 11.1111111111% 72.7272727273%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="82"] {
-                  background-position: 70.0854700855% center; }
+                  background-position: 22.2222222222% 72.7272727273%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="83"] {
-                  background-position: 70.9401709402% center; }
+                  background-position: 33.3333333333% 72.7272727273%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="84"] {
-                  background-position: 71.7948717949% center; }
+                  background-position: 44.4444444444% 72.7272727273%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="85"] {
-                  background-position: 72.6495726496% center; }
+                  background-position: 55.5555555556% 72.7272727273%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="86"] {
-                  background-position: 73.5042735043% center; }
+                  background-position: 66.6666666667% 72.7272727273%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="87"] {
-                  background-position: 74.358974359% center; }
+                  background-position: 77.7777777778% 72.7272727273%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="88"] {
-                  background-position: 75.2136752137% center; }
+                  background-position: 88.8888888889% 72.7272727273%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="89"] {
-                  background-position: 76.0683760684% center; }
+                  background-position: 100% 72.7272727273%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="90"] {
-                  background-position: 76.9230769231% center; }
+                  background-position: 0% 81.8181818182%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="91"] {
-                  background-position: 77.7777777778% center; }
+                  background-position: 11.1111111111% 81.8181818182%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="92"] {
-                  background-position: 78.6324786325% center; }
+                  background-position: 22.2222222222% 81.8181818182%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="93"] {
-                  background-position: 79.4871794872% center; }
+                  background-position: 33.3333333333% 81.8181818182%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="94"] {
-                  background-position: 80.3418803419% center; }
+                  background-position: 44.4444444444% 81.8181818182%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="95"] {
-                  background-position: 81.1965811966% center; }
+                  background-position: 55.5555555556% 81.8181818182%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="96"] {
-                  background-position: 82.0512820513% center; }
+                  background-position: 66.6666666667% 81.8181818182%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="97"] {
-                  background-position: 82.905982906% center; }
+                  background-position: 77.7777777778% 81.8181818182%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="98"] {
-                  background-position: 83.7606837607% center; }
+                  background-position: 88.8888888889% 81.8181818182%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="99"] {
-                  background-position: 84.6153846154% center; }
+                  background-position: 100% 81.8181818182%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="100"] {
-                  background-position: 85.4700854701% center; }
+                  background-position: 0% 90.9090909091%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="101"] {
-                  background-position: 86.3247863248% center; }
+                  background-position: 11.1111111111% 90.9090909091%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="102"] {
-                  background-position: 87.1794871795% center; }
+                  background-position: 22.2222222222% 90.9090909091%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="103"] {
-                  background-position: 88.0341880342% center; }
+                  background-position: 33.3333333333% 90.9090909091%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="104"] {
-                  background-position: 88.8888888889% center; }
+                  background-position: 44.4444444444% 90.9090909091%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="105"] {
-                  background-position: 89.7435897436% center; }
+                  background-position: 55.5555555556% 90.9090909091%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="106"] {
-                  background-position: 90.5982905983% center; }
+                  background-position: 66.6666666667% 90.9090909091%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="107"] {
-                  background-position: 91.452991453% center; }
+                  background-position: 77.7777777778% 90.9090909091%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="108"] {
-                  background-position: 92.3076923077% center; }
+                  background-position: 88.8888888889% 90.9090909091%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="109"] {
-                  background-position: 93.1623931624% center; }
+                  background-position: 100% 90.9090909091%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="110"] {
-                  background-position: 94.0170940171% center; }
+                  background-position: 0% 100%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="111"] {
-                  background-position: 94.8717948718% center; }
+                  background-position: 11.1111111111% 100%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="112"] {
-                  background-position: 95.7264957265% center; }
+                  background-position: 22.2222222222% 100%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="113"] {
-                  background-position: 96.5811965812% center; }
+                  background-position: 33.3333333333% 100%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="114"] {
-                  background-position: 97.4358974359% center; }
+                  background-position: 44.4444444444% 100%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="115"] {
-                  background-position: 98.2905982906% center; }
+                  background-position: 55.5555555556% 100%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="116"] {
-                  background-position: 99.1452991453% center; }
+                  background-position: 66.6666666667% 100%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img[data-symbol="117"] {
-                  background-position: 100% center; }
+                  background-position: 77.7777777778% 100%; }
                 #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul li.hint div.img div.mark {
                   display: block;
                   width: 30px;
@@ -1731,247 +1735,246 @@ html.darkmode {
         position: relative;
         width: 3.5rem;
         height: 3.5rem;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center center;
         background-image: url("img/concept-symbols.png");
-        background-size: cover; }
+        background-size: 1000%;
+        border: 1px solid #444;
+        border-radius: 10px; }
         #concept-app div#hints li.hint div.img[data-symbol="0"] {
-          background-position: 0% center; }
+          background-position: 0% 0%; }
         #concept-app div#hints li.hint div.img[data-symbol="1"] {
-          background-position: 0.8547008547% center; }
+          background-position: 11.1111111111% 0%; }
         #concept-app div#hints li.hint div.img[data-symbol="2"] {
-          background-position: 1.7094017094% center; }
+          background-position: 22.2222222222% 0%; }
         #concept-app div#hints li.hint div.img[data-symbol="3"] {
-          background-position: 2.5641025641% center; }
+          background-position: 33.3333333333% 0%; }
         #concept-app div#hints li.hint div.img[data-symbol="4"] {
-          background-position: 3.4188034188% center; }
+          background-position: 44.4444444444% 0%; }
         #concept-app div#hints li.hint div.img[data-symbol="5"] {
-          background-position: 4.2735042735% center; }
+          background-position: 55.5555555556% 0%; }
         #concept-app div#hints li.hint div.img[data-symbol="6"] {
-          background-position: 5.1282051282% center; }
+          background-position: 66.6666666667% 0%; }
         #concept-app div#hints li.hint div.img[data-symbol="7"] {
-          background-position: 5.9829059829% center; }
+          background-position: 77.7777777778% 0%; }
         #concept-app div#hints li.hint div.img[data-symbol="8"] {
-          background-position: 6.8376068376% center; }
+          background-position: 88.8888888889% 0%; }
         #concept-app div#hints li.hint div.img[data-symbol="9"] {
-          background-position: 7.6923076923% center; }
+          background-position: 100% 0%; }
         #concept-app div#hints li.hint div.img[data-symbol="10"] {
-          background-position: 8.547008547% center; }
+          background-position: 0% 9.0909090909%; }
         #concept-app div#hints li.hint div.img[data-symbol="11"] {
-          background-position: 9.4017094017% center; }
+          background-position: 11.1111111111% 9.0909090909%; }
         #concept-app div#hints li.hint div.img[data-symbol="12"] {
-          background-position: 10.2564102564% center; }
+          background-position: 22.2222222222% 9.0909090909%; }
         #concept-app div#hints li.hint div.img[data-symbol="13"] {
-          background-position: 11.1111111111% center; }
+          background-position: 33.3333333333% 9.0909090909%; }
         #concept-app div#hints li.hint div.img[data-symbol="14"] {
-          background-position: 11.9658119658% center; }
+          background-position: 44.4444444444% 9.0909090909%; }
         #concept-app div#hints li.hint div.img[data-symbol="15"] {
-          background-position: 12.8205128205% center; }
+          background-position: 55.5555555556% 9.0909090909%; }
         #concept-app div#hints li.hint div.img[data-symbol="16"] {
-          background-position: 13.6752136752% center; }
+          background-position: 66.6666666667% 9.0909090909%; }
         #concept-app div#hints li.hint div.img[data-symbol="17"] {
-          background-position: 14.5299145299% center; }
+          background-position: 77.7777777778% 9.0909090909%; }
         #concept-app div#hints li.hint div.img[data-symbol="18"] {
-          background-position: 15.3846153846% center; }
+          background-position: 88.8888888889% 9.0909090909%; }
         #concept-app div#hints li.hint div.img[data-symbol="19"] {
-          background-position: 16.2393162393% center; }
+          background-position: 100% 9.0909090909%; }
         #concept-app div#hints li.hint div.img[data-symbol="20"] {
-          background-position: 17.094017094% center; }
+          background-position: 0% 18.1818181818%; }
         #concept-app div#hints li.hint div.img[data-symbol="21"] {
-          background-position: 17.9487179487% center; }
+          background-position: 11.1111111111% 18.1818181818%; }
         #concept-app div#hints li.hint div.img[data-symbol="22"] {
-          background-position: 18.8034188034% center; }
+          background-position: 22.2222222222% 18.1818181818%; }
         #concept-app div#hints li.hint div.img[data-symbol="23"] {
-          background-position: 19.6581196581% center; }
+          background-position: 33.3333333333% 18.1818181818%; }
         #concept-app div#hints li.hint div.img[data-symbol="24"] {
-          background-position: 20.5128205128% center; }
+          background-position: 44.4444444444% 18.1818181818%; }
         #concept-app div#hints li.hint div.img[data-symbol="25"] {
-          background-position: 21.3675213675% center; }
+          background-position: 55.5555555556% 18.1818181818%; }
         #concept-app div#hints li.hint div.img[data-symbol="26"] {
-          background-position: 22.2222222222% center; }
+          background-position: 66.6666666667% 18.1818181818%; }
         #concept-app div#hints li.hint div.img[data-symbol="27"] {
-          background-position: 23.0769230769% center; }
+          background-position: 77.7777777778% 18.1818181818%; }
         #concept-app div#hints li.hint div.img[data-symbol="28"] {
-          background-position: 23.9316239316% center; }
+          background-position: 88.8888888889% 18.1818181818%; }
         #concept-app div#hints li.hint div.img[data-symbol="29"] {
-          background-position: 24.7863247863% center; }
+          background-position: 100% 18.1818181818%; }
         #concept-app div#hints li.hint div.img[data-symbol="30"] {
-          background-position: 25.641025641% center; }
+          background-position: 0% 27.2727272727%; }
         #concept-app div#hints li.hint div.img[data-symbol="31"] {
-          background-position: 26.4957264957% center; }
+          background-position: 11.1111111111% 27.2727272727%; }
         #concept-app div#hints li.hint div.img[data-symbol="32"] {
-          background-position: 27.3504273504% center; }
+          background-position: 22.2222222222% 27.2727272727%; }
         #concept-app div#hints li.hint div.img[data-symbol="33"] {
-          background-position: 28.2051282051% center; }
+          background-position: 33.3333333333% 27.2727272727%; }
         #concept-app div#hints li.hint div.img[data-symbol="34"] {
-          background-position: 29.0598290598% center; }
+          background-position: 44.4444444444% 27.2727272727%; }
         #concept-app div#hints li.hint div.img[data-symbol="35"] {
-          background-position: 29.9145299145% center; }
+          background-position: 55.5555555556% 27.2727272727%; }
         #concept-app div#hints li.hint div.img[data-symbol="36"] {
-          background-position: 30.7692307692% center; }
+          background-position: 66.6666666667% 27.2727272727%; }
         #concept-app div#hints li.hint div.img[data-symbol="37"] {
-          background-position: 31.6239316239% center; }
+          background-position: 77.7777777778% 27.2727272727%; }
         #concept-app div#hints li.hint div.img[data-symbol="38"] {
-          background-position: 32.4786324786% center; }
+          background-position: 88.8888888889% 27.2727272727%; }
         #concept-app div#hints li.hint div.img[data-symbol="39"] {
-          background-position: 33.3333333333% center; }
+          background-position: 100% 27.2727272727%; }
         #concept-app div#hints li.hint div.img[data-symbol="40"] {
-          background-position: 34.188034188% center; }
+          background-position: 0% 36.3636363636%; }
         #concept-app div#hints li.hint div.img[data-symbol="41"] {
-          background-position: 35.0427350427% center; }
+          background-position: 11.1111111111% 36.3636363636%; }
         #concept-app div#hints li.hint div.img[data-symbol="42"] {
-          background-position: 35.8974358974% center; }
+          background-position: 22.2222222222% 36.3636363636%; }
         #concept-app div#hints li.hint div.img[data-symbol="43"] {
-          background-position: 36.7521367521% center; }
+          background-position: 33.3333333333% 36.3636363636%; }
         #concept-app div#hints li.hint div.img[data-symbol="44"] {
-          background-position: 37.6068376068% center; }
+          background-position: 44.4444444444% 36.3636363636%; }
         #concept-app div#hints li.hint div.img[data-symbol="45"] {
-          background-position: 38.4615384615% center; }
+          background-position: 55.5555555556% 36.3636363636%; }
         #concept-app div#hints li.hint div.img[data-symbol="46"] {
-          background-position: 39.3162393162% center; }
+          background-position: 66.6666666667% 36.3636363636%; }
         #concept-app div#hints li.hint div.img[data-symbol="47"] {
-          background-position: 40.1709401709% center; }
+          background-position: 77.7777777778% 36.3636363636%; }
         #concept-app div#hints li.hint div.img[data-symbol="48"] {
-          background-position: 41.0256410256% center; }
+          background-position: 88.8888888889% 36.3636363636%; }
         #concept-app div#hints li.hint div.img[data-symbol="49"] {
-          background-position: 41.8803418803% center; }
+          background-position: 100% 36.3636363636%; }
         #concept-app div#hints li.hint div.img[data-symbol="50"] {
-          background-position: 42.735042735% center; }
+          background-position: 0% 45.4545454545%; }
         #concept-app div#hints li.hint div.img[data-symbol="51"] {
-          background-position: 43.5897435897% center; }
+          background-position: 11.1111111111% 45.4545454545%; }
         #concept-app div#hints li.hint div.img[data-symbol="52"] {
-          background-position: 44.4444444444% center; }
+          background-position: 22.2222222222% 45.4545454545%; }
         #concept-app div#hints li.hint div.img[data-symbol="53"] {
-          background-position: 45.2991452991% center; }
+          background-position: 33.3333333333% 45.4545454545%; }
         #concept-app div#hints li.hint div.img[data-symbol="54"] {
-          background-position: 46.1538461538% center; }
+          background-position: 44.4444444444% 45.4545454545%; }
         #concept-app div#hints li.hint div.img[data-symbol="55"] {
-          background-position: 47.0085470085% center; }
+          background-position: 55.5555555556% 45.4545454545%; }
         #concept-app div#hints li.hint div.img[data-symbol="56"] {
-          background-position: 47.8632478632% center; }
+          background-position: 66.6666666667% 45.4545454545%; }
         #concept-app div#hints li.hint div.img[data-symbol="57"] {
-          background-position: 48.7179487179% center; }
+          background-position: 77.7777777778% 45.4545454545%; }
         #concept-app div#hints li.hint div.img[data-symbol="58"] {
-          background-position: 49.5726495726% center; }
+          background-position: 88.8888888889% 45.4545454545%; }
         #concept-app div#hints li.hint div.img[data-symbol="59"] {
-          background-position: 50.4273504274% center; }
+          background-position: 100% 45.4545454545%; }
         #concept-app div#hints li.hint div.img[data-symbol="60"] {
-          background-position: 51.2820512821% center; }
+          background-position: 0% 54.5454545455%; }
         #concept-app div#hints li.hint div.img[data-symbol="61"] {
-          background-position: 52.1367521368% center; }
+          background-position: 11.1111111111% 54.5454545455%; }
         #concept-app div#hints li.hint div.img[data-symbol="62"] {
-          background-position: 52.9914529915% center; }
+          background-position: 22.2222222222% 54.5454545455%; }
         #concept-app div#hints li.hint div.img[data-symbol="63"] {
-          background-position: 53.8461538462% center; }
+          background-position: 33.3333333333% 54.5454545455%; }
         #concept-app div#hints li.hint div.img[data-symbol="64"] {
-          background-position: 54.7008547009% center; }
+          background-position: 44.4444444444% 54.5454545455%; }
         #concept-app div#hints li.hint div.img[data-symbol="65"] {
-          background-position: 55.5555555556% center; }
+          background-position: 55.5555555556% 54.5454545455%; }
         #concept-app div#hints li.hint div.img[data-symbol="66"] {
-          background-position: 56.4102564103% center; }
+          background-position: 66.6666666667% 54.5454545455%; }
         #concept-app div#hints li.hint div.img[data-symbol="67"] {
-          background-position: 57.264957265% center; }
+          background-position: 77.7777777778% 54.5454545455%; }
         #concept-app div#hints li.hint div.img[data-symbol="68"] {
-          background-position: 58.1196581197% center; }
+          background-position: 88.8888888889% 54.5454545455%; }
         #concept-app div#hints li.hint div.img[data-symbol="69"] {
-          background-position: 58.9743589744% center; }
+          background-position: 100% 54.5454545455%; }
         #concept-app div#hints li.hint div.img[data-symbol="70"] {
-          background-position: 59.8290598291% center; }
+          background-position: 0% 63.6363636364%; }
         #concept-app div#hints li.hint div.img[data-symbol="71"] {
-          background-position: 60.6837606838% center; }
+          background-position: 11.1111111111% 63.6363636364%; }
         #concept-app div#hints li.hint div.img[data-symbol="72"] {
-          background-position: 61.5384615385% center; }
+          background-position: 22.2222222222% 63.6363636364%; }
         #concept-app div#hints li.hint div.img[data-symbol="73"] {
-          background-position: 62.3931623932% center; }
+          background-position: 33.3333333333% 63.6363636364%; }
         #concept-app div#hints li.hint div.img[data-symbol="74"] {
-          background-position: 63.2478632479% center; }
+          background-position: 44.4444444444% 63.6363636364%; }
         #concept-app div#hints li.hint div.img[data-symbol="75"] {
-          background-position: 64.1025641026% center; }
+          background-position: 55.5555555556% 63.6363636364%; }
         #concept-app div#hints li.hint div.img[data-symbol="76"] {
-          background-position: 64.9572649573% center; }
+          background-position: 66.6666666667% 63.6363636364%; }
         #concept-app div#hints li.hint div.img[data-symbol="77"] {
-          background-position: 65.811965812% center; }
+          background-position: 77.7777777778% 63.6363636364%; }
         #concept-app div#hints li.hint div.img[data-symbol="78"] {
-          background-position: 66.6666666667% center; }
+          background-position: 88.8888888889% 63.6363636364%; }
         #concept-app div#hints li.hint div.img[data-symbol="79"] {
-          background-position: 67.5213675214% center; }
+          background-position: 100% 63.6363636364%; }
         #concept-app div#hints li.hint div.img[data-symbol="80"] {
-          background-position: 68.3760683761% center; }
+          background-position: 0% 72.7272727273%; }
         #concept-app div#hints li.hint div.img[data-symbol="81"] {
-          background-position: 69.2307692308% center; }
+          background-position: 11.1111111111% 72.7272727273%; }
         #concept-app div#hints li.hint div.img[data-symbol="82"] {
-          background-position: 70.0854700855% center; }
+          background-position: 22.2222222222% 72.7272727273%; }
         #concept-app div#hints li.hint div.img[data-symbol="83"] {
-          background-position: 70.9401709402% center; }
+          background-position: 33.3333333333% 72.7272727273%; }
         #concept-app div#hints li.hint div.img[data-symbol="84"] {
-          background-position: 71.7948717949% center; }
+          background-position: 44.4444444444% 72.7272727273%; }
         #concept-app div#hints li.hint div.img[data-symbol="85"] {
-          background-position: 72.6495726496% center; }
+          background-position: 55.5555555556% 72.7272727273%; }
         #concept-app div#hints li.hint div.img[data-symbol="86"] {
-          background-position: 73.5042735043% center; }
+          background-position: 66.6666666667% 72.7272727273%; }
         #concept-app div#hints li.hint div.img[data-symbol="87"] {
-          background-position: 74.358974359% center; }
+          background-position: 77.7777777778% 72.7272727273%; }
         #concept-app div#hints li.hint div.img[data-symbol="88"] {
-          background-position: 75.2136752137% center; }
+          background-position: 88.8888888889% 72.7272727273%; }
         #concept-app div#hints li.hint div.img[data-symbol="89"] {
-          background-position: 76.0683760684% center; }
+          background-position: 100% 72.7272727273%; }
         #concept-app div#hints li.hint div.img[data-symbol="90"] {
-          background-position: 76.9230769231% center; }
+          background-position: 0% 81.8181818182%; }
         #concept-app div#hints li.hint div.img[data-symbol="91"] {
-          background-position: 77.7777777778% center; }
+          background-position: 11.1111111111% 81.8181818182%; }
         #concept-app div#hints li.hint div.img[data-symbol="92"] {
-          background-position: 78.6324786325% center; }
+          background-position: 22.2222222222% 81.8181818182%; }
         #concept-app div#hints li.hint div.img[data-symbol="93"] {
-          background-position: 79.4871794872% center; }
+          background-position: 33.3333333333% 81.8181818182%; }
         #concept-app div#hints li.hint div.img[data-symbol="94"] {
-          background-position: 80.3418803419% center; }
+          background-position: 44.4444444444% 81.8181818182%; }
         #concept-app div#hints li.hint div.img[data-symbol="95"] {
-          background-position: 81.1965811966% center; }
+          background-position: 55.5555555556% 81.8181818182%; }
         #concept-app div#hints li.hint div.img[data-symbol="96"] {
-          background-position: 82.0512820513% center; }
+          background-position: 66.6666666667% 81.8181818182%; }
         #concept-app div#hints li.hint div.img[data-symbol="97"] {
-          background-position: 82.905982906% center; }
+          background-position: 77.7777777778% 81.8181818182%; }
         #concept-app div#hints li.hint div.img[data-symbol="98"] {
-          background-position: 83.7606837607% center; }
+          background-position: 88.8888888889% 81.8181818182%; }
         #concept-app div#hints li.hint div.img[data-symbol="99"] {
-          background-position: 84.6153846154% center; }
+          background-position: 100% 81.8181818182%; }
         #concept-app div#hints li.hint div.img[data-symbol="100"] {
-          background-position: 85.4700854701% center; }
+          background-position: 0% 90.9090909091%; }
         #concept-app div#hints li.hint div.img[data-symbol="101"] {
-          background-position: 86.3247863248% center; }
+          background-position: 11.1111111111% 90.9090909091%; }
         #concept-app div#hints li.hint div.img[data-symbol="102"] {
-          background-position: 87.1794871795% center; }
+          background-position: 22.2222222222% 90.9090909091%; }
         #concept-app div#hints li.hint div.img[data-symbol="103"] {
-          background-position: 88.0341880342% center; }
+          background-position: 33.3333333333% 90.9090909091%; }
         #concept-app div#hints li.hint div.img[data-symbol="104"] {
-          background-position: 88.8888888889% center; }
+          background-position: 44.4444444444% 90.9090909091%; }
         #concept-app div#hints li.hint div.img[data-symbol="105"] {
-          background-position: 89.7435897436% center; }
+          background-position: 55.5555555556% 90.9090909091%; }
         #concept-app div#hints li.hint div.img[data-symbol="106"] {
-          background-position: 90.5982905983% center; }
+          background-position: 66.6666666667% 90.9090909091%; }
         #concept-app div#hints li.hint div.img[data-symbol="107"] {
-          background-position: 91.452991453% center; }
+          background-position: 77.7777777778% 90.9090909091%; }
         #concept-app div#hints li.hint div.img[data-symbol="108"] {
-          background-position: 92.3076923077% center; }
+          background-position: 88.8888888889% 90.9090909091%; }
         #concept-app div#hints li.hint div.img[data-symbol="109"] {
-          background-position: 93.1623931624% center; }
+          background-position: 100% 90.9090909091%; }
         #concept-app div#hints li.hint div.img[data-symbol="110"] {
-          background-position: 94.0170940171% center; }
+          background-position: 0% 100%; }
         #concept-app div#hints li.hint div.img[data-symbol="111"] {
-          background-position: 94.8717948718% center; }
+          background-position: 11.1111111111% 100%; }
         #concept-app div#hints li.hint div.img[data-symbol="112"] {
-          background-position: 95.7264957265% center; }
+          background-position: 22.2222222222% 100%; }
         #concept-app div#hints li.hint div.img[data-symbol="113"] {
-          background-position: 96.5811965812% center; }
+          background-position: 33.3333333333% 100%; }
         #concept-app div#hints li.hint div.img[data-symbol="114"] {
-          background-position: 97.4358974359% center; }
+          background-position: 44.4444444444% 100%; }
         #concept-app div#hints li.hint div.img[data-symbol="115"] {
-          background-position: 98.2905982906% center; }
+          background-position: 55.5555555556% 100%; }
         #concept-app div#hints li.hint div.img[data-symbol="116"] {
-          background-position: 99.1452991453% center; }
+          background-position: 66.6666666667% 100%; }
         #concept-app div#hints li.hint div.img[data-symbol="117"] {
-          background-position: 100% center; }
+          background-position: 77.7777777778% 100%; }
         #concept-app div#hints li.hint div.img div.mark {
           display: block;
           width: 30px;

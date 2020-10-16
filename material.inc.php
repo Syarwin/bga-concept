@@ -16,7 +16,7 @@
 require_once("modules/php/constants.inc.php");
 
 $this->cards = [];
-$languages = ['EN','FR','NL','NOR','SW','DK','FIN','IT','BR','SP','JP','DE','RU','CZ','RO','PL','BG','HU','GR','CN'];
+$languages = ['EN','FR','NL','NO','SW','DA','FI','IT','PT','ES','JA','DE','RU','CS','RO','PL','BG','HU','EL','CN'];
 foreach($languages as $l){
   require_once("modules/cards/cards-$l.inc.php");
   $className = "ConceptCards".$l;

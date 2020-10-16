@@ -48,7 +48,7 @@
 
 		<div id="concept-grid-container">
 			<div id="hints-only-container" v-if="!isClueGiver">
-				<div id="hints-only" v-if="hints.length > 0" v-bind:class="{ 'alone': !displayGrid }">
+				<div id="hints-only" v-bind:class="{ 'alone': !displayGrid }">
 					<ul v-for="row in organizedHints">
 						<li class="hint" v-for="hint in row" :key="hint.id">
 							<div class="img" :data-symbol="hint.sId" :id="'hints-only-' + hint.id">

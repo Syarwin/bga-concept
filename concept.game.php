@@ -74,7 +74,13 @@ class Concept extends Table
 	 * getAllDatas:
 	 */
 	public function getCards(){
- 		return $this->cards['EN'];
+		$lId = self::getGameLanguage();
+		$codes = [
+			1 => 'EN',	2 => 'FR', 3 => 'IT',	4 => 'DE',	5 => 'ES',	6 => 'PT',
+			7 => 'RU', 	8 => 'EL', 9 => 'DA',	10 => 'CS',	11 => 'FI',	12 => 'NL',	13 => 'PL',
+			14 => 'HU', 15 => 'JA',	16 => 'NO',	17 => 'RO',	18 => 'BG',	19 => 'CN',
+		];
+ 		return $this->cards[$codes[$lId]];
  	}
 
 

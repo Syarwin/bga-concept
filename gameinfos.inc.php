@@ -12,6 +12,11 @@ $gameinfos = [
 	'players' => [2,3,4,5,6,7,8,9,10,11,12],
 	'suggest_player_number' => null,
 	'not_recommend_player_number' => null,
+	'language_dependency' => [
+		1 => 'en',	2 => 'fr', 3 => 'it',	4 => 'de',	5 => 'es',	6 => 'pt',
+		7 => 'ru', 	8 => 'el', 9 => 'da',	10 => 'cs',	11 => 'fi',	12 => 'nl',	13 => 'pl',
+		14 => 'hu', 15 => 'ja',	16 => 'no',	17 => 'ro',	18 => 'bg',	19 => 'zh-cn',
+	],
 
 	'estimated_duration' => 30,
 	'fast_additional_time' => 30,
