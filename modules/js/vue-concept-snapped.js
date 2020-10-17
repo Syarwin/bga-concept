@@ -158,6 +158,9 @@ window.ConceptSnapped = function(game){
     this.selectedSymbol = null;
   };
 
+  C.methods.removeHint = function(id){
+    this.takeAction("deleteHint", { id : id} );
+  };
 
   /*
    * reorderingHints: triggered whenever the clue giver dragndrop the hints
