@@ -300,6 +300,7 @@ $columns:(
           border-radius:0px;
           border-bottom-left-radius: 5px;
           border-bottom-right-radius: 5px;
+          padding:0.5rem;
 
           &::after {
             content:'';
@@ -396,6 +397,7 @@ $columns:(
       overflow:hidden;
       &.free {
         flex-flow:row;
+        justify-content: center;
       }
 
       #concept-grid-fixed-width {

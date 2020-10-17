@@ -201,7 +201,8 @@ html.darkmode {
           position: relative;
           border-radius: 0px;
           border-bottom-left-radius: 5px;
-          border-bottom-right-radius: 5px; }
+          border-bottom-right-radius: 5px;
+          padding: 0.5rem; }
           #concept-app #concept-container div#concept-guesses-container h2#word-display::after {
             content: '';
             display: block;
@@ -276,7 +277,8 @@ html.darkmode {
       flex-flow: column;
       overflow: hidden; }
       #concept-app #concept-container #concept-grid-container.free {
-        flex-flow: row; }
+        flex-flow: row;
+        justify-content: center; }
       #concept-app #concept-container #concept-grid-container #concept-grid-fixed-width {
         height: 794px;
         display: flex;

@@ -3,6 +3,10 @@ window.Concept = function(game){
   let DARK_MODE_DISABLED = 1;
   let DARK_MODE_ENABLED = 2;
 
+  let DISPLAY_GRID = 101;
+  let GRID_VISIBLE = 1;
+  let GRID_HIDDEN = 2;
+
   let DISPLAY_TIMER = 102;
   let TIMER_VISIBLE = 1;
   let TIMER_HIDDEN = 2;
@@ -17,10 +21,20 @@ window.Concept = function(game){
       game: game,
       playerId: game.player_id,
       isSpectator: game.isSpectator,
+      notifs: [
+        ['addHint',10],
+        ['deleteHint',10],
+        ['clearHints',10],
+        ['clearColor',10],
+        ['newGuess',10],
+        ['newFeedback',10],
+        ['wordFound',5],
+        ['updatePlayersInfo',5]
+      ],
 
       // Concept stuff
       isFree:true,
-      symbols:ConceptSymbols(),
+      symbols:window.ConceptSymbols(),
       hints:game.gamedatas.hints,
       guesses:game.gamedatas.guesses,
       players:game.gamedatas.players,
@@ -31,9 +45,6 @@ window.Concept = function(game){
       card:{},
       displayFeedback:false,
       guessFeedback:null,
-      draggedHint:null,
-      draggedHintIndex:null,
-      dragOffset:null,
       guess:'',
       scale:1,
       displayReveal:false,
@@ -41,6 +52,7 @@ window.Concept = function(game){
       revealMessage:"",
       revealWord:"",
       revealLvl:"0",
+      draggedHint:null,
     },
     computed:{
       // BGA stuff
@@ -48,6 +60,9 @@ window.Concept = function(game){
       activePlayerId: function(){ return this.getActivePlayerId() },
 
       // Concept stuff
+      displayGrid: function(){
+        return this.game.prefs[DISPLAY_GRID].value == GRID_VISIBLE;
+      },
       displayTimer: function(){
         return this.game.prefs[DISPLAY_TIMER].value == TIMER_VISIBLE;
       },
@@ -101,6 +116,10 @@ window.Concept = function(game){
         this.game.addTooltip("symbol-" + id, symbol.join(", "), '');
       });
 
+      dojo.query("#hints-only .hint .img").forEach(obj => {
+        this.game.addTooltip(obj.id, this.symbols[dojo.attr(obj, "data-symbol")].join(", "), '');
+      });
+
       dojo.connect(document, 'onkeydown', (evt) => {
         if(!$("concept-guess")) return;
 
@@ -115,21 +134,35 @@ window.Concept = function(game){
 
       this.addDarkModeSwitch();
       setTimeout(() => this.onScreenWidthChange(), 1000);
-      dojo.connect(document, 'onmousemove', this.moveHintAt.bind(this));
-      dojo.connect(document, 'onmouseup', this.dragHintStop.bind(this));
+
+      if(this.isFree){
+        dojo.connect(document, 'onmousemove', this.moveHintAt.bind(this));
+        dojo.connect(document, 'onmouseup', this.dragHintStop.bind(this));
+      }
     },
 
 
     methods:{
-      isCurrentPlayerActive: function(){ return this.game.isCurrentPlayerActive() },
-      getActivePlayerId: function() { return this.game.getActivePlayerId() },
-      getActivePlayers: function() { return this.game.getActivePlayers() },
-      addPrimaryActionButton: function(id, msg, callback){ this.game.addActionButton(id, msg, callback, null, false, "blue"); },
-      checkAction: function(action) { return this.game.checkAction(action); },
-      removeActionButtons: function() { this.game.removeActionButtons(); },
-      decode: function(a) { return atob(a); },
+      isCurrentPlayerActive(){ return this.game.isCurrentPlayerActive() },
+      getActivePlayerId() { return this.game.getActivePlayerId() },
+      getActivePlayers() { return this.game.getActivePlayers() },
+      addPrimaryActionButton(id, msg, callback){ this.game.addActionButton(id, msg, callback, null, false, "blue"); },
+      checkAction(action) { return this.game.checkAction(action); },
+      removeActionButtons() { this.game.removeActionButtons(); },
+      decode(str) {
+        return decodeURIComponent(atob(str).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+       },
+      encode(str) {
+        return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+          function toSolidBytes(match, p1) {
+            return String.fromCharCode('0x' + p1);
+          })
+        );
+      },
 
-      unselectSymbol: function(){ },
+      unselectSymbol(){ },
 
       /*
        * onEnteringState:
@@ -138,7 +171,7 @@ window.Concept = function(game){
        *	- str stateName : name of the state we are entering
        *	- mixed args : additional information
        */
-      onEnteringState: function(stateName, args){
+      onEnteringState(stateName, args){
         debug('Entering state: ' + stateName, args);
 
         if(stateName == "pickWord")
@@ -175,7 +208,7 @@ window.Concept = function(game){
        * params:
        *	- str stateName : name of the state we are leaving
        */
-      onLeavingState: function (stateName) {
+      onLeavingState(stateName) {
       	debug('Leaving state: ' + stateName);
       	this.clearPossible();
       },
@@ -184,7 +217,7 @@ window.Concept = function(game){
       /*
        * clearPossible:	clear every clickable space
        */
-      clearPossible: function () {
+      clearPossible() {
         debug("Clearing everything");
 
         this.draggedHint = null;
@@ -200,7 +233,7 @@ window.Concept = function(game){
        * 	called by BGA framework before onEnteringState
        *	in this method you can manage "action buttons" that are displayed in the action status bar (ie: the HTML links in the status bar).
        */
-      onUpdateActionButtons: function (stateName, args) {
+      onUpdateActionButtons(stateName, args) {
       	debug('Update action buttons: ' + stateName, args);
 
         if (["addHint", "guessWord"].includes(stateName) && this.timer > 180 && !this.gaveUp){
@@ -221,7 +254,7 @@ window.Concept = function(game){
       /*
        * takeAction: default AJAX call with locked interface
        */
-      takeAction: function (action, data, callback) {
+      takeAction(action, data, callback) {
         data = data || {};
         data.lock = true;
         callback = callback || function (res) { };
@@ -230,26 +263,25 @@ window.Concept = function(game){
       },
 
 
-      launchInterval: function(){
+      launchInterval(){
         if(this.interval)
           clearInterval(this.interval);
 
         this.interval = setInterval( () => {
           this.timer += 1;
-          if(this.timer > 180){
-//            clearInterval(this.interval);
+          if(this.timer > 180 && this.timer < 190){
             this.clearPossible();
           }
         }, 1000);
       },
 
-      giveUp: function(){
+      giveUp(){
         this.takeAction("giveUp", {});
         this.removeActionButtons();
       },
 
 
-      updatePlayers: function(players){
+      updatePlayers(players){
         Object.values(players).forEach(player => {
           if(this.game.scoreCtrl[player.id])
             this.game.scoreCtrl[player.id].setValue(player.score);
@@ -262,7 +294,7 @@ window.Concept = function(game){
         });
       },
 
-      notif_updatePlayersInfo: function(n){
+      notif_updatePlayersInfo(n){
         debug("Notif: update users", n);
         this.updatePlayers(n.args.players);
       },
@@ -271,14 +303,14 @@ window.Concept = function(game){
       ////////////////////////////
       //////	Choose word	 ///////
       ////////////////////////////
-      onEnteringStatePickWord: function(args){
+      onEnteringStatePickWord(args){
         Object.assign(this.card, this.game.gamedatas.cards[args['_private']]);
         this.displayCard = true;
         this.addPrimaryActionButton('buttonShowCard', _('Show card'), () => { this.displayCard = true });
       },
 
 
-      selectCardWord: function(i,j){
+      selectCardWord(i,j){
         if(!this.checkAction('pickWord')) return;
         this.takeAction("pickWord", { i : i, j : j});
       },
@@ -368,25 +400,25 @@ window.Concept = function(game){
       /*
        * clearHints: clear all the hints of given color
        */
-      clearHints: function(mColor){
+      clearHints(mColor){
         this.takeAction("clearHints", {color:mColor});
       },
 
       /*
        * confirmHints: make the player inactive
        */
-      confirmHints: function(){
+      confirmHints(){
         this.takeAction("confirmHints", {});
       },
 
       ////////////////////////////////////
       ////// Hints Notifications   ///////
       ////////////////////////////////////
-      isMarkUsed: function(color){
+      isMarkUsed(color){
         return this.hints.reduce((carry, hint) => carry || (hint.mType == 0 && hint.mColor == color), false);
       },
 
-      notif_addHint: function(n){
+      notif_addHint(n){
         debug("Notif: new hint", n);
         for(var a in n.args){
           n.args[a] = parseInt(n.args[a]);
@@ -395,7 +427,7 @@ window.Concept = function(game){
       },
 
 
-      notif_moveHint: function(n){
+      notif_moveHint(n){
         debug("Notif: new hint", n);
         this.hints.forEach(hint => {
           if(hint.id == n.args.id){
@@ -405,7 +437,7 @@ window.Concept = function(game){
         });
       },
 
-      notif_deleteHint: function(n){
+      notif_deleteHint(n){
         debug("Notif: remove hint", n);
         var index = this.hints.reduce( (carry, hint, i) => hint.id == n.args.id? i : carry, null);
         if(index != null)
@@ -413,12 +445,12 @@ window.Concept = function(game){
       },
 
 
-      notif_clearHints: function(n){
+      notif_clearHints(n){
         debug("Notif: clearing all hints", n);
         this.hints = [];
       },
 
-      notif_clearColor: function(n){
+      notif_clearColor(n){
         debug("Notif: clearing all hints of a color", n);
         this.hints = this.hints.filter(hint => hint.mColor != n.args.color);
       },
@@ -427,15 +459,15 @@ window.Concept = function(game){
       /////////////////////////
       //////  Guesses   ///////
       /////////////////////////
-      newGuess: function(){
+      newGuess(){
         if(this.guess == "") return;
 
-        this.takeAction("newGuess", { guess: btoa(this.guess) });
+        this.takeAction("newGuess", { guess: this.encode(this.guess) });
         this.guess = "";
       },
 
 
-      notif_newGuess: function(n){
+      notif_newGuess(n){
         debug("Notif: new guess", n);
         this.guesses.unshift(n.args);
       },
@@ -444,12 +476,12 @@ window.Concept = function(game){
       /*
        * pass: make the player inactive
        */
-      pass: function(){
+      pass(){
         this.takeAction("pass", {});
       },
 
 
-      showFeedbackChoices: function(guess){
+      showFeedbackChoices(guess){
         if(guess.pId == -1 || !this.isClueGiver) return;
 
         this.displayFeedback = true;
@@ -457,7 +489,7 @@ window.Concept = function(game){
       },
 
 
-      wordFound: function(){
+      wordFound(){
         debug("Word found");
         this.takeAction("wordFound", {
           gId: this.guessFeedback.id,
@@ -466,7 +498,7 @@ window.Concept = function(game){
 
 
 
-      addFeedback: function(feedback){
+      addFeedback(feedback){
         debug("Feeback", feedback);
         this.takeAction("addFeedback", {
           gId: this.guessFeedback.id,
@@ -475,7 +507,7 @@ window.Concept = function(game){
       },
 
 
-      notif_newFeedback: function(n){
+      notif_newFeedback(n){
         debug("Notif: new feedback", n);
         this.guesses.forEach(guess => {
           if(guess.id == n.args.gId)
@@ -483,7 +515,7 @@ window.Concept = function(game){
         });
       },
 
-      notif_wordFound: function(n){
+      notif_wordFound(n){
         debug("Notf: word found", n);
         let w = n.args.word;
         this.game.gamedatas.word = w;
@@ -500,16 +532,20 @@ window.Concept = function(game){
       /////////////////////////////////////////////
       /////////////	  Preferences 	 /////////////
       ////////////////////////////////////////////
-      onPreferenceChange: function(pref, value) {
+      onPreferenceChange(pref, value) {
         if(pref == DARK_MODE)
           this.toggleDarkMode(value == DARK_MODE_ENABLED, false);
 		  },
 
-      setPreferenceValue: function(pref, newVal){
+      setPreferenceValue(pref, newVal){
         this.game.setPreferenceValue(pref, newVal)
       },
 
-      toggleDarkMode: function(enabled){
+      toggleGrid(){
+        this.setPreferenceValue(DISPLAY_GRID, $('chk-grid').checked? GRID_HIDDEN : GRID_VISIBLE)
+      },
+
+      toggleDarkMode(enabled){
         if(enabled){
           dojo.query("html").addClass("darkmode");
           $('chk-darkmode').checked = true;
@@ -519,7 +555,7 @@ window.Concept = function(game){
         }
       },
 
-      addDarkModeSwitch: function(){
+      addDarkModeSwitch(){
         // Darkmode switch
         dojo.place(`
           <div class='upperrightmenu_item' id="darkmode-switch">
@@ -540,7 +576,7 @@ window.Concept = function(game){
       },
 
 
-      onScreenWidthChange: function(){
+      onScreenWidthChange(){
         let gridWidth = 1280;
         let gridHeight = 800;
         let box = $('concept-grid-container').getBoundingClientRect();
@@ -556,20 +592,8 @@ window.Concept = function(game){
        *	In this method, you associate each of your game notifications with your local method to handle it.
        *	Note: game notification names correspond to "notifyAllPlayers" and "notifyPlayer" in the santorini.game.php file.
        */
-      setupNotifications: function () {
-      	var notifs = [
-      		['addHint',10],
-          ['moveHint',10],
-          ['deleteHint',10],
-          ['clearHints',10],
-          ['clearColor',10],
-          ['newGuess',10],
-          ['newFeedback',10],
-          ['wordFound',5],
-          ['updatePlayersInfo',5]
-      	];
-
-      	notifs.forEach(notif => {
+      setupNotifications() {
+      	this.notifs.forEach(notif => {
       		dojo.subscribe(notif[0], this, "notif_" + notif[0]);
       		this.game.notifqueue.setSynchronous(notif[0], notif[1]);
       	});

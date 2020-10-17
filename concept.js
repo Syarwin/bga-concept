@@ -26,6 +26,7 @@
    g_gamethemeurl + "modules/js/vuedraggable.js",
    g_gamethemeurl + "modules/js/symbols.js",
    g_gamethemeurl + "modules/js/vue-concept.js",
+   g_gamethemeurl + "modules/js/vue-concept-free.js",
    g_gamethemeurl + "modules/js/vue-concept-snapped.js",
  ], function (dojo, declare) {
  	return declare("bgagame.concept", ebg.core.gamegui, {
