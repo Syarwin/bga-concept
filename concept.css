@@ -248,7 +248,7 @@ html.darkmode {
           border-bottom: 1px dotted rgba(0, 0, 0, 0.3);
           word-wrap: break-word; }
           #concept-app #concept-container div#concept-guesses-container ul li.needFeedback {
-            animation: borderBlink 1.4s infinite; }
+            animation: borderBlink 1.2s infinite; }
 @keyframes borderBlink {
   0% {
     border: 1px dashed white; }
@@ -1336,7 +1336,8 @@ html.darkmode {
             margin: 0 !important;
             background-color: transparent !important;
             border: none !important;
-            transform: scale(1.5); }
+            transform: scale(1.5);
+            transform-origin: top center; }
           #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only ul {
             display: flex;
             flex-direction: row;

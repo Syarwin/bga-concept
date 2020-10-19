@@ -358,7 +358,7 @@ $columns:(
           word-wrap:break-word;
 
           &.needFeedback {
-            animation:borderBlink 1.4s infinite;
+            animation:borderBlink 1.2s infinite;
             @keyframes borderBlink {
               0%   { border: 1px dashed white; }
               49%  { border: 1px dashed white; border-bottom:1px dotted rgba(0,0,0,0.3); }
@@ -640,6 +640,7 @@ $columns:(
             background-color:transparent !important;
             border:none !important;
             transform:scale(1.5);
+            transform-origin: top center;
           }
 
           ul {

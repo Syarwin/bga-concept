@@ -28,6 +28,12 @@ class Hint extends \APP_DbObject
 	function add($mColor, $mType, $x, $y, $sId){
     $symbol = is_null($sId)? 'NULL' : $sId;
     $order = (int) self::getUniqueValueFromDB("SELECT ordering FROM hint ORDER BY ordering DESC LIMIT 1") + 1;
+    if($mType == 0){
+      $alreadyThere = self::getUniqueValueFromDB("SELECT id FROM hint WHERE mark_color = $mColor AND mark_type = $mType LIMIT 1");
+      if(!is_null($alreadyThere))
+        throw new \BgaUserException(Concept::_("There is already a main token of this color on the board"));
+    }
+
 		self::DbQuery("INSERT INTO hint (mark_color, mark_type, x, y, symbol_id, ordering) VALUES ($mColor, $mType, $x, $y, $symbol, $order)");
 		return self::DbGetLastId();
 	}

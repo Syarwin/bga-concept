@@ -239,7 +239,7 @@ window.Concept = function(game){
        */
       onUpdateActionButtons(stateName, args) {
       	debug('Update action buttons: ' + stateName, args);
-
+        if(this.isSpectator) return;
         if (["addHint", "guessWord"].includes(stateName) && this.timer > 180 && !this.gaveUp){
           this.addPrimaryActionButton("btnGiveUp", _("Give up"), () => this.giveUp());
         }
@@ -259,6 +259,8 @@ window.Concept = function(game){
        * takeAction: default AJAX call with locked interface
        */
       takeAction(action, data, callback) {
+        if(this.isSpectator) return false;
+
         data = data || {};
         data.lock = true;
         callback = callback || function (res) { };
@@ -322,85 +324,6 @@ window.Concept = function(game){
       ////////////////////////////////////
       ////// Add/move/suppr hints	 ///////
       ////////////////////////////////////
-      /*
-       * newHint: when mousedown on a mark, create a hint and start dragging
-       */
-      newHint(color, type, event){
-        if(!this.isClueGiver || event.button != 0 || (type == 0 && this.isMarkUsed(color))) return;
-
-        var hint = {
-          mColor : color,
-          mType : type,
-          x:0,
-          y:0,
-        };
-        this.hints.push(hint);
-        this.dragHintStart(this.hints.length - 1, event);
-      },
-
-      /*
-       * dragHintStart: make the hint start following the mouse
-       */
-      dragHintStart(hintIndex, event) {
-        if(!this.isClueGiver || event.button != 0) return;
-
-        if (event.preventDefault) event.preventDefault();
-        this.draggedHintIndex = hintIndex;
-        this.draggedHint = this.hints[hintIndex];
-        var boxGrid = $('concept-grid-fixed-width').getBoundingClientRect();
-        var boxHint = event.target.getBoundingClientRect();
-        this.dragOffset = {
-          x : $('concept-marks').getBoundingClientRect()['width'] + boxGrid.x + event.clientX - boxHint.x,
-          y : boxGrid.y + event.clientY - boxHint.y,
-        };
-        this.moveHintAt(event);
-      },
-
-      /*
-       * moveHintAt: during the drag, move hint around
-       */
-      moveHintAt(event){
-        if(this.draggedHint != null){
-          this.draggedHint.x = parseInt((event.clientX - this.dragOffset.x) / this.scale);
-          this.draggedHint.y = parseInt((event.clientY - this.dragOffset.y) / this.scale);
-        }
-      },
-
-
-      /*
-       * dragHintStop: onmouseup, stop the drag and react whether
-       *     it's inside the board or outside
-       */
-      dragHintStop() {
-        if(this.draggedHint == null) return;
-        if(!this.isCurrentPlayerActive()) return;
-
-        var box = $('concept-grid').getBoundingClientRect();
-
-        // Delete hint by moving outside grid
-        if(this.draggedHint.x < 0 || this.draggedHint.x > box.width
-          || this.draggedHint.y < 0 || this.draggedHint.y > box.height){
-          this.hints.splice(this.draggedHintIndex, 1);
-          if(this.draggedHint.id)
-            this.takeAction("deleteHint", { id : this.draggedHint.id} );
-        }
-        else {
-          // Moving already existing hint
-          if(this.draggedHint.id)
-            this.takeAction("moveHint", this.draggedHint);
-          // Creating new hint
-          else {
-            this.takeAction("addHint", this.draggedHint, () => {
-              this.hints.splice(this.draggedHintIndex, 1);
-            });
-          }
-        }
-
-        this.draggedHint = null;
-        this.dragOffset = null;
-      },
-
-
       /*
        * clearHints: clear all the hints of given color
        */
@@ -586,6 +509,9 @@ window.Concept = function(game){
         let box = $('concept-grid-container').getBoundingClientRect();
         this.scale = Math.min(box['width'] / gridWidth, box['height'] / gridHeight);
         dojo.style('concept-guesses-container', 'maxHeight', (790 * this.scale) + 'px');
+
+        if($("hints"))
+          dojo.style('hints', 'maxHeight', (790 * this.scale) + 'px');
       },
       ///////////////////////////////////////////////////
       //////	 Reaction to cometD notifications	 ///////

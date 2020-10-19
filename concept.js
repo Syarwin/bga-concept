@@ -36,7 +36,7 @@
     },
     setup: function (gamedatas) {
       dojo.place("<div id='concept-topbar'></div>", 'topbar', 'after');
-      this._app = gamedatas.mode == "free"? new Vue(Concept(this)) : new Vue(ConceptSnapped(this));
+      this._app = gamedatas.mode == "free"? new Vue(ConceptFree(this)) : new Vue(ConceptSnapped(this));
       this.initPreferencesObserver();
     },
     onEnteringState: function (stateName, args) {
