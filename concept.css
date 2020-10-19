@@ -144,8 +144,14 @@ html.darkmode {
     color: #AAA; }
 
 @font-face {
-  font-family: 'Cafeteria';
-  src: url("img/font/Cafeteria-Bold.woff2") format("woff2"), url("img/font/Cafeteria-Bold.woff") format("woff"), url("img/font/Cafeteria-Bold.ttf") format("truetype");
+  font-family: 'Qlassik';
+  src: url("img/font/QlassikBold.woff2") format("woff2"), url("img/font/QlassikBold.woff") format("woff"), url("img/font/QlassikBold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap; }
+@font-face {
+  font-family: 'Noto Sans';
+  src: url("NotoSans-Bold.woff2") format("woff2");
   font-weight: bold;
   font-style: normal;
   font-display: swap; }
@@ -238,9 +244,24 @@ html.darkmode {
         border-bottom-right-radius: 5px;
         border-bottom-left-radius: 5px; }
         #concept-app #concept-container div#concept-guesses-container ul li {
-          padding: 2px;
+          padding: 4px;
           border-bottom: 1px dotted rgba(0, 0, 0, 0.3);
           word-wrap: break-word; }
+          #concept-app #concept-container div#concept-guesses-container ul li.needFeedback {
+            animation: borderBlink 1.4s infinite; }
+@keyframes borderBlink {
+  0% {
+    border: 1px dashed white; }
+  49% {
+    border: 1px dashed white;
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.3); }
+  50% {
+    border: 1px dashed black; }
+  99% {
+    border: 1px dashed black; }
+  100% {
+    border: 1px dashed white;
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.3); } }
           #concept-app #concept-container div#concept-guesses-container ul li.separator {
             background-color: #DDD;
             text-align: center;
@@ -257,9 +278,19 @@ html.darkmode {
           #concept-app #concept-container div#concept-guesses-container ul li[data-feedback="0"]::before {
             background-position: 0% 0%; }
           #concept-app #concept-container div#concept-guesses-container ul li[data-feedback="1"]::before {
-            background-position: 0% 50%; }
+            background-position: 50% 0%; }
           #concept-app #concept-container div#concept-guesses-container ul li[data-feedback="2"]::before {
-            background-position: 0% 100%; }
+            background-position: 100% 0%; }
+          #concept-app #concept-container div#concept-guesses-container ul li.needFeedback::before {
+            content: "";
+            width: 50px;
+            height: 17px;
+            margin-top: 2px;
+            display: block;
+            float: right;
+            background-image: url("img/feedback.png");
+            background-size: 100%;
+            opacity: 0.6; }
           #concept-app #concept-container div#concept-guesses-container ul li span {
             font-weight: bold;
             margin-right: 5px; }
@@ -2059,7 +2090,7 @@ div#concept-card-overlay {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: 'Cafeteria';
+        font-family: 'Qlassik', 'Noto Sans', 'Verdana Bold';
         font-size: 20px;
         line-height: 15px;
         cursor: pointer; }
@@ -2110,9 +2141,9 @@ div#concept-feedback-overlay {
         div#concept-feedback-overlay div#concept-feedback-container ul li#concept-feedback-0 div {
           background-position: 0% 0%; }
         div#concept-feedback-overlay div#concept-feedback-container ul li#concept-feedback-1 div {
-          background-position: 0% 50%; }
+          background-position: 50% 0%; }
         div#concept-feedback-overlay div#concept-feedback-container ul li#concept-feedback-2 div {
-          background-position: 0% 100%; }
+          background-position: 100% 0%; }
 
 div#concept-card-reveal {
   position: fixed;
@@ -2167,7 +2198,7 @@ div#concept-card-reveal {
         background-size: cover;
         background-position: 0% 0%; }
         div#concept-card-reveal div#concept-reveal-container #concept-reveal-front div #concept-reveal-smiley.found {
-          background-position: 0% 100%; }
+          background-position: 100% 0%; }
       div#concept-card-reveal div#concept-reveal-container #concept-reveal-front div h2 {
         margin: 60px auto;
         text-align: center; }

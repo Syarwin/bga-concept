@@ -56,18 +56,18 @@ window.Concept = function(game){
     },
     computed:{
       // BGA stuff
-      state: function(){ return this.game.gamedatas.gamestate },
-      activePlayerId: function(){ return this.getActivePlayerId() },
+      state(){ return this.game.gamedatas.gamestate },
+      activePlayerId(){ return this.getActivePlayerId() },
 
       // Concept stuff
-      displayGrid: function(){
+      displayGrid(){
         return this.game.prefs[DISPLAY_GRID].value == GRID_VISIBLE;
       },
-      displayTimer: function(){
+      displayTimer(){
         return this.game.prefs[DISPLAY_TIMER].value == TIMER_VISIBLE;
       },
 
-      formatedTimer: function(){
+      formatedTimer(){
         if(this.timer == null)
           return "";
 
@@ -82,36 +82,40 @@ window.Concept = function(game){
         else return w.j? this.game.gamedatas.cards[w.card][w.i][w.j] : '???';
       },
 
-      wordLvl:function(){
+      wordLvl(){
         let w = this.game.gamedatas.word;
         return (w == null)? -1 : w.i;
       },
 
-      wordCount: function(){
+      wordCount(){
         return parseInt(this.game.gamedatas.wordCount) + 1;
       },
 
-      endOfGame: function(){
+      endOfGame(){
         return this.game.gamedatas.endOfGame == -1 ? '∞' : this.game.gamedatas.endOfGame;
       },
 
-      isClueGiver: function(){
+      isClueGiver(){
         return this.team.includes(this.playerId);
       },
 
-      gaveUp: function(){
+      gaveUp(){
         return this.players[this.playerId].gaveup == 1;
       },
+
+      lastSeparatorId(){
+        return this.guesses.reduce((id, guess) => (id != 0 || guess.pId != -1)? id : guess.id, 0);
+      }
     },
 
 
-    created: function (){
+    created(){
       debug("SETUP", this.game.gamedatas);
       this.updatePlayers(this.game.gamedatas.players);
       this.setupNotifications();
     },
 
-    mounted: function(){
+    mounted(){
       this.symbols.forEach((symbol, id) => {
         this.game.addTooltip("symbol-" + id, symbol.join(", "), '');
       });

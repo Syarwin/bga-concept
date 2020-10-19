@@ -215,10 +215,18 @@ html.darkmode {
 
 
 @font-face {
-    font-family: 'Cafeteria';
-    src: url('img/font/Cafeteria-Bold.woff2') format('woff2'),
-        url('img/font/Cafeteria-Bold.woff') format('woff'),
-        url('img/font/Cafeteria-Bold.ttf') format('truetype');
+    font-family: 'Qlassik';
+    src: url('img/font/QlassikBold.woff2') format('woff2'),
+        url('img/font/QlassikBold.woff') format('woff'),
+        url('img/font/QlassikBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('NotoSans-Bold.woff2') format('woff2');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -345,9 +353,20 @@ $columns:(
         border-bottom-left-radius: 5px;
 
         li {
-          padding:2px;
+          padding:4px;
           border-bottom:1px dotted rgba(0,0,0,0.3);
           word-wrap:break-word;
+
+          &.needFeedback {
+            animation:borderBlink 1.4s infinite;
+            @keyframes borderBlink {
+              0%   { border: 1px dashed white; }
+              49%  { border: 1px dashed white; border-bottom:1px dotted rgba(0,0,0,0.3); }
+              50%  { border: 1px dashed black; }
+              99% { border: 1px dashed black; }
+              100% { border: 1px dashed white; border-bottom:1px dotted rgba(0,0,0,0.3); }
+            }
+          }
 
           &.separator {
             background-color:#DDD;
@@ -367,9 +386,20 @@ $columns:(
           }
 
           &[data-feedback="0"]::before { background-position:0% 0%; }
-          &[data-feedback="1"]::before { background-position:0% 50%; }
-          &[data-feedback="2"]::before { background-position:0% 100%; }
+          &[data-feedback="1"]::before { background-position:50% 0%; }
+          &[data-feedback="2"]::before { background-position:100% 0%; }
 
+          &.needFeedback::before {
+            content: "";
+            width: 50px;
+            height: 17px;
+            margin-top: 2px;
+            display: block;
+            float: right;
+            background-image: url("img/feedback.png");
+            background-size:100%;
+            opacity:0.6;
+          }
 
           span {
             font-weight: bold;
@@ -925,7 +955,7 @@ div#concept-card-overlay {
         display:flex;
         align-items: center;
         justify-content: center;
-        font-family: 'Cafeteria';
+        font-family: 'Qlassik', 'Noto Sans', 'Verdana Bold';
         font-size:20px;
         line-height:15px;
         cursor:pointer;
@@ -988,8 +1018,8 @@ div#concept-feedback-overlay {
         }
 
         &#concept-feedback-0 div { background-position:0% 0%; }
-        &#concept-feedback-1 div { background-position:0% 50%; }
-        &#concept-feedback-2 div { background-position:0% 100%;}
+        &#concept-feedback-1 div { background-position:50% 0%; }
+        &#concept-feedback-2 div { background-position:100% 0%;}
       }
     }
   }
@@ -1061,7 +1091,7 @@ div#concept-card-reveal {
           background-repeat:no-repeat;
           background-size:cover;
           background-position:0% 0%;
-          &.found  { background-position:0% 100%; }
+          &.found  { background-position:100% 0%; }
         }
 
 

@@ -48,33 +48,15 @@ $gameinfos = [
     'max' => null
 	],
 
-// Game presentation
-// Short game presentation text that will appear on the game description page, structured as an array of paragraphs.
-// Each paragraph must be wrapped with totranslate() for translation and should not contain html (plain text without formatting).
-// A good length for this text is between 100 and 150 words (about 6 to 9 lines on a standard display)
-'presentation' => [
-//    totranslate("This wonderful game is about geometric shapes!"),
-//    totranslate("It was awarded best triangle game of the year in 2005 and nominated for the Spiel des Jahres."),
-//    ...
-],
+	'presentation' => [
+		totranslate("This wonderful game is about finding the concept hiding behind some icons."),
+		totranslate("Concept is a family game which has won or been nominated for no fewer than 8 awards throughout the world!"),
+	],
 
-// Games categories
-//  You can attribute a maximum of FIVE "tags" for your game.
-//  Each tag has a specific ID (ex: 22 for the category "Prototype", 101 for the tag "Science-fiction theme game")
-//  Please see the "Game meta information" entry in the BGA Studio documentation for a full list of available tags:
-//  http://en.doc.boardgamearena.com/Game_meta-information:_gameinfos.inc.php
-//  IMPORTANT: this list should be ORDERED, with the most important tag first.
-//  IMPORTANT: it is mandatory that the FIRST tag is 1, 2, 3 and 4 (= game category)
-'tags' => [2],
-
+	'tags' => [2,11,12,20,211],
 
 //////// BGA SANDBOX ONLY PARAMETERS (DO NOT MODIFY)
-
-// simple : A plays, B plays, C plays, A plays, B plays, ...
-// circuit : A plays and choose the next player C, C plays and choose the next player D, ...
-// complex : A+B+C plays and says that the next player is A+B
-'is_sandbox' => false,
-'turnControl' => 'simple'
-
+	'is_sandbox' => false,
+	'turnControl' => 'simple'
 ////////
 ];

@@ -23,7 +23,7 @@
 							@click="showFeedbackChoices(guess)"
 							v-bind:style="{cursor: isClueGiver && guess.pId != -1? 'pointer' : 'default' }"
 							v-bind:data-feedback="guess.feedback"
-							v-bind:class="{ separator : guess.pId == -1}">
+							v-bind:class="{ separator : guess.pId == -1, needFeedback : isClueGiver && guess.id > lastSeparatorId && guess.feedback == null }">
 						<template v-if="guess.pId != -1">
 							<span v-bind:style="{ color : '#' + players[guess.pId].color }">{{ players[guess.pId].name}} </span>
 						</template>
