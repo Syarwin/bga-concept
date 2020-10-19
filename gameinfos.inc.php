@@ -28,7 +28,7 @@ $gameinfos = [
 
 
 	'is_beta' => 1,
-	'is_coop' => 1,
+	'is_coop' => 0,
 
 
 	'complexity' => 3,
