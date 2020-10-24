@@ -53,24 +53,31 @@ $machinestates = [
 
 	ST_ADD_HINT => [
 		"name" => "addHint",
-		"description" => clienttranslate('Other players can add hints on the board'),
-		"descriptionmyturn" => clienttranslate('${you} can add hints on the board'),
+		"description" => '',
+		"descriptionmyturn" => '',
+    "descriptionguessers" => clienttranslate('You can make a guess'),
+    "descriptionteam" => clienttranslate('You can add hints on the board by clicking on symbols'),
+    "descriptionteamfree" => clienttranslate('You can add hints on the board by dragndrop tokens'),
 		'type' => 'multipleactiveplayer',
 		'action' => "stAddHint",
 		'args' => "argPlay",
 		"possibleactions" => ["addHint", "pass"],
 		"transitions" => [
-			'confirm' => ST_GUESS_WORD,
+			'confirm' => ST_ADD_HINT,
 			'found' => ST_NEXT_ROUND,
 			'giveup' => ST_NEXT_ROUND,
+      'exact' => ST_WAITING_SCORE,
 		]
   ],
 
-
+  // TODO : remove state
   ST_GUESS_WORD => [
 		"name" => "guessWord",
-		"description" => clienttranslate('Other players can make a guess'),
-		"descriptionmyturn" => clienttranslate('${you} can make a guess'),
+    "description" => '',
+		"descriptionmyturn" => '',
+    "descriptionguessers" => clienttranslate('You can make a guess'),
+    "descriptionteam" => clienttranslate('You can add hints on the board by clicking on symbols'),
+    "descriptionteamfree" => clienttranslate('You can add hints on the board by dragndrop tokens'),
 		'type' => 'multipleactiveplayer',
 		'action' => "stGuessWord",
 		'args' => "argPlay",
@@ -79,6 +86,20 @@ $machinestates = [
 			'pass' => ST_ADD_HINT,
 			'found' => ST_NEXT_ROUND,
 			'giveup' => ST_NEXT_ROUND,
+      'exact' => ST_WAITING_SCORE,
+		]
+  ],
+
+
+  ST_WAITING_SCORE => [
+		"name" => "waitingScore",
+		"description" => clienttranslate('The correct word was found, waiting for clue givers to attribute score'),
+		"descriptionmyturn" => clienttranslate('${you} must attribute score to the oldest correct guess'),
+		'type' => 'multipleactiveplayer',
+    'action' => "stWaitingScore",
+		"possibleactions" => [],
+		"transitions" => [
+			'found' => ST_NEXT_ROUND,
 		]
   ],
 

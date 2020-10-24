@@ -11,17 +11,7 @@ use CPT\PlayerManager;
 /////////   Guesses   /////////
 ///////////////////////////////
 trait GuessWordTrait {
-	/*
-	 * argGuessWord: display word only to the team members
-	 */
-	function stGuessWord(){
-		$team = Log::getCurrentTeam();
-		$guessers = array_values(array_filter(PlayerManager::getPlayersLeft(),
-			function($pId) use ($team){ return !in_array($pId, $team); }));
-		$this->gamestate->setPlayersMultiactive($guessers, '', true);
-	}
-
-	/*
+  /*
 	 * argGuessWord: display word only to the team members
 	 */
 	function argPlay(){
@@ -47,10 +37,11 @@ trait GuessWordTrait {
  	 * newGuess: when someone make a guess
  	 */
 	function newGuess($guess){
-    if($this->gamestate->state()['name'] == 'pickWord'){
+    if(!in_array($this->gamestate->state()['name'], ['guessWord', 'addHint'])){
       $this->notifyAllPlayers('message', '', []);
       return;
     }
+    $this->newGuesserAction();
 
 		$pId = self::getCurrentPlayerId();
 		$gId = Guess::new($guess, $pId);
@@ -60,6 +51,19 @@ trait GuessWordTrait {
 			'guess' => $guess,
 			'feedback' => null,
 		]);
+
+    $word = Log::getCurrentWord();
+    $wordTxt = $this->getCards()[$word['card']][$word['i']][$word['j']];
+    if(strcmp(base64_encode($wordTxt), $guess) == 0){
+      $this->notifyAllPlayers('wordFound', clienttranslate('${player_name} guessed the exact word : ${wordTxt}'), [
+        'word' => $word,
+        'wordTxt' => $wordTxt,
+        'player_name' => self::getCurrentPlayerName(),
+        'reveal' => 0,
+      ]);
+
+      $this->gamestate->nextState('exact');
+    }
 	}
 
   /*
@@ -77,6 +81,7 @@ trait GuessWordTrait {
  	 */
 	function addFeedback($gId, $feedback){
     self::checkFeedback($gId);
+    $this->newTeamAction();
 
 		Guess::feedback($gId, $feedback);
 		$this->notifyAllPlayers('newFeedback', '', [
@@ -106,6 +111,7 @@ trait GuessWordTrait {
 			'wordTxt' => $wordTxt,
       'word' => $word,
 			'player_name' => $player['name'],
+      'reveal' => 1,
 		]);
 
     // Add a separator

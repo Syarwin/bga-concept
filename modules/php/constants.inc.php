@@ -10,6 +10,7 @@ define('ST_NEXT_ROUND', 3);
 define('ST_PICK_WORD', 4);
 define('ST_ADD_HINT', 5);
 define('ST_GUESS_WORD', 7);
+define('ST_WAITING_SCORE', 8);
 define('ST_END_ROUND', 6);
 define('ST_GAME_END', 99);
 

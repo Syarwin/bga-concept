@@ -140,8 +140,11 @@ window.Concept = function(game){
       setTimeout(() => this.onScreenWidthChange(), 1000);
 
       if(this.isFree){
-        dojo.connect(document, 'onmousemove', this.moveHintAt.bind(this));
+        dojo.connect(document, 'onmousemove', this.moveHintAtMouse.bind(this));
+        dojo.connect(document, 'ontouchmove', this.moveHintAtTouch.bind(this));
         dojo.connect(document, 'onmouseup', this.dragHintStop.bind(this));
+        dojo.connect(document, 'ontouchend', this.dragHintStop.bind(this));
+        dojo.connect(document, 'ontouchcancel', this.dragHintStop.bind(this));
       }
     },
 
@@ -184,18 +187,30 @@ window.Concept = function(game){
         // Stop here if it's not the current player's turn for some states
       	if (["pickWord"].includes(stateName) && !this.isCurrentPlayerActive()) return;
 
+        // Update team
         if(args.args && args.args['team'])
           this.team = args.args['team'].map(o => parseInt(o));
 
-          if(stateName == "addHint" || stateName == "guessWord"){
-            this.game.gamedatas.word = args.args.word;
-            this.game.gamedatas.wordCount = args.args.wordCount;
-            this.game.gamedatas.timer = args.args.timer;
-            this.timer = args.args.timer;
-            this.launchInterval();
-            if(args.args['_private'])
-              this.game.gamedatas.word = args.args['_private'];
-          }
+        if(stateName == "addHint" || stateName == "guessWord"){
+          // Update pagetitle
+          var state = this.game.gamedatas.gamestate, desc = "";
+          if(this.isClueGiver)
+            desc = this.isFree? state.descriptionteamfree : state.descriptionteam;
+          else
+            desc = state.descriptionguessers;
+          this.game.gamedatas.gamestate.description = desc;
+          this.game.gamedatas.gamestate.descriptionmyturn = desc;
+          this.game.updatePageTitle();
+
+          // Update word/timer
+          this.game.gamedatas.word = args.args.word;
+          this.game.gamedatas.wordCount = args.args.wordCount;
+          this.game.gamedatas.timer = args.args.timer;
+          this.timer = args.args.timer;
+          this.launchInterval();
+          if(args.args['_private'])
+            this.game.gamedatas.word = args.args['_private'];
+        }
 
 
       	// Call appropriate method
@@ -248,9 +263,9 @@ window.Concept = function(game){
       		return;
 
         if (stateName == "addHint" && !this.game.bRealtime){
-          this.addPrimaryActionButton("btnConfirmHints", _("Done"), () => this.confirmHints());
+          this.addPrimaryActionButton("btnConfirmHints", _("Make me inactive"), () => this.confirmHints());
         } else if (stateName == "guessWord" && !this.game.bRealtime){
-          this.addPrimaryActionButton("btnPass", _("Pass"), () => this.pass());
+          this.addPrimaryActionButton("btnPass", _("Make me inactive"), () => this.pass());
         }
       },
 
@@ -409,7 +424,7 @@ window.Concept = function(game){
 
 
       showFeedbackChoices(guess){
-        if(guess.pId == -1 || !this.isClueGiver) return;
+        if(guess.pId == -1 || !this.isClueGiver || guess.id < this.lastSeparatorId) return;
 
         this.displayFeedback = true;
         this.guessFeedback = guess;
@@ -446,6 +461,9 @@ window.Concept = function(game){
         debug("Notf: word found", n);
         let w = n.args.word;
         this.game.gamedatas.word = w;
+        if(n.args.reveal == 0)
+          return;
+
         this.revealWord = this.game.gamedatas.cards[w.card][w.i][w.j];
         this.revealLvl = w.i;
         this.revealSmiley = n.args.player_name? true : false;

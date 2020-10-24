@@ -1277,7 +1277,8 @@ html.darkmode {
         display: flex;
         flex-flow: row;
         width: 100%;
-        min-height: 42px; }
+        min-height: 42px;
+        z-index: 10; }
         #concept-app #concept-container #concept-grid-container div#hints-only-container div#toggle-grid {
           width: 120px;
           height: 40px;

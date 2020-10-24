@@ -11,7 +11,8 @@ window.ConceptFree = function(game){
    * newHint: when mousedown on a mark, create a hint and start dragging
    */
   C.methods.newHint = function(color, type, event){
-    if(!this.isClueGiver || event.button != 0 || (type == 0 && this.isMarkUsed(color))) return;
+    if(!this.isClueGiver || (type == 0 && this.isMarkUsed(color))) return;
+    if(event.button != 0 && !event.touches) return;
 
     var hint = {
       mColor : color,
@@ -20,34 +21,67 @@ window.ConceptFree = function(game){
       y:0,
     };
     this.hints.push(hint);
-    this.dragHintStart(this.hints.length - 1, event);
+
+    if(event.touches)
+      this.dragHintStartTouch(this.hints.length - 1, event);
+    else
+      this.dragHintStartMouse(this.hints.length - 1, event);
   };
 
   /*
    * dragHintStart: make the hint start following the mouse
    */
-  C.methods.dragHintStart = function(hintIndex, event) {
+  C.methods.dragHintStartMouse = function(hintIndex, event) {
     if(!this.isClueGiver || event.button != 0) return;
-
     if (event.preventDefault) event.preventDefault();
+
+    this.dragHintStart(hintIndex, {
+      x:event.clientX,
+      y:event.clientY,
+      target:event.target,
+    });
+  };
+
+  C.methods.dragHintStartTouch = function(hintIndex, event) {
+    if (event.preventDefault) event.preventDefault();
+
+    this.dragHintStart(hintIndex, {
+      x:event.touches[0].clientX,
+      y:event.touches[0].clientY,
+      target:event.target,
+    });
+  };
+
+  C.methods.dragHintStart = function(hintIndex, info) {
+    if(!this.isClueGiver) return;
+
     this.draggedHintIndex = hintIndex;
     this.draggedHint = this.hints[hintIndex];
     var boxGrid = $('concept-grid-fixed-width').getBoundingClientRect();
-    var boxHint = event.target.getBoundingClientRect();
+    var boxHint = info.target.getBoundingClientRect();
     this.dragOffset = {
-      x : $('concept-marks').getBoundingClientRect()['width'] + boxGrid.x + event.clientX - boxHint.x,
-      y : boxGrid.y + event.clientY - boxHint.y,
+      x : $('concept-marks').getBoundingClientRect()['width'] + boxGrid.x + info.x - boxHint.x,
+      y : boxGrid.y + info.y - boxHint.y,
     };
-    this.moveHintAt(event);
+    this.moveHintAt(info);
   };
 
   /*
    * moveHintAt: during the drag, move hint around
    */
-  C.methods.moveHintAt = function(event){
+  C.methods.moveHintAtMouse = function(evt){
+    this.moveHintAt({ x : evt.clientX, y : evt.clientY});
+  };
+  C.methods.moveHintAtTouch = function(evt){
+    if (event.preventDefault) event.preventDefault();
+    this.moveHintAt({ x : evt.touches[0].clientX, y : evt.touches[0].clientY});
+  };
+
+
+  C.methods.moveHintAt = function(info){
     if(this.draggedHint != null){
-      this.draggedHint.x = parseInt((event.clientX - this.dragOffset.x) / this.scale);
-      this.draggedHint.y = parseInt((event.clientY - this.dragOffset.y) / this.scale);
+      this.draggedHint.x = parseInt((info.x - this.dragOffset.x) / this.scale);
+      this.draggedHint.y = parseInt((info.y - this.dragOffset.y) / this.scale);
     }
   };
 

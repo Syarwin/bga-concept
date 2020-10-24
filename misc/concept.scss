@@ -565,6 +565,7 @@ $columns:(
         flex-flow:row;
         width:100%;
         min-height: 42px;
+				z-index:10;
 
         div#toggle-grid {
           width:120px;
