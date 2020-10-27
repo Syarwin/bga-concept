@@ -524,7 +524,7 @@ window.Concept = function(game){
         let gridWidth = this.isFree? 1280 : 1100;
         let gridHeight = 800;
         let box = $('concept-grid-container').getBoundingClientRect();
-        this.scale = box['width'] / gridWidth; //Math.min(box['width'] / gridWidth, box['height'] / gridHeight);
+        this.scale =  Math.min(box['width'] / gridWidth, box['height'] / gridHeight);
         dojo.style('concept-guesses-container', 'maxHeight', (790 * this.scale) + 'px');
 
         if($("hints"))

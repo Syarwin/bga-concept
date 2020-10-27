@@ -135,11 +135,6 @@ trait AddHintTrait {
    * clearHints: delete all the hints of given color
    */
   function clearHints($color = 0){
-    if($this->gamestate->state()['name'] != "addHint"){
-      $this->notifyAllPlayers('message', '', []);
-      return;
-    }
-
     $this->newTeamAction();
 		if($color == 0){
 			Hint::clearAll();

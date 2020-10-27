@@ -314,7 +314,8 @@ html.darkmode {
         height: 794px;
         display: flex;
         justify-content: center;
-        align-items: center; }
+        align-items: center;
+        transform-origin: top center; }
       #concept-app #concept-container #concept-grid-container #concept-grid {
         height: auto;
         width: 1100px;
