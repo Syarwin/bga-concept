@@ -3,6 +3,7 @@ window.ConceptSnapped = function(game){
 
   C.data.isFree = false;
   C.data.selectedSymbol = null;
+  C.data.displayOrganized = false;
   C.components = {
     'draggable' : window.vuedraggable,
   };

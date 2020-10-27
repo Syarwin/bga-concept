@@ -96,6 +96,7 @@ $machinestates = [
 		"description" => clienttranslate('The correct word was found, waiting for clue givers to attribute score'),
 		"descriptionmyturn" => clienttranslate('${you} must attribute score to the oldest correct guess'),
 		'type' => 'multipleactiveplayer',
+    'args' => "argPlay",
     'action' => "stWaitingScore",
 		"possibleactions" => [],
 		"transitions" => [

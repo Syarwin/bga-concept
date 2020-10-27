@@ -73,18 +73,18 @@ class PlayerManager extends \APP_DbObject
 	 * returns an array of the ids of all players left
 	 */
 	public static function getPlayersLeft() {
-    $sql = "SELECT player_id id FROM player WHERE player_eliminated = 0 ORDER BY player_no";
+    $sql = "SELECT player_id id FROM player WHERE player_zombie = 0 ORDER BY player_no";
 		return self::getObjectListFromDB($sql, true);
 	}
 
   public static function getEliminatedPlayers() {
-		$sql = "SELECT player_id id FROM player WHERE player_eliminated = 1 ORDER BY player_no";
+		$sql = "SELECT player_id id FROM player WHERE player_zombie = 1 ORDER BY player_no";
 		return self::getObjectListFromDB($sql, true);
 	}
 
 
 	public static function getPlayersLeftStartingWith($pId) {
-		return self::getObjectListFromDB("SELECT player_id id FROM player WHERE player_eliminated = 0 ORDER BY player_no < (SELECT player_no no FROM player WHERE player_id = $pId), player_no", true);
+		return self::getObjectListFromDB("SELECT player_id id FROM player WHERE player_zombie = 0 ORDER BY player_no < (SELECT player_no no FROM player WHERE player_id = $pId), player_no", true);
 	}
 
   public static function getNextPlayer($player) {

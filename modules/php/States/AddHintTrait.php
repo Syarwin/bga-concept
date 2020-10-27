@@ -24,14 +24,14 @@ trait AddHintTrait {
   }
 
   function newTeamAction(){
-    $this->giveExtraTime(self::getCurrentPlayerId());
+    $this->giveExtraTime($this->getCurrentPlayerId(), 300);
     if(self::isAsync()){
       $this->makeGuessersActive();
     }
   }
 
   function newGuesserAction(){
-    $this->giveExtraTime(self::getCurrentPlayerId());
+    $this->giveExtraTime($this->getCurrentPlayerId(), 300);
     if(self::isAsync()){
       $this->makeTeamActive();
     }
@@ -46,7 +46,7 @@ trait AddHintTrait {
   function stWaitingScore(){
     $this->makeTeamActive(true);
   }
-  
+
 	/*
  	 * confirmHints: allow a player to inactive itself for turn based games
  	 */
@@ -58,6 +58,11 @@ trait AddHintTrait {
    * addHint: add a new hint on the board
    */
   function addHint($mColor, $mType, $x, $y, $sId){
+    if($this->gamestate->state()['name'] != "addHint"){
+      $this->notifyAllPlayers('message', '', []);
+      return;
+    }
+
     $this->newTeamAction();
     $id = Hint::add($mColor, $mType, $x,$y, $sId);
 		$this->notifyAllPlayers('addHint', '', [
@@ -75,6 +80,11 @@ trait AddHintTrait {
    * moveHint: move an existing hint on the board
    */
   function moveHint($id, $x, $y){
+    if($this->gamestate->state()['name'] != "addHint"){
+      $this->notifyAllPlayers('message', '', []);
+      return;
+    }
+
     $this->newTeamAction();
     Hint::move($id, $x,$y);
 		$this->notifyAllPlayers('moveHint', '', [
@@ -90,6 +100,11 @@ trait AddHintTrait {
    * moveMark: move an existing '?!' on another symbol
    */
   function moveMark($color, $sId){
+    if($this->gamestate->state()['name'] != "addHint"){
+      $this->notifyAllPlayers('message', '', []);
+      return;
+    }
+
     $this->newTeamAction();
     Hint::moveMark($color, $sId);
 		$this->notifyAllPlayers('moveMark', '', [
@@ -103,6 +118,11 @@ trait AddHintTrait {
    * deleteHint: delete an existing hint on the board
    */
   function deleteHint($id){
+    if($this->gamestate->state()['name'] != "addHint"){
+      $this->notifyAllPlayers('message', '', []);
+      return;
+    }
+
     $this->newTeamAction();
     Hint::delete($id);
 		$this->notifyAllPlayers('deleteHint', '', [
@@ -115,6 +135,11 @@ trait AddHintTrait {
    * clearHints: delete all the hints of given color
    */
   function clearHints($color = 0){
+    if($this->gamestate->state()['name'] != "addHint"){
+      $this->notifyAllPlayers('message', '', []);
+      return;
+    }
+
     $this->newTeamAction();
 		if($color == 0){
 			Hint::clearAll();

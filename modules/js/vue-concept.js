@@ -76,7 +76,7 @@ window.Concept = function(game){
         return m + ":" + s.padStart(2, '0');
       },
 
-      word:function(){
+      word(){
         let w = this.game.gamedatas.word;
         if(w == null) return '';
         else return w.j? this.game.gamedatas.cards[w.card][w.i][w.j] : '???';
@@ -309,7 +309,6 @@ window.Concept = function(game){
 
           dojo.removeClass('overall_player_board_' + player.id, "gaveup cluegiver")
           if(player.gaveup == 1){
-            console.log(player,"test")
             dojo.addClass('overall_player_board_' + player.id, "gaveup");
           }
         });
@@ -522,10 +521,10 @@ window.Concept = function(game){
 
 
       onScreenWidthChange(){
-        let gridWidth = 1280;
+        let gridWidth = this.isFree? 1280 : 1100;
         let gridHeight = 800;
         let box = $('concept-grid-container').getBoundingClientRect();
-        this.scale = Math.min(box['width'] / gridWidth, box['height'] / gridHeight);
+        this.scale = box['width'] / gridWidth; //Math.min(box['width'] / gridWidth, box['height'] / gridHeight);
         dojo.style('concept-guesses-container', 'maxHeight', (790 * this.scale) + 'px');
 
         if($("hints"))

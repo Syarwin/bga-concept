@@ -131,12 +131,12 @@ html.darkmode {
         background: #dc3545 !important; }
   html.darkmode div#hints-only {
     background-color: #3b4048 !important; }
-  html.darkmode div#toggle-grid {
+  html.darkmode div#toggle-grid, html.darkmode div#overview-switch {
     background-color: #3b4048 !important;
     color: grey; }
-    html.darkmode div#toggle-grid label {
+    html.darkmode div#toggle-grid label, html.darkmode div#overview-switch label {
       background-color: #777 !important; }
-      html.darkmode div#toggle-grid label .ball {
+      html.darkmode div#toggle-grid label .ball, html.darkmode div#overview-switch label .ball {
         background-color: #2c3037 !important; }
   html.darkmode #logs .roundedbox {
     background: #3b4048 !important;
@@ -1333,6 +1333,8 @@ html.darkmode {
           background-color: rgba(255, 255, 255, 0.7);
           border: 1px solid rgba(0, 0, 0, 0.3);
           border-radius: 5px; }
+          #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only.fullWidth {
+            margin-right: 10px !important; }
           #concept-app #concept-container #concept-grid-container div#hints-only-container div#hints-only.alone {
             margin: 0 !important;
             background-color: transparent !important;
@@ -1756,314 +1758,358 @@ html.darkmode {
           background-size: 0;
           cursor: not-allowed;
           border: 1px solid transparent; }
-  #concept-app div#hints {
+  #concept-app div#hints-container {
     width: 9rem;
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
     display: flex;
     flex-direction: column;
-    overflow: auto;
     flex-shrink: 0; }
-    #concept-app div#hints li.hint {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      padding: 0.5rem;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
-      #concept-app div#hints li.hint div.img {
+    #concept-app div#hints-container #overview-switch {
+      width: 9rem;
+      height: 40px;
+      margin-bottom: 5px;
+      background-color: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 5px; }
+      #concept-app div#hints-container #overview-switch .checkbox {
+        opacity: 0;
+        position: absolute; }
+      #concept-app div#hints-container #overview-switch svg {
+        width: 20px;
+        margin: 0 3px;
         position: relative;
-        width: 3.5rem;
-        height: 3.5rem;
-        background-image: url("img/concept-symbols.png");
-        background-size: 1000%;
-        border: 1px solid #444;
-        border-radius: 10px; }
-        #concept-app div#hints li.hint div.img[data-symbol="0"] {
-          background-position: 0% 0%; }
-        #concept-app div#hints li.hint div.img[data-symbol="1"] {
-          background-position: 11.1111111111% 0%; }
-        #concept-app div#hints li.hint div.img[data-symbol="2"] {
-          background-position: 22.2222222222% 0%; }
-        #concept-app div#hints li.hint div.img[data-symbol="3"] {
-          background-position: 33.3333333333% 0%; }
-        #concept-app div#hints li.hint div.img[data-symbol="4"] {
-          background-position: 44.4444444444% 0%; }
-        #concept-app div#hints li.hint div.img[data-symbol="5"] {
-          background-position: 55.5555555556% 0%; }
-        #concept-app div#hints li.hint div.img[data-symbol="6"] {
-          background-position: 66.6666666667% 0%; }
-        #concept-app div#hints li.hint div.img[data-symbol="7"] {
-          background-position: 77.7777777778% 0%; }
-        #concept-app div#hints li.hint div.img[data-symbol="8"] {
-          background-position: 88.8888888889% 0%; }
-        #concept-app div#hints li.hint div.img[data-symbol="9"] {
-          background-position: 100% 0%; }
-        #concept-app div#hints li.hint div.img[data-symbol="10"] {
-          background-position: 0% 9.0909090909%; }
-        #concept-app div#hints li.hint div.img[data-symbol="11"] {
-          background-position: 11.1111111111% 9.0909090909%; }
-        #concept-app div#hints li.hint div.img[data-symbol="12"] {
-          background-position: 22.2222222222% 9.0909090909%; }
-        #concept-app div#hints li.hint div.img[data-symbol="13"] {
-          background-position: 33.3333333333% 9.0909090909%; }
-        #concept-app div#hints li.hint div.img[data-symbol="14"] {
-          background-position: 44.4444444444% 9.0909090909%; }
-        #concept-app div#hints li.hint div.img[data-symbol="15"] {
-          background-position: 55.5555555556% 9.0909090909%; }
-        #concept-app div#hints li.hint div.img[data-symbol="16"] {
-          background-position: 66.6666666667% 9.0909090909%; }
-        #concept-app div#hints li.hint div.img[data-symbol="17"] {
-          background-position: 77.7777777778% 9.0909090909%; }
-        #concept-app div#hints li.hint div.img[data-symbol="18"] {
-          background-position: 88.8888888889% 9.0909090909%; }
-        #concept-app div#hints li.hint div.img[data-symbol="19"] {
-          background-position: 100% 9.0909090909%; }
-        #concept-app div#hints li.hint div.img[data-symbol="20"] {
-          background-position: 0% 18.1818181818%; }
-        #concept-app div#hints li.hint div.img[data-symbol="21"] {
-          background-position: 11.1111111111% 18.1818181818%; }
-        #concept-app div#hints li.hint div.img[data-symbol="22"] {
-          background-position: 22.2222222222% 18.1818181818%; }
-        #concept-app div#hints li.hint div.img[data-symbol="23"] {
-          background-position: 33.3333333333% 18.1818181818%; }
-        #concept-app div#hints li.hint div.img[data-symbol="24"] {
-          background-position: 44.4444444444% 18.1818181818%; }
-        #concept-app div#hints li.hint div.img[data-symbol="25"] {
-          background-position: 55.5555555556% 18.1818181818%; }
-        #concept-app div#hints li.hint div.img[data-symbol="26"] {
-          background-position: 66.6666666667% 18.1818181818%; }
-        #concept-app div#hints li.hint div.img[data-symbol="27"] {
-          background-position: 77.7777777778% 18.1818181818%; }
-        #concept-app div#hints li.hint div.img[data-symbol="28"] {
-          background-position: 88.8888888889% 18.1818181818%; }
-        #concept-app div#hints li.hint div.img[data-symbol="29"] {
-          background-position: 100% 18.1818181818%; }
-        #concept-app div#hints li.hint div.img[data-symbol="30"] {
-          background-position: 0% 27.2727272727%; }
-        #concept-app div#hints li.hint div.img[data-symbol="31"] {
-          background-position: 11.1111111111% 27.2727272727%; }
-        #concept-app div#hints li.hint div.img[data-symbol="32"] {
-          background-position: 22.2222222222% 27.2727272727%; }
-        #concept-app div#hints li.hint div.img[data-symbol="33"] {
-          background-position: 33.3333333333% 27.2727272727%; }
-        #concept-app div#hints li.hint div.img[data-symbol="34"] {
-          background-position: 44.4444444444% 27.2727272727%; }
-        #concept-app div#hints li.hint div.img[data-symbol="35"] {
-          background-position: 55.5555555556% 27.2727272727%; }
-        #concept-app div#hints li.hint div.img[data-symbol="36"] {
-          background-position: 66.6666666667% 27.2727272727%; }
-        #concept-app div#hints li.hint div.img[data-symbol="37"] {
-          background-position: 77.7777777778% 27.2727272727%; }
-        #concept-app div#hints li.hint div.img[data-symbol="38"] {
-          background-position: 88.8888888889% 27.2727272727%; }
-        #concept-app div#hints li.hint div.img[data-symbol="39"] {
-          background-position: 100% 27.2727272727%; }
-        #concept-app div#hints li.hint div.img[data-symbol="40"] {
-          background-position: 0% 36.3636363636%; }
-        #concept-app div#hints li.hint div.img[data-symbol="41"] {
-          background-position: 11.1111111111% 36.3636363636%; }
-        #concept-app div#hints li.hint div.img[data-symbol="42"] {
-          background-position: 22.2222222222% 36.3636363636%; }
-        #concept-app div#hints li.hint div.img[data-symbol="43"] {
-          background-position: 33.3333333333% 36.3636363636%; }
-        #concept-app div#hints li.hint div.img[data-symbol="44"] {
-          background-position: 44.4444444444% 36.3636363636%; }
-        #concept-app div#hints li.hint div.img[data-symbol="45"] {
-          background-position: 55.5555555556% 36.3636363636%; }
-        #concept-app div#hints li.hint div.img[data-symbol="46"] {
-          background-position: 66.6666666667% 36.3636363636%; }
-        #concept-app div#hints li.hint div.img[data-symbol="47"] {
-          background-position: 77.7777777778% 36.3636363636%; }
-        #concept-app div#hints li.hint div.img[data-symbol="48"] {
-          background-position: 88.8888888889% 36.3636363636%; }
-        #concept-app div#hints li.hint div.img[data-symbol="49"] {
-          background-position: 100% 36.3636363636%; }
-        #concept-app div#hints li.hint div.img[data-symbol="50"] {
-          background-position: 0% 45.4545454545%; }
-        #concept-app div#hints li.hint div.img[data-symbol="51"] {
-          background-position: 11.1111111111% 45.4545454545%; }
-        #concept-app div#hints li.hint div.img[data-symbol="52"] {
-          background-position: 22.2222222222% 45.4545454545%; }
-        #concept-app div#hints li.hint div.img[data-symbol="53"] {
-          background-position: 33.3333333333% 45.4545454545%; }
-        #concept-app div#hints li.hint div.img[data-symbol="54"] {
-          background-position: 44.4444444444% 45.4545454545%; }
-        #concept-app div#hints li.hint div.img[data-symbol="55"] {
-          background-position: 55.5555555556% 45.4545454545%; }
-        #concept-app div#hints li.hint div.img[data-symbol="56"] {
-          background-position: 66.6666666667% 45.4545454545%; }
-        #concept-app div#hints li.hint div.img[data-symbol="57"] {
-          background-position: 77.7777777778% 45.4545454545%; }
-        #concept-app div#hints li.hint div.img[data-symbol="58"] {
-          background-position: 88.8888888889% 45.4545454545%; }
-        #concept-app div#hints li.hint div.img[data-symbol="59"] {
-          background-position: 100% 45.4545454545%; }
-        #concept-app div#hints li.hint div.img[data-symbol="60"] {
-          background-position: 0% 54.5454545455%; }
-        #concept-app div#hints li.hint div.img[data-symbol="61"] {
-          background-position: 11.1111111111% 54.5454545455%; }
-        #concept-app div#hints li.hint div.img[data-symbol="62"] {
-          background-position: 22.2222222222% 54.5454545455%; }
-        #concept-app div#hints li.hint div.img[data-symbol="63"] {
-          background-position: 33.3333333333% 54.5454545455%; }
-        #concept-app div#hints li.hint div.img[data-symbol="64"] {
-          background-position: 44.4444444444% 54.5454545455%; }
-        #concept-app div#hints li.hint div.img[data-symbol="65"] {
-          background-position: 55.5555555556% 54.5454545455%; }
-        #concept-app div#hints li.hint div.img[data-symbol="66"] {
-          background-position: 66.6666666667% 54.5454545455%; }
-        #concept-app div#hints li.hint div.img[data-symbol="67"] {
-          background-position: 77.7777777778% 54.5454545455%; }
-        #concept-app div#hints li.hint div.img[data-symbol="68"] {
-          background-position: 88.8888888889% 54.5454545455%; }
-        #concept-app div#hints li.hint div.img[data-symbol="69"] {
-          background-position: 100% 54.5454545455%; }
-        #concept-app div#hints li.hint div.img[data-symbol="70"] {
-          background-position: 0% 63.6363636364%; }
-        #concept-app div#hints li.hint div.img[data-symbol="71"] {
-          background-position: 11.1111111111% 63.6363636364%; }
-        #concept-app div#hints li.hint div.img[data-symbol="72"] {
-          background-position: 22.2222222222% 63.6363636364%; }
-        #concept-app div#hints li.hint div.img[data-symbol="73"] {
-          background-position: 33.3333333333% 63.6363636364%; }
-        #concept-app div#hints li.hint div.img[data-symbol="74"] {
-          background-position: 44.4444444444% 63.6363636364%; }
-        #concept-app div#hints li.hint div.img[data-symbol="75"] {
-          background-position: 55.5555555556% 63.6363636364%; }
-        #concept-app div#hints li.hint div.img[data-symbol="76"] {
-          background-position: 66.6666666667% 63.6363636364%; }
-        #concept-app div#hints li.hint div.img[data-symbol="77"] {
-          background-position: 77.7777777778% 63.6363636364%; }
-        #concept-app div#hints li.hint div.img[data-symbol="78"] {
-          background-position: 88.8888888889% 63.6363636364%; }
-        #concept-app div#hints li.hint div.img[data-symbol="79"] {
-          background-position: 100% 63.6363636364%; }
-        #concept-app div#hints li.hint div.img[data-symbol="80"] {
-          background-position: 0% 72.7272727273%; }
-        #concept-app div#hints li.hint div.img[data-symbol="81"] {
-          background-position: 11.1111111111% 72.7272727273%; }
-        #concept-app div#hints li.hint div.img[data-symbol="82"] {
-          background-position: 22.2222222222% 72.7272727273%; }
-        #concept-app div#hints li.hint div.img[data-symbol="83"] {
-          background-position: 33.3333333333% 72.7272727273%; }
-        #concept-app div#hints li.hint div.img[data-symbol="84"] {
-          background-position: 44.4444444444% 72.7272727273%; }
-        #concept-app div#hints li.hint div.img[data-symbol="85"] {
-          background-position: 55.5555555556% 72.7272727273%; }
-        #concept-app div#hints li.hint div.img[data-symbol="86"] {
-          background-position: 66.6666666667% 72.7272727273%; }
-        #concept-app div#hints li.hint div.img[data-symbol="87"] {
-          background-position: 77.7777777778% 72.7272727273%; }
-        #concept-app div#hints li.hint div.img[data-symbol="88"] {
-          background-position: 88.8888888889% 72.7272727273%; }
-        #concept-app div#hints li.hint div.img[data-symbol="89"] {
-          background-position: 100% 72.7272727273%; }
-        #concept-app div#hints li.hint div.img[data-symbol="90"] {
-          background-position: 0% 81.8181818182%; }
-        #concept-app div#hints li.hint div.img[data-symbol="91"] {
-          background-position: 11.1111111111% 81.8181818182%; }
-        #concept-app div#hints li.hint div.img[data-symbol="92"] {
-          background-position: 22.2222222222% 81.8181818182%; }
-        #concept-app div#hints li.hint div.img[data-symbol="93"] {
-          background-position: 33.3333333333% 81.8181818182%; }
-        #concept-app div#hints li.hint div.img[data-symbol="94"] {
-          background-position: 44.4444444444% 81.8181818182%; }
-        #concept-app div#hints li.hint div.img[data-symbol="95"] {
-          background-position: 55.5555555556% 81.8181818182%; }
-        #concept-app div#hints li.hint div.img[data-symbol="96"] {
-          background-position: 66.6666666667% 81.8181818182%; }
-        #concept-app div#hints li.hint div.img[data-symbol="97"] {
-          background-position: 77.7777777778% 81.8181818182%; }
-        #concept-app div#hints li.hint div.img[data-symbol="98"] {
-          background-position: 88.8888888889% 81.8181818182%; }
-        #concept-app div#hints li.hint div.img[data-symbol="99"] {
-          background-position: 100% 81.8181818182%; }
-        #concept-app div#hints li.hint div.img[data-symbol="100"] {
-          background-position: 0% 90.9090909091%; }
-        #concept-app div#hints li.hint div.img[data-symbol="101"] {
-          background-position: 11.1111111111% 90.9090909091%; }
-        #concept-app div#hints li.hint div.img[data-symbol="102"] {
-          background-position: 22.2222222222% 90.9090909091%; }
-        #concept-app div#hints li.hint div.img[data-symbol="103"] {
-          background-position: 33.3333333333% 90.9090909091%; }
-        #concept-app div#hints li.hint div.img[data-symbol="104"] {
-          background-position: 44.4444444444% 90.9090909091%; }
-        #concept-app div#hints li.hint div.img[data-symbol="105"] {
-          background-position: 55.5555555556% 90.9090909091%; }
-        #concept-app div#hints li.hint div.img[data-symbol="106"] {
-          background-position: 66.6666666667% 90.9090909091%; }
-        #concept-app div#hints li.hint div.img[data-symbol="107"] {
-          background-position: 77.7777777778% 90.9090909091%; }
-        #concept-app div#hints li.hint div.img[data-symbol="108"] {
-          background-position: 88.8888888889% 90.9090909091%; }
-        #concept-app div#hints li.hint div.img[data-symbol="109"] {
-          background-position: 100% 90.9090909091%; }
-        #concept-app div#hints li.hint div.img[data-symbol="110"] {
-          background-position: 0% 100%; }
-        #concept-app div#hints li.hint div.img[data-symbol="111"] {
-          background-position: 11.1111111111% 100%; }
-        #concept-app div#hints li.hint div.img[data-symbol="112"] {
-          background-position: 22.2222222222% 100%; }
-        #concept-app div#hints li.hint div.img[data-symbol="113"] {
-          background-position: 33.3333333333% 100%; }
-        #concept-app div#hints li.hint div.img[data-symbol="114"] {
-          background-position: 44.4444444444% 100%; }
-        #concept-app div#hints li.hint div.img[data-symbol="115"] {
-          background-position: 55.5555555556% 100%; }
-        #concept-app div#hints li.hint div.img[data-symbol="116"] {
-          background-position: 66.6666666667% 100%; }
-        #concept-app div#hints li.hint div.img[data-symbol="117"] {
-          background-position: 77.7777777778% 100%; }
-        #concept-app div#hints li.hint div.img div.mark {
-          display: block;
-          width: 30px;
-          height: 30px;
-          margin: 0.5rem 0;
-          border: 1px solid transparent;
-          cursor: move;
-          background-size: 500%;
-          background-repeat: no-repeat;
-          position: absolute;
-          bottom: -20px;
-          right: -19px;
-          filter: drop-shadow(-1px -1px 0px white) drop-shadow(1px 1px 0px black); }
-          #concept-app div#hints li.hint div.img div.mark[data-type="0"] {
-            background-image: url("img/main-marks.png");
-            height: 55px; }
-          #concept-app div#hints li.hint div.img div.mark[data-type="1"] {
-            background-image: url("img/cube-marks.png"); }
-          #concept-app div#hints li.hint div.img div.mark[data-color="1"] {
-            background-position: 0% center; }
-          #concept-app div#hints li.hint div.img div.mark[data-color="2"] {
-            background-position: 25% center; }
-          #concept-app div#hints li.hint div.img div.mark[data-color="3"] {
-            background-position: 50% center; }
-          #concept-app div#hints li.hint div.img div.mark[data-color="4"] {
-            background-position: 75% center; }
-          #concept-app div#hints li.hint div.img div.mark[data-color="5"] {
-            background-position: 100% center; }
-      #concept-app div#hints li.hint button {
-        width: 35px;
-        height: 35px;
-        color: #dc3545;
-        border: 1px solid #dc3545;
+        left: 8px;
+        top: 2px; }
+      #concept-app div#hints-container #overview-switch .label {
+        background-color: #2c3037;
+        border-radius: 50px;
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        top: 7px;
+        left: 8px;
+        height: 26px;
+        width: 60px; }
+      #concept-app div#hints-container #overview-switch .label .ball {
+        background-color: #fff;
+        border-radius: 50%;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        height: 22px;
+        width: 22px;
+        transform: translateX(34px);
+        transition: transform 0.2s linear, color 0.7s linear; }
+      #concept-app div#hints-container #overview-switch .checkbox:checked + .label .ball {
+        transform: translateX(0px); }
+    #concept-app div#hints-container div#hints {
+      width: 9rem;
+      background-color: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+      flex-shrink: 0;
+      flex-grow: 1; }
+      #concept-app div#hints-container div#hints li.hint {
         display: flex;
+        flex-direction: row;
         align-items: center;
         justify-content: center;
-        margin-left: 30px;
-        cursor: pointer;
-        border-radius: 5px; }
-        #concept-app div#hints li.hint button:hover {
-          background-color: #dc3545;
-          color: white; }
-        #concept-app div#hints li.hint button svg {
-          width: 80%;
-          height: 80%; }
-      #concept-app div#hints li.hint.ghost {
-        opacity: 0.5;
-        background: #c8ebfb; }
+        padding: 0.5rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
+        #concept-app div#hints-container div#hints li.hint div.img {
+          position: relative;
+          width: 3.5rem;
+          height: 3.5rem;
+          background-image: url("img/concept-symbols.png");
+          background-size: 1000%;
+          border: 1px solid #444;
+          border-radius: 10px; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="0"] {
+            background-position: 0% 0%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="1"] {
+            background-position: 11.1111111111% 0%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="2"] {
+            background-position: 22.2222222222% 0%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="3"] {
+            background-position: 33.3333333333% 0%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="4"] {
+            background-position: 44.4444444444% 0%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="5"] {
+            background-position: 55.5555555556% 0%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="6"] {
+            background-position: 66.6666666667% 0%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="7"] {
+            background-position: 77.7777777778% 0%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="8"] {
+            background-position: 88.8888888889% 0%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="9"] {
+            background-position: 100% 0%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="10"] {
+            background-position: 0% 9.0909090909%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="11"] {
+            background-position: 11.1111111111% 9.0909090909%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="12"] {
+            background-position: 22.2222222222% 9.0909090909%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="13"] {
+            background-position: 33.3333333333% 9.0909090909%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="14"] {
+            background-position: 44.4444444444% 9.0909090909%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="15"] {
+            background-position: 55.5555555556% 9.0909090909%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="16"] {
+            background-position: 66.6666666667% 9.0909090909%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="17"] {
+            background-position: 77.7777777778% 9.0909090909%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="18"] {
+            background-position: 88.8888888889% 9.0909090909%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="19"] {
+            background-position: 100% 9.0909090909%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="20"] {
+            background-position: 0% 18.1818181818%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="21"] {
+            background-position: 11.1111111111% 18.1818181818%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="22"] {
+            background-position: 22.2222222222% 18.1818181818%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="23"] {
+            background-position: 33.3333333333% 18.1818181818%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="24"] {
+            background-position: 44.4444444444% 18.1818181818%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="25"] {
+            background-position: 55.5555555556% 18.1818181818%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="26"] {
+            background-position: 66.6666666667% 18.1818181818%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="27"] {
+            background-position: 77.7777777778% 18.1818181818%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="28"] {
+            background-position: 88.8888888889% 18.1818181818%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="29"] {
+            background-position: 100% 18.1818181818%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="30"] {
+            background-position: 0% 27.2727272727%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="31"] {
+            background-position: 11.1111111111% 27.2727272727%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="32"] {
+            background-position: 22.2222222222% 27.2727272727%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="33"] {
+            background-position: 33.3333333333% 27.2727272727%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="34"] {
+            background-position: 44.4444444444% 27.2727272727%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="35"] {
+            background-position: 55.5555555556% 27.2727272727%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="36"] {
+            background-position: 66.6666666667% 27.2727272727%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="37"] {
+            background-position: 77.7777777778% 27.2727272727%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="38"] {
+            background-position: 88.8888888889% 27.2727272727%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="39"] {
+            background-position: 100% 27.2727272727%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="40"] {
+            background-position: 0% 36.3636363636%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="41"] {
+            background-position: 11.1111111111% 36.3636363636%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="42"] {
+            background-position: 22.2222222222% 36.3636363636%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="43"] {
+            background-position: 33.3333333333% 36.3636363636%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="44"] {
+            background-position: 44.4444444444% 36.3636363636%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="45"] {
+            background-position: 55.5555555556% 36.3636363636%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="46"] {
+            background-position: 66.6666666667% 36.3636363636%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="47"] {
+            background-position: 77.7777777778% 36.3636363636%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="48"] {
+            background-position: 88.8888888889% 36.3636363636%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="49"] {
+            background-position: 100% 36.3636363636%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="50"] {
+            background-position: 0% 45.4545454545%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="51"] {
+            background-position: 11.1111111111% 45.4545454545%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="52"] {
+            background-position: 22.2222222222% 45.4545454545%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="53"] {
+            background-position: 33.3333333333% 45.4545454545%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="54"] {
+            background-position: 44.4444444444% 45.4545454545%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="55"] {
+            background-position: 55.5555555556% 45.4545454545%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="56"] {
+            background-position: 66.6666666667% 45.4545454545%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="57"] {
+            background-position: 77.7777777778% 45.4545454545%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="58"] {
+            background-position: 88.8888888889% 45.4545454545%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="59"] {
+            background-position: 100% 45.4545454545%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="60"] {
+            background-position: 0% 54.5454545455%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="61"] {
+            background-position: 11.1111111111% 54.5454545455%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="62"] {
+            background-position: 22.2222222222% 54.5454545455%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="63"] {
+            background-position: 33.3333333333% 54.5454545455%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="64"] {
+            background-position: 44.4444444444% 54.5454545455%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="65"] {
+            background-position: 55.5555555556% 54.5454545455%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="66"] {
+            background-position: 66.6666666667% 54.5454545455%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="67"] {
+            background-position: 77.7777777778% 54.5454545455%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="68"] {
+            background-position: 88.8888888889% 54.5454545455%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="69"] {
+            background-position: 100% 54.5454545455%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="70"] {
+            background-position: 0% 63.6363636364%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="71"] {
+            background-position: 11.1111111111% 63.6363636364%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="72"] {
+            background-position: 22.2222222222% 63.6363636364%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="73"] {
+            background-position: 33.3333333333% 63.6363636364%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="74"] {
+            background-position: 44.4444444444% 63.6363636364%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="75"] {
+            background-position: 55.5555555556% 63.6363636364%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="76"] {
+            background-position: 66.6666666667% 63.6363636364%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="77"] {
+            background-position: 77.7777777778% 63.6363636364%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="78"] {
+            background-position: 88.8888888889% 63.6363636364%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="79"] {
+            background-position: 100% 63.6363636364%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="80"] {
+            background-position: 0% 72.7272727273%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="81"] {
+            background-position: 11.1111111111% 72.7272727273%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="82"] {
+            background-position: 22.2222222222% 72.7272727273%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="83"] {
+            background-position: 33.3333333333% 72.7272727273%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="84"] {
+            background-position: 44.4444444444% 72.7272727273%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="85"] {
+            background-position: 55.5555555556% 72.7272727273%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="86"] {
+            background-position: 66.6666666667% 72.7272727273%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="87"] {
+            background-position: 77.7777777778% 72.7272727273%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="88"] {
+            background-position: 88.8888888889% 72.7272727273%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="89"] {
+            background-position: 100% 72.7272727273%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="90"] {
+            background-position: 0% 81.8181818182%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="91"] {
+            background-position: 11.1111111111% 81.8181818182%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="92"] {
+            background-position: 22.2222222222% 81.8181818182%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="93"] {
+            background-position: 33.3333333333% 81.8181818182%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="94"] {
+            background-position: 44.4444444444% 81.8181818182%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="95"] {
+            background-position: 55.5555555556% 81.8181818182%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="96"] {
+            background-position: 66.6666666667% 81.8181818182%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="97"] {
+            background-position: 77.7777777778% 81.8181818182%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="98"] {
+            background-position: 88.8888888889% 81.8181818182%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="99"] {
+            background-position: 100% 81.8181818182%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="100"] {
+            background-position: 0% 90.9090909091%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="101"] {
+            background-position: 11.1111111111% 90.9090909091%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="102"] {
+            background-position: 22.2222222222% 90.9090909091%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="103"] {
+            background-position: 33.3333333333% 90.9090909091%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="104"] {
+            background-position: 44.4444444444% 90.9090909091%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="105"] {
+            background-position: 55.5555555556% 90.9090909091%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="106"] {
+            background-position: 66.6666666667% 90.9090909091%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="107"] {
+            background-position: 77.7777777778% 90.9090909091%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="108"] {
+            background-position: 88.8888888889% 90.9090909091%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="109"] {
+            background-position: 100% 90.9090909091%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="110"] {
+            background-position: 0% 100%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="111"] {
+            background-position: 11.1111111111% 100%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="112"] {
+            background-position: 22.2222222222% 100%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="113"] {
+            background-position: 33.3333333333% 100%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="114"] {
+            background-position: 44.4444444444% 100%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="115"] {
+            background-position: 55.5555555556% 100%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="116"] {
+            background-position: 66.6666666667% 100%; }
+          #concept-app div#hints-container div#hints li.hint div.img[data-symbol="117"] {
+            background-position: 77.7777777778% 100%; }
+          #concept-app div#hints-container div#hints li.hint div.img div.mark {
+            display: block;
+            width: 30px;
+            height: 30px;
+            margin: 0.5rem 0;
+            border: 1px solid transparent;
+            cursor: move;
+            background-size: 500%;
+            background-repeat: no-repeat;
+            position: absolute;
+            bottom: -20px;
+            right: -19px;
+            filter: drop-shadow(-1px -1px 0px white) drop-shadow(1px 1px 0px black); }
+            #concept-app div#hints-container div#hints li.hint div.img div.mark[data-type="0"] {
+              background-image: url("img/main-marks.png");
+              height: 55px; }
+            #concept-app div#hints-container div#hints li.hint div.img div.mark[data-type="1"] {
+              background-image: url("img/cube-marks.png"); }
+            #concept-app div#hints-container div#hints li.hint div.img div.mark[data-color="1"] {
+              background-position: 0% center; }
+            #concept-app div#hints-container div#hints li.hint div.img div.mark[data-color="2"] {
+              background-position: 25% center; }
+            #concept-app div#hints-container div#hints li.hint div.img div.mark[data-color="3"] {
+              background-position: 50% center; }
+            #concept-app div#hints-container div#hints li.hint div.img div.mark[data-color="4"] {
+              background-position: 75% center; }
+            #concept-app div#hints-container div#hints li.hint div.img div.mark[data-color="5"] {
+              background-position: 100% center; }
+        #concept-app div#hints-container div#hints li.hint button {
+          width: 35px;
+          height: 35px;
+          color: #dc3545;
+          border: 1px solid #dc3545;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-left: 30px;
+          cursor: pointer;
+          border-radius: 5px; }
+          #concept-app div#hints-container div#hints li.hint button:hover {
+            background-color: #dc3545;
+            color: white; }
+          #concept-app div#hints-container div#hints li.hint button svg {
+            width: 80%;
+            height: 80%; }
+        #concept-app div#hints-container div#hints li.hint.ghost {
+          opacity: 0.5;
+          background: #c8ebfb; }
 
 div#concept-card-overlay {
   position: fixed;
@@ -2193,9 +2239,9 @@ div#concept-card-reveal {
       transform: rotateY(180deg); }
       div#concept-card-reveal div#concept-reveal-container #concept-reveal-front div #concept-reveal-smiley {
         width: 150px;
-        height: 150px;
+        height: 220px;
         margin: 30px auto;
-        background-image: url("img/feedback.png");
+        background-image: url("img/ampoule.png");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: 0% 0%; }
@@ -2252,3 +2298,5 @@ div#concept-card-reveal {
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: .25rem; }
+
+/*# sourceMappingURL=concept.css.map */

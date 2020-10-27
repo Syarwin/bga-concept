@@ -182,7 +182,7 @@ class Concept extends Table
 	 */
 	public function zombieTurn($state, $activePlayer) {
 		if (array_key_exists('zombiePass', $state['transitions'])) {
-			$this->gamestate->nextState('zombiePass');
+			$this->gamestate->nextState('giveup');
 		} else {
 			throw new BgaVisibleSystemException('Zombie player ' . $activePlayer . ' stuck in unexpected state ' . $state['name']);
 		}

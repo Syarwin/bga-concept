@@ -19,6 +19,7 @@ class Guess extends \APP_DbObject
   {
     $safe = addslashes(base64_encode($txt));
     self::DbQuery("INSERT INTO guess (`log_id`, `player_id`, `guess`) VALUES (-1,-1, '$safe')");
+    return self::DbGetLastId();
   }
 
   public static function getCurrent()

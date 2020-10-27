@@ -54,7 +54,7 @@ trait GuessWordTrait {
 
     $word = Log::getCurrentWord();
     $wordTxt = $this->getCards()[$word['card']][$word['i']][$word['j']];
-    if(strcmp(base64_encode($wordTxt), $guess) == 0){
+    if(strcasecmp($wordTxt, base64_decode($guess)) == 0){
       $this->notifyAllPlayers('wordFound', clienttranslate('${player_name} guessed the exact word : ${wordTxt}'), [
         'word' => $word,
         'wordTxt' => $wordTxt,
@@ -115,8 +115,9 @@ trait GuessWordTrait {
 		]);
 
     // Add a separator
-		Guess::newSeparator($wordTxt);
+		$separatorId = Guess::newSeparator($wordTxt);
 		$this->notifyAllPlayers('newGuess', '', [
+      'id' => $separatorId,
 			'pId' => -1,
       'guess' => base64_encode($wordTxt),
 		]);
