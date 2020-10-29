@@ -96,7 +96,6 @@ window.ConceptFree = function(game){
 
     var box = $('concept-grid').getBoundingClientRect();
 
-console.log(this.draggetHint, box, this.scale);
     // Delete hint by moving outside grid
     if(this.draggedHint.x < 0 || this.draggedHint.x > (box.width / this.scale)
       || this.draggedHint.y < 0 || this.draggedHint.y > (box.height / this.scale)){

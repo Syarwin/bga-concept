@@ -73,7 +73,7 @@
 			</div>
 
 
-			<div id="concept-grid-fixed-width" v-show="isClueGiver || displayGrid" v-bind:style="{ 'transform' : 'scale(' + scale +')', 'width' : '1100px', 'height' : (800*scale) + 'px' }">
+			<div id="concept-grid-fixed-width" v-show="isClueGiver || displayGrid" v-bind:style="{ 'transform' : 'scale(' + scale +')', 'width' : '1100px' }">
 				<div id="concept-grid" v-bind:style="{ borderColor: (draggedHint == null? 'transparent' : 'black') }">
 					<div v-for="(symbol, id) in symbols"
 						class="concept-symbol"
