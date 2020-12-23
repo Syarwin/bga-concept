@@ -37,7 +37,8 @@ $machinestates = [
 		"transitions" => [
 			"startRound" => ST_PICK_WORD,
 			"endGame" => ST_GAME_END
-		]
+		],
+    "updateGameProgression" => true
   ],
 
 	ST_PICK_WORD => [

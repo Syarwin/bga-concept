@@ -26,6 +26,8 @@ class view_concept_concept extends game_view
     $this->page->begin_block("concept_concept", "snapped");
     $this->page->begin_block("concept_concept", "free");
 
+    $this->tpl['GUESSES'] = self::_("Guesses");
+
     if($this->game->getGameStateValue('optionHint') == FREE){
       $this->page->unset_var("snapped");
       $this->page->insert_block("free", []);

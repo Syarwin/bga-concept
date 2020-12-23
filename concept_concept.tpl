@@ -12,7 +12,7 @@
 					</div>
 				</h2>
 				<h2 id="word-display" :data-lvl='wordLvl' v-if="word != null"	>{{ word }}</h2>
-				<h2>{{ _("Guesses") }}</h2>
+				<h2>{GUESSES}</h2>
 				<ul id="concept-guesses">
 					<input type="text" id="concept-guess"
 						v-model="guess" :placeholder="_('Your guess')"
@@ -73,7 +73,8 @@
 			</div>
 
 
-			<div id="concept-grid-fixed-width" v-show="isClueGiver || displayGrid" v-bind:style="{ 'transform' : 'scale(' + scale +')', 'width' : '1100px' }">
+      <div id="concept-grid-fixed-width-container" v-show="isClueGiver || displayGrid">
+			<div id="concept-grid-fixed-width" v-bind:style="{ 'width' : '1100px' }">
 				<div id="concept-grid" v-bind:style="{ borderColor: (draggedHint == null? 'transparent' : 'black') }">
 					<div v-for="(symbol, id) in symbols"
 						class="concept-symbol"
@@ -97,6 +98,7 @@
 					</div>
 				</div>
 			</div>
+      </div>
 
 		</div>
 
@@ -115,7 +117,7 @@
   			<draggable class="list-group" tag="ul" v-model="hints" v-bind="dragOptions" @end="reorderingHints">
   				<transition-group>
   					<li class="hint" v-for="(hint, index) in hints" :key="hint.id" v-bind:style="{cursor: isClueGiver? 'move':'default'}">
-  						<div class="img" :data-symbol="hint.sId">
+  						<div class="img" :data-symbol="hint.sId" :id="'hints-' + hint.id" >
   							<div class="mark" :data-color="hint.mColor" :data-type="hint.mType"></div>
   						</div>
   						<button type="button" @touchstart="hint.mType == 0? clearHints(hint.mColor) : removeHint(hint.id)" @click="hint.mType == 0? clearHints(hint.mColor) : removeHint(hint.id)" v-if="isClueGiver">
@@ -131,7 +133,8 @@
 
 <!-- BEGIN free -->
 		<div id="concept-grid-container" class="free">
-			<div id="concept-grid-fixed-width" v-bind:style="{ 'transform' : 'scale(' + scale +')', 'width' : '1260px' }">
+      <div id="concept-grid-fixed-width-container">
+			<div id="concept-grid-fixed-width" v-bind:style="{ 'width' : '1260px' }">
 				<div id="concept-marks" v-show="isClueGiver">
 					<div id="concept-marks-clear">
 						<div id="clearAll" @click="clearHints(0)">
@@ -177,6 +180,7 @@
 					</div>
 				</div>
 			</div>
+      </div>
 		</div>
 		<!-- END free -->
 

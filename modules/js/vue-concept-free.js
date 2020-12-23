@@ -92,7 +92,7 @@ window.ConceptFree = function(game){
    */
   C.methods.dragHintStop = function() {
     if(this.draggedHint == null) return;
-    if(!this.isCurrentPlayerActive()) return;
+    if(!this.isClueGiver) return;
 
     var box = $('concept-grid').getBoundingClientRect();
 

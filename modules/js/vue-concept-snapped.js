@@ -81,15 +81,14 @@ window.ConceptSnapped = function(game){
   // React to change to update tooltips and layout
   C.watch = {
     organizedHints(newHints, oldHints) {
-      setTimeout(() => {
-        dojo.query("#hints-only .hint .img").forEach(obj => {
-          this.game.addTooltip(obj.id, this.symbols[dojo.attr(obj, "data-symbol")].join(", "), '');
-        });
-      }, 10);
+      setTimeout(() => this.refreshTooltips(), 10);
+    },
+    displayOrganized(newValue, oldValue){
+      setTimeout(() => this.refreshTooltips(), 10);
     },
     displayGrid(newValue, oldValue){
       setTimeout(() => {
-        this.onScreenWidthChange();
+        this.game.onScreenWidthChange();
       }, 10);
     }
   };

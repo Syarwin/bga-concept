@@ -119,6 +119,8 @@ window.Concept = function(game){
       this.symbols.forEach((symbol, id) => {
         this.game.addTooltip("symbol-" + id, symbol.join(", "), '');
       });
+      this.refreshTooltips();
+      setTimeout(() => this.refreshTooltips(), 1000);
 
       dojo.query("#hints-only .hint .img").forEach(obj => {
         this.game.addTooltip(obj.id, this.symbols[dojo.attr(obj, "data-symbol")].join(", "), '');
@@ -137,7 +139,10 @@ window.Concept = function(game){
         $("concept-guess").focus();
 
       this.addDarkModeSwitch();
-      setTimeout(() => this.onScreenWidthChange(), 1000);
+
+      this.game.onScreenWidthChange()
+      setTimeout(() => this.game.onScreenWidthChange(), 1000);
+      setTimeout(() => this.game.onScreenWidthChange(), 2000);
 
       if(this.isFree){
         dojo.connect(document, 'onmousemove', this.moveHintAtMouse.bind(this));
@@ -171,6 +176,15 @@ window.Concept = function(game){
 
       unselectSymbol(){ },
 
+      refreshTooltips() {
+        dojo.query("#hints-only .hint .img").forEach(obj => {
+          this.game.addTooltip(obj.id, this.symbols[dojo.attr(obj, "data-symbol")].join(", "), '');
+        });
+
+        dojo.query("#hints .hint .img").forEach(obj => {
+          this.game.addTooltip(obj.id, this.symbols[dojo.attr(obj, "data-symbol")].join(", "), '');
+        });
+      },
       /*
        * onEnteringState:
        * 	this method is called each time we are entering into a new game state.
@@ -519,17 +533,6 @@ window.Concept = function(game){
         this.toggleDarkMode(this.game.prefs[DARK_MODE].value == DARK_MODE_ENABLED);
       },
 
-
-      onScreenWidthChange(){
-        let gridWidth = this.isFree? 1280 : 1100;
-        let gridHeight = 800;
-        let box = $('concept-grid-container').getBoundingClientRect();
-        this.scale =  Math.min(box['width'] / gridWidth, box['height'] / gridHeight);
-        dojo.style('concept-guesses-container', 'maxHeight', (790 * this.scale) + 'px');
-
-        if($("hints"))
-          dojo.style('hints', 'maxHeight', (790 * this.scale) + 'px');
-      },
       ///////////////////////////////////////////////////
       //////	 Reaction to cometD notifications	 ///////
       ///////////////////////////////////////////////////

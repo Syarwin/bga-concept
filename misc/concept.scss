@@ -435,7 +435,7 @@ $columns:(
         display:flex;
         justify-content: center;
         align-items: center;
-        transform-origin: top center;
+        transform-origin: top left;
       }
 
       #concept-grid {
@@ -1229,3 +1229,58 @@ div#concept-card-reveal {
   vertical-align: baseline;
   border-radius: .25rem;
 }
+
+.concept-current-player-board {
+  margin:10px 0px;
+  padding:0 10px;
+  display:flex;
+  justify-content: flex-end;
+  flex-wrap:wrap;
+
+  #layout-settings {
+    height:40px;
+    width:50px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      color:grey;
+    }
+
+    cursor:pointer;
+    &:hover {
+      color:grey;
+    }
+
+    svg {
+      width:auto;
+      height:40px;
+    }
+
+    .fa-primary {
+      transform-origin: 216px 255px;
+      transition: transform 1s;
+    }
+
+    &:hover .fa-primary {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+/*
+ * Controls in the top bar
+ */
+#layout-controls-container {
+  position:relative;
+  text-align: center;
+
+  &.layoutControlsHidden {
+    display:none;
+  }
+}
+
+
+
+@import 'nouislider';

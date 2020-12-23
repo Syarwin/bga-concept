@@ -20,10 +20,11 @@
    "dojo/_base/declare",
    "ebg/core/gamegui",
    "ebg/counter",
-   g_gamethemeurl + "modules/js/vue.js",
-   g_gamethemeurl + "modules/js/popper.min.js",
-   g_gamethemeurl + "modules/js/sortable.js",
-   g_gamethemeurl + "modules/js/vuedraggable.js",
+   g_gamethemeurl + "modules/js/vendor/vue.js",
+   g_gamethemeurl + "modules/js/vendor/popper.min.js",
+   g_gamethemeurl + "modules/js/vendor/sortable.js",
+   g_gamethemeurl + "modules/js/vendor/vuedraggable.js",
+   g_gamethemeurl + "modules/js/layoutManager.js",
    g_gamethemeurl + "modules/js/symbols.js",
    g_gamethemeurl + "modules/js/vue-concept.js",
    g_gamethemeurl + "modules/js/vue-concept-free.js",
@@ -33,11 +34,13 @@
     constructor: function () {
       this.default_viewport = 'width=900, user-scalable=yes';
       this._app = null;
+      this._layoutManager = new concept.layout();
     },
     setup: function (gamedatas) {
       dojo.place("<div id='concept-topbar'></div>", 'topbar', 'after');
       this._app = gamedatas.mode == "free"? new Vue(ConceptFree(this)) : new Vue(ConceptSnapped(this));
       this.initPreferencesObserver();
+      this._layoutManager.init(gamedatas.mode == "snapped", this.isSpectator? null : this.player_id);
     },
     onEnteringState: function (stateName, args) {
       this._app.onEnteringState(stateName, args);
@@ -54,11 +57,7 @@
 
 
     onScreenWidthChange: function () {
-      dojo.style('page-content', 'zoom', '');
-      dojo.style('page-title', 'zoom', '');
-      dojo.style('right-side-first-part', 'zoom', '');
-      if(this._app)
-        this._app.onScreenWidthChange();
+      this._layoutManager.onScreenWidthChange();
     },
 
 
